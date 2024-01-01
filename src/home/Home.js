@@ -6,7 +6,7 @@ const Home = () => {
 
 	useEffect(() => {
 		// Internal component logic to change the state
-		dispatch({ type: 'LOGGED_OUT' });
+		dispatch({ type: 'LOGGED_IN' });
 
 		// Cleanup function if needed
 		return () => {
