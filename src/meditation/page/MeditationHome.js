@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Home = () => {
+const MeditationHome = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// Internal component logic to change the state
-		dispatch({ type: 'LOGGED_OUT' });
+		// dispatch({ type: 'LOGGED_IN' });
 
 		// Cleanup function if needed
 		return () => {
@@ -16,10 +16,10 @@ const Home = () => {
 
 	return (
 		<div>
-			<h2>Home</h2>
-			<p>Welcome to the home page!</p>
+			<h2>MeditationHome</h2>
+			<p>Welcome to the MeditationHome page!</p>
 		</div>
 	);
 };
 
-export default Home;
+export default MeditationHome;
