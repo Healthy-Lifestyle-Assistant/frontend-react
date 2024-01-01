@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-
-const Contact = () => {
+const NutritionHome = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// Internal component logic to change the state
-		dispatch({ type: 'LOGGED_OUT' });
+		// dispatch({ type: 'LOGGED_IN' });
 
 		// Cleanup function if needed
 		return () => {
@@ -17,10 +16,10 @@ const Contact = () => {
 
 	return (
 		<div>
-			<h2>Contact</h2>
-			<p>Welcome to the contact page!</p>
+			<h2>NutritionHome</h2>
+			<p>Welcome to the NutritionHome page!</p>
 		</div>
 	);
 };
 
-export default Contact;
+export default NutritionHome;
