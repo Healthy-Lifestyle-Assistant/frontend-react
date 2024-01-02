@@ -17,7 +17,6 @@ const WorkoutHome = () => {
 	const [messageType, setMessageType] = useState("");
 
 	useEffect(() => {
-		console.log("UseEffect");
 		if (!hasFetchedData.current) {
 			fetchData();
 			hasFetchedData.current = true;
@@ -28,6 +27,8 @@ const WorkoutHome = () => {
 		try {
 			const token = await getAndValidateToken();
 			const defaultWorkoutsResponse = await getDefaultWorkouts();
+			// >>
+			console.log(defaultWorkoutsResponse);
 			if (defaultWorkoutsResponse.status === 200) {
 				setDefaultWorkouts(defaultWorkoutsResponse.body);
 			} else {
