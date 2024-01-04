@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { getToken } from '../../shared/js/auth.js'
 import { getAndValidateToken } from '../../shared/js/auth.js'
 import { DEFAULT_WORKOUTS, CUSTOM_WORKOUTS } from '../../shared/URL.js';
 import CustomAlert from '../../shared/component/CustomAlert.js';
@@ -37,7 +36,7 @@ const WorkoutHome = () => {
 			}
 
 			if (!token) {
-				dispatch({ type: 'LOGGED_OUT' });
+				dispatch({ type: "LOGGED_OUT" });
 				setMessageType("SECONDARY");
 				setMessage("You are unlogged");
 			} else {
