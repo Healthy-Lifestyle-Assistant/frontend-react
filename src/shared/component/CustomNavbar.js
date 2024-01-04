@@ -27,7 +27,11 @@ const CustomNavbar = ({ isLoggedIn }) => {
 							<Button variant="outline-success">Logout</Button>
 						</> : <>
 							<Button variant="outline-success" className='me-2'>Login</Button>
-							<Button variant="outline-success">Signup</Button>
+							<Link to="/signup">
+								<Button type="submit" variant="outline-success">
+									Signup
+								</Button>
+							</Link>
 						</>}
 					</Form>
 				</Navbar.Collapse>

@@ -10,6 +10,7 @@ import Calendar from './calendar/page/CalendarHome';
 import Stats from './stats/page/StatsHome';
 import './App.css';
 import './scss/custom.scss';
+import SignupPage from './user/page/SignupPage';
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 						<Route path="/meditation" element={<Meditation />} />
 						<Route path="/calendar" element={<Calendar />} />
 						<Route path="/stats" element={<Stats />} />
+						<Route path="/signup" element={<SignupPage />} />
 					</Routes>
 				</Container>
 			</>
