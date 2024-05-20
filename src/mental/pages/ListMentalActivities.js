@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-const MeditationHome = () => {
+const ListMentalActivities = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// Internal component logic to change the state
-		// dispatch({ type: 'LOGGED_IN' });
+		dispatch({ type: 'LOGGED_OUT' });
+		dispatch({ type: 'CLEAR_USER_DATA' });
 
-		// Cleanup function if needed
 		return () => {
-			// Additional cleanup logic if needed
 		};
-	}, [dispatch]);
+	}, []);
 
 	return (
 		<div>
@@ -22,4 +20,4 @@ const MeditationHome = () => {
 	);
 };
 
-export default MeditationHome;
+export default ListMentalActivities;

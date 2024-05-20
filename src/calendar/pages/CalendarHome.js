@@ -5,14 +5,12 @@ const CalendarHome = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// Internal component logic to change the state
-		// dispatch({ type: 'LOGGED_IN' });
+		dispatch({ type: 'LOGGED_OUT' });
+		dispatch({ type: 'CLEAR_USER_DATA' });
 
-		// Cleanup function if needed
 		return () => {
-			// Additional cleanup logic if needed
 		};
-	}, [dispatch]);
+	}, []);
 
 	return (
 		<div>

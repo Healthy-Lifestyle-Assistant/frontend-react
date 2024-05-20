@@ -1,31 +1,35 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CustomNavbar from './shared/component/CustomNavbar';
 import Container from 'react-bootstrap/Container';
-import Home from './home/Home';
-import Workout from './workout/page/WorkoutHome';
-import Nutrition from './nutrition/page/NutritionHome';
-import Meditation from './meditation/page/MeditationHome';
-import Calendar from './calendar/page/CalendarHome';
-import Stats from './stats/page/StatsHome';
+import NavbarComponent from './shared/components/NavbarComponent';
+import HomePage from './home/pages/HomePage';
+import ListWorkouts from './workouts/pages/ListWorkouts';
+import ListMeals from './nutrition/pages/ListMeals';
+import ListMentalActivities from './mental/pages/ListMentalActivities';
+import CalendarHome from './calendar/pages/CalendarHome';
+import StatisticsHome from './statistics/pages/StatisticsHome';
+import SignupPage from './users/pages/SignupPage';
+import LoginPage from './users/pages/LoginPage';
+import LogoutPage from './users/pages/LogoutPage';
 import './App.css';
 import './scss/custom.scss';
-import SignupPage from './user/page/SignupPage';
 
 function App() {
 	return (
 		<Router>
 			<>
-				<CustomNavbar />
-				<Container className='mt-5'>
+				<NavbarComponent />
+				<Container className='margin-top'>
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/workout" element={<Workout />} />
-						<Route path="/nutrition" element={<Nutrition />} />
-						<Route path="/meditation" element={<Meditation />} />
-						<Route path="/calendar" element={<Calendar />} />
-						<Route path="/stats" element={<Stats />} />
+						<Route path="/" element={<HomePage />} />
+						<Route path="/workouts" element={<ListWorkouts />} />
+						<Route path="/nutrition" element={<ListMeals />} />
+						<Route path="/mental-health" element={<ListMentalActivities />} />
+						<Route path="/calendar" element={<CalendarHome />} />
+						<Route path="/statistics" element={<StatisticsHome />} />
 						<Route path="/signup" element={<SignupPage />} />
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/logout" element={<LogoutPage />} />
 					</Routes>
 				</Container>
 			</>
