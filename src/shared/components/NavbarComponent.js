@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const CustomNavbar = ({ isLoggedIn }) => {
+const NavbarComponent = ({ isLoggedIn, userData }) => {
 	return (
 		<Navbar expand="lg" className="bg-body-tertiary" fixed="top">
 			<Container>
@@ -15,18 +15,30 @@ const CustomNavbar = ({ isLoggedIn }) => {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link as={Link} to="/workout">Workout</Nav.Link>
+						<Nav.Link as={Link} to="/workouts">Workouts</Nav.Link>
 						<Nav.Link as={Link} to="/nutrition">Nutrition</Nav.Link>
-						<Nav.Link as={Link} to="/meditation">Meditation</Nav.Link>
+						<Nav.Link as={Link} to="/mental-health">Mental Health</Nav.Link>
 						<Nav.Link as={Link} to="/calendar">Calendar</Nav.Link>
-						<Nav.Link as={Link} to="/stats">Stats</Nav.Link>
+						<Nav.Link as={Link} to="/statistics">Statistics</Nav.Link>
 					</Nav>
 					<Form className="d-flex">
+
+
 						{isLoggedIn ? <>
+							{userData && userData.body ? <div>Hello, {userData.body.fullName}!</div> : <div>No user data</div>}
+
 							<Button variant="outline-success" className='me-2'>Settings</Button>
-							<Button variant="outline-success">Logout</Button>
+							<Link to="/logout">
+								<Button type="submit" variant="outline-success">
+									Logout
+								</Button>
+							</Link>
 						</> : <>
-							<Button variant="outline-success" className='me-2'>Login</Button>
+							<Link to="/login">
+								<Button type="submit" variant="outline-success" className='me-2'>
+									Login
+								</Button>
+							</Link>
 							<Link to="/signup">
 								<Button type="submit" variant="outline-success">
 									Signup
@@ -43,7 +55,8 @@ const CustomNavbar = ({ isLoggedIn }) => {
 const mapStateToProps = (state) => {
 	return {
 		isLoggedIn: state.isLoggedIn,
+		userData: state.userData,
 	};
 };
 
-export default connect(mapStateToProps)(CustomNavbar);
+export default connect(mapStateToProps)(NavbarComponent);

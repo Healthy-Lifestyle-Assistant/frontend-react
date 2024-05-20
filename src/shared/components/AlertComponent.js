@@ -1,7 +1,7 @@
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
-const CustomAlert = ({ message, messageType }) => {
+const AlertComponent = ({ message, messageType }) => {
 	const getVariant = () => {
 		switch (messageType) {
 			case 'SECONDARY':
@@ -22,4 +22,4 @@ const CustomAlert = ({ message, messageType }) => {
 	);
 };
 
-export default CustomAlert;
+export default AlertComponent;
