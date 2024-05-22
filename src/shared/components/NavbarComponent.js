@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 
 const NavbarComponent = ({ isLoggedIn, userData }) => {
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary" fixed="top">
+		<Navbar expand="lg" className="navbar navbar-light" style={{backgroundColor: '#e3f2fd'}} fixed="top">
 			<Container>
 				<Navbar.Brand as={Link} to="/">Healthy Life</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -23,24 +23,23 @@ const NavbarComponent = ({ isLoggedIn, userData }) => {
 					</Nav>
 					<Form className="d-flex">
 
-
 						{isLoggedIn ? <>
 							{userData && userData.body ? <div>Hello, {userData.body.fullName}!</div> : <div>No user data</div>}
 
-							<Button variant="outline-success" className='me-2'>Settings</Button>
+							<Button variant="outline-primary" className='me-2'>Settings</Button>
 							<Link to="/logout">
-								<Button type="submit" variant="outline-success">
+								<Button type="submit" variant="outline-primary">
 									Logout
 								</Button>
 							</Link>
 						</> : <>
 							<Link to="/login">
-								<Button type="submit" variant="outline-success" className='me-2'>
+								<Button type="submit" variant="outline-primary" className='me-2'>
 									Login
 								</Button>
 							</Link>
 							<Link to="/signup">
-								<Button type="submit" variant="outline-success">
+								<Button type="submit" variant="outline-primary">
 									Signup
 								</Button>
 							</Link>

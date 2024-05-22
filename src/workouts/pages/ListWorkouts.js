@@ -23,7 +23,7 @@ const ListWorkouts = () => {
 				console.log("data", data);
 				if (data.status === 200) {
 					dispatch({ type: 'LOGGED_IN' });
-					dispatch({ type: 'SET_USER_DATA', payload: { fullName: data.body[1]} });
+					dispatch({ type: 'SET_USER_DATA', payload: { fullName: data.body[1] } });
 					console.log(1);
 					const token = getToken();
 					const customWorkouts = await getCustomWorkouts(token);
@@ -42,10 +42,10 @@ const ListWorkouts = () => {
 				setMessage(error.message);
 			}
 		};
-	
+
 		fetchData();
 	}, []);
-	
+
 
 	// useEffect(() => {
 	// 	const fetchToken = async () => {
@@ -141,18 +141,23 @@ const ListWorkouts = () => {
 				</Helmet>
 			</HelmetProvider>
 
-			<div>
+			<div style={{width: '70%', margin: 'auto', marginBottom: 40}}>
 				<AlertComponent message={message} messageType={messageType} />
 
-				{defaultWorkouts.map(item => (
-					<WorkoutComponent
-						key={item.id}
-						id={item.id}
-						title={item.title}
-						description={item.description}
-						isCustom={item.isCustom} />
+				<div className='d-flex flex-wrap'>
+					{defaultWorkouts.map(item => (
+						<WorkoutComponent
+							key={item.id}
+							id={item.id}
+							title={item.title}
+							description={item.description}
+							isCustom={item.isCustom} 
+							needsEquipment={item.needsEquipment}
+							bodyParts={item.bodyParts}
+							/>
 					))
-				}
+					}
+				</div>
 			</div>
 		</>
 	);
