@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Button({title, link}) {
+function CardButton({title, link}) {
     return (
         <Link to={link}>
-            <button className='btn-custom'>{title}</button>
+            <button className='card-btn'>{title}</button>
         </Link>
     );
 }
 
-export default Button;
+export default CardButton;

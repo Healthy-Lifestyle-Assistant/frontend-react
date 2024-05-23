@@ -1,0 +1,99 @@
+:root {
+    /* Button */
+    --btn-bg-color: rgba(45, 78, 123, .8);
+    --btn-border-color: rgba(18, 30, 47, 0.8);
+    --btn-text-color: rgba(128, 91, 208, 0.8);
+    --btn-border-radius: 8px;
+    --btn-border-width: 4px;
+    --btn-font-family: 'Arial', sans-serif;
+    --btn-font-size: 20px;
+    --btn-font-weight: bold;
+    --btn-hover-bg-color: rgba(200, 250, 200, 0.9);
+    --btn-hover-text-color: rgba(10, 70, 10, 0.9);
+    --btn-transition-first: 0.8s;
+    --btn-transition-second: 0.3s;
+    --btn-padding-x: 12px;
+    --btn-padding-y: 28px;
+    --btn-margin-x: 5px;
+    --btn-margin-y: 5px;
+    --btn-letter-spacing: 4px;
+
+    /* Card title */
+    --card-title-text-color: rgba(123, 45, 55, 0.8);
+    --card-title-font-family: 'Arial', sans-serif;
+    --card-title-font-size: 20px;
+    --card-title-font-weight: bold;
+    --card-title-margin-y: 15px;
+    --card-title-letter-spacing: 4px;
+
+    /* Card subtitle */
+    --card-subtitle-text-color: rgba(95, 52, 28, 0.8);
+    --card-subtitle-font-family: 'Arial', sans-serif;
+    --card-subtitle-font-size: 10px;
+    --card-subtitle-font-weight: normal;
+    --card-subtitle-margin-y: 15px;
+    --card-subtitle-letter-spacing: 2px;
+
+    /* Card tags */
+    --card-tag-bg-color: rgba(117, 51, 204, 0.8);
+    --card-tag-text-color: rgba(17, 35, 59, 0.8);
+    --card-tag-padding-x: 6px;
+    --card-tag-padding-y: 6px;
+    --card-tag-border-radius: 2px;
+    --card-tag-margin-y: 15px;
+
+    /* Card description */
+    --card-description-text-color: rgba(95, 52, 28, 0.8);
+    --card-description-font-family: 'Arial', sans-serif;
+    --card-description-font-size: 10px;
+    --card-description-font-weight: normal;
+    --card-description-margin-y: 5px;
+    --card-description-letter-spacing: 2px;
+    --card-description-margin-y: 15px;
+
+    /* Card button */
+    --card-btn-bg-color: rgba(36, 72, 122, 0.8);
+    --card-btn-border-color: rgba(18, 52, 18, 0.8);
+    --card-btn-text-color: rgba(133, 145, 163, 0.8);
+    --card-btn-border-radius: 8px;
+    --card-btn-border-width: 2px;
+    --card-btn-font-family: 'Arial', sans-serif;
+    --card-btn-font-size: 12px;
+    --card-btn-font-weight: bold;
+    --card-btn-hover-bg-color: rgba(219, 162, 49, 0.8);
+    --card-btn-hover-text-color: rgba(229, 209, 184, 0.8);
+    --card-btn-transition-first: 0.8s;
+    --card-btn-transition-second: 0.3s;
+    --card-btn-padding-x: 12px;
+    --card-btn-padding-y: 28px;
+    --card-btn-margin-x: 5px;
+    --card-btn-margin-y: 5px;
+    --card-btn-letter-spacing: 4px;
+
+    /* Card border */
+    --card-border-color: rgba(45, 78, 123, .8);
+    --card-border-radius: 1px;
+    --card-border-width: 1px;
+
+    /* Card width */
+    --card-width: 300px;
+    --card-min-width: 300px;
+
+    /* Card padding */
+    --card-padding-x: 10px;
+    --card-padding-y: 10px;
+
+    /* Card margin */
+    --card-margin-x: 10px;
+    --card-margin-y: 10px;
+
+    /* Card background */
+    --card-bg-color: rgba(203, 214, 228, 0.5);
+
+    /* Card shadow */
+    --card-shadow-h: 2px;
+    --card-shadow-v: 2px;
+    --card-shadow-blur: 2px;
+    --card-shadow-spread: 1px;
+    --card-shadow-color: rgba(9, 9, 9, 0.5);
+}

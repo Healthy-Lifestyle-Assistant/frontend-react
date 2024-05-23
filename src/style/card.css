@@ -1,0 +1,87 @@
+.card-title {
+    color: var(--card-title-text-color);
+    font-family: var(--card-title-font-family);
+    font-size: var(--card-title-font-size);
+    font-weight: var(--card-title-font-weight);
+    letter-spacing: var(--card-title-letter-spacing);
+    margin-bottom: var(--card-title-margin-y);
+}
+
+.card-subtitle {
+    color: var(--card-subtitle-text-color);
+    font-family: var(--card-subtitle-font-family);
+    font-size: var(--card-subtitle-font-size);
+    font-weight: var(--card-subtitle-font-weight);
+    letter-spacing: var(--card-subtitle-letter-spacing);
+    margin-bottom: var(--card-subtitle-margin-y);
+}
+
+.card-description {
+    color: var(--card-description-text-color);
+    font-family: var(--card-description-font-family);
+    font-size: var(--card-description-font-size);
+    font-weight: var(--card-description-font-weight);
+    letter-spacing: var(--card-description-letter-spacing);
+    margin-bottom: var(--card-description-margin-y);
+}
+
+.card-tag {
+    color: var(--card-tag-text-color);
+    background-color: var(--card-tag-bg-color);
+    padding-top: calc(var(--card-tag-padding-y) * 0.7);
+    padding-bottom: var(--card-tag-padding-y);
+    padding-left: var(--card-tag-padding-x);
+    padding-right: var(--card-tag-padding-x);
+    border-radius: 8px;
+}
+
+.card-tags {
+    display: inline-block;
+    margin-bottom: var(--card-tag-margin-y);
+}
+
+.card-btn {
+    padding: var(--card-btn-padding-x) var(--card-btn-padding-y);
+    border: var(--card-btn-border-width) solid var(--card-btn-border-color);
+    border-radius: var(--card-btn-border-radius);
+    background-color: var(--card-btn-bg-color);
+    color: var(--card-btn-text-color);
+    font-family: var(--card-btn-font-family);
+    font-size: var(--card-btn-font-size);
+    font-weight: var(--card-btn-font-weight);
+    cursor: pointer;
+    transition: background-color var(--card-btn-transition-first) ease, color var(--card-btn-transition-second) ease;
+    letter-spacing: var(--card-btn-letter-spacing);
+    margin: var(--card-btn-margin-x) var(--card-btn-margin-y);
+}
+
+.card-btn:hover {
+    background-color: var(--card-btn-hover-bg-color);
+    color: var(--card-btn-hover-text-color);
+}
+
+.card-border {
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+}
+
+.card-width {
+    width: var(--card-width);
+    min-width: var(--card-min-width);
+}
+
+.card-padding {
+    padding: var(--card-padding-x) var(--card-padding-y);
+}
+
+.card-margin {
+    margin: var(--card-margin-x) var(--card-margin-y);
+}
+
+.card-bg {
+    background-color: var(--card-bg-color);
+}
+
+.card-shadow {
+    box-shadow: var(--card-shadow-v) var(--card-shadow-h) var(--card-shadow-blur) var(--card-shadow-spread) var(--card-shadow-color);
+}
