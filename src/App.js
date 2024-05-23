@@ -11,6 +11,7 @@ import StatisticsHome from './statistics/pages/StatisticsHome';
 import SignupPage from './users/pages/SignupPage';
 import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
+import Components from './new/pages/Components';
 import './App.css';
 import './scss/custom.scss';
 
@@ -30,6 +31,7 @@ function App() {
 						<Route path="/signup" element={<SignupPage />} />
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/logout" element={<LogoutPage />} />
+						<Route path="/new" element={<Components />} />
 					</Routes>
 				</Container>
 			</>

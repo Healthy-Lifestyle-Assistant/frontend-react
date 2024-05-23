@@ -1,0 +1,25 @@
+:root {
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+}
+
+.element {
+    margin: var(--spacing-md);
+    /* Use medium spacing for margin */
+    padding: var(--spacing-sm);
+    /* Use small spacing for padding */
+}
+
+.another-element {
+    margin-bottom: var(--spacing-lg);
+    /* Use large spacing for margin-bottom */
+    padding-left: var(--spacing-xl);
+    /* Use extra large spacing for padding-left */
+}
+
+.margin-top {
+    margin-top: 80px;
+}
