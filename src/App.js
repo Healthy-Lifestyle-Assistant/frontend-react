@@ -13,6 +13,7 @@ import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
 import './App.css';
 import './scss/custom.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 	return (
