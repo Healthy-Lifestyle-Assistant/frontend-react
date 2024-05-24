@@ -12,6 +12,7 @@ import SignupPage from './users/pages/SignupPage';
 import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
 import Components from './new/pages/Components';
+import Navbar from './shared/components/Navbar';
 import './App.css';
 import './scss/custom.scss';
 
@@ -19,7 +20,7 @@ function App() {
 	return (
 		<Router>
 			<>
-				<NavbarComponent />
+				<Navbar />
 				<Container className='margin-top'>
 					<Routes>
 						<Route path="/" element={<HomePage />} />

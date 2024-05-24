@@ -1,4 +1,4 @@
-.card-title {
+.card-title-custom {
     color: var(--card-title-text-color);
     font-family: var(--card-title-font-family);
     font-size: var(--card-title-font-size);
@@ -7,7 +7,7 @@
     margin-bottom: var(--card-title-margin-y);
 }
 
-.card-subtitle {
+.card-subtitle-custom {
     color: var(--card-subtitle-text-color);
     font-family: var(--card-subtitle-font-family);
     font-size: var(--card-subtitle-font-size);
@@ -26,13 +26,15 @@
 }
 
 .card-tag {
-    color: var(--card-tag-text-color);
+    font-family: var(--card-tag-font-family);
+    font-size: var(--card-tag-font-size);
     background-color: var(--card-tag-bg-color);
+    color: var(--card-tag-text-color);
+    border-radius: var(--card-tag-border-radius);
     padding-top: calc(var(--card-tag-padding-y) * 0.7);
     padding-bottom: var(--card-tag-padding-y);
     padding-left: var(--card-tag-padding-x);
     padding-right: var(--card-tag-padding-x);
-    border-radius: 8px;
 }
 
 .card-tags {
@@ -41,18 +43,20 @@
 }
 
 .card-btn {
-    padding: var(--card-btn-padding-x) var(--card-btn-padding-y);
-    border: var(--card-btn-border-width) solid var(--card-btn-border-color);
-    border-radius: var(--card-btn-border-radius);
-    background-color: var(--card-btn-bg-color);
-    color: var(--card-btn-text-color);
     font-family: var(--card-btn-font-family);
     font-size: var(--card-btn-font-size);
     font-weight: var(--card-btn-font-weight);
-    cursor: pointer;
-    transition: background-color var(--card-btn-transition-first) ease, color var(--card-btn-transition-second) ease;
     letter-spacing: var(--card-btn-letter-spacing);
-    margin: var(--card-btn-margin-x) var(--card-btn-margin-y);
+    background-color: var(--card-btn-bg-color);
+    color: var(--card-btn-text-color);
+    cursor: pointer;
+    border: var(--card-btn-border-width) solid var(--card-btn-border-color);
+    border-radius: var(--card-btn-border-radius);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    padding: var(--card-btn-padding-x) var(--card-btn-padding-y);
+    margin-top: var(--card-btn-margin-x);
+    margin-bottom: var(--card-btn-margin-x);
+    transition: background-color var(--card-btn-transition-time) ease, color var(--card-btn-transition-time) ease;
 }
 
 .card-btn:hover {
@@ -83,5 +87,5 @@
 }
 
 .card-shadow {
-    box-shadow: var(--card-shadow-v) var(--card-shadow-h) var(--card-shadow-blur) var(--card-shadow-spread) var(--card-shadow-color);
+    box-shadow: var(--card-shadow-v) var(--card-shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
 }

@@ -5,7 +5,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { validateToken, getToken } from '../../shared/services/auth.js'
 import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
 import AlertComponent from '../../shared/components/AlertComponent.js';
-import WorkoutComponent from '../components/WorkoutComponent.js'
+// import WorkoutComponent from '../components/WorkoutComponent.js'
+import Card from '../../shared/components/Card.js';
 
 const ListWorkouts = () => {
 	// const isTokenValid = useRef(false);
@@ -141,20 +142,29 @@ const ListWorkouts = () => {
 				</Helmet>
 			</HelmetProvider>
 
-			<div style={{width: '70%', margin: 'auto', marginBottom: 40}}>
+			<div style={{ width: '70%', margin: 'auto', marginBottom: 40 }}>
 				<AlertComponent message={message} messageType={messageType} />
 
 				<div className='d-flex flex-wrap'>
 					{defaultWorkouts.map(item => (
-						<WorkoutComponent
+						// <WorkoutComponent
+						// 	key={item.id}
+						// 	id={item.id}
+						// 	title={item.title}
+						// 	description={item.description}
+						// 	isCustom={item.isCustom} 
+						// 	needsEquipment={item.needsEquipment}
+						// 	bodyParts={item.bodyParts}
+						// 	/>
+						<Card
 							key={item.id}
-							id={item.id}
 							title={item.title}
+							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
+							tags={item.bodyParts}
 							description={item.description}
-							isCustom={item.isCustom} 
-							needsEquipment={item.needsEquipment}
-							bodyParts={item.bodyParts}
-							/>
+							btnTitle={'Detail'}
+							btnLink={`/workouts/default/${item.id}`}
+						/>
 					))
 					}
 				</div>

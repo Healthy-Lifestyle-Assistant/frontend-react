@@ -1,14 +1,17 @@
 import React from 'react';
-import Button from '../components/Button';
-import Card from '../components/Card';
-import Navbar from '../components/Navbar';
+import Button from '../../shared/components/Button';
+import Card from '../../shared/components/Card';
+import Navbar from '../../shared/components/Navbar';
+import Form from '../../shared/components/Form';
 
 function Components() {
     return (
-        <>
+        <div className='body-custom'>
             <Navbar />
+            <br />
             <Button title={'Title'} link={'/link'} />
-            <br /><br />
+            <br />
+            <div style={{display: 'flex'}}>
             <Card
                 title='Card title'
                 subtitle='Subtitle'
@@ -17,7 +20,10 @@ function Components() {
                 btnTitle='Button'
                 btnLink='/link'
             />
-        </>
+            <Form />
+            </div>
+
+        </div>
     );
 }
 

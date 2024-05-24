@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../style/card.css';
 
 function CardButton({title, link}) {
     return (

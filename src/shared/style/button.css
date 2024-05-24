@@ -8,8 +8,9 @@
     font-size: var(--btn-font-size);
     font-weight: var(--btn-font-weight);
     cursor: pointer;
-    transition: background-color var(--btn-transition-first) ease, color var(--btn-transition-second) ease;
+    transition: background-color var(--btn-transition-time) ease, color var(--btn-transition-time) ease;
     letter-spacing: var(--btn-letter-spacing);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
 }
 
 .btn-custom:hover {

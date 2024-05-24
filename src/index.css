@@ -1,8 +1,6 @@
 @import './style/var';
-@import './style/color.css';
-@import './style/spacing.css';
-@import './style/font.css';
 @import './style/body-part.css';
-@import './style/navbar.css';
+/* @import './style/navbar.css';
 @import './style/button.css';
 @import './style/card.css';
+@import './style/form.css'; */
