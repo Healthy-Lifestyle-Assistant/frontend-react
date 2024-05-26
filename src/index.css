@@ -1,5 +1,7 @@
 @import './style/var';
 @import './style/body-part.css';
+@import './style/container-custom.css';
+
 /* @import './style/navbar.css';
 @import './style/button.css';
 @import './style/card.css';

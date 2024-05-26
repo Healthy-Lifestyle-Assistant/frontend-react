@@ -142,33 +142,35 @@ const ListWorkouts = () => {
 				</Helmet>
 			</HelmetProvider>
 
-			<div style={{ width: '70%', margin: 'auto', marginBottom: 40 }}>
-				<AlertComponent message={message} messageType={messageType} />
+			<div>
 
-				<div className='d-flex flex-wrap'>
-					{defaultWorkouts.map(item => (
-						// <WorkoutComponent
-						// 	key={item.id}
-						// 	id={item.id}
-						// 	title={item.title}
-						// 	description={item.description}
-						// 	isCustom={item.isCustom} 
-						// 	needsEquipment={item.needsEquipment}
-						// 	bodyParts={item.bodyParts}
-						// 	/>
-						<Card
-							key={item.id}
-							title={item.title}
-							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
-							tags={item.bodyParts}
-							description={item.description}
-							btnTitle={'Detail'}
-							btnLink={`/workouts/default/${item.id}`}
-						/>
-					))
-					}
-				</div>
+			<AlertComponent message={message} messageType={messageType} />
+
+			<div className='d-flex flex-wrap justify-content-left'>
+				{defaultWorkouts.map(item => (
+					// <WorkoutComponent
+					// 	key={item.id}
+					// 	id={item.id}
+					// 	title={item.title}
+					// 	description={item.description}
+					// 	isCustom={item.isCustom} 
+					// 	needsEquipment={item.needsEquipment}
+					// 	bodyParts={item.bodyParts}
+					// 	/>
+					<Card
+						key={item.id}
+						title={item.title}
+						subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
+						tags={item.bodyParts}
+						description={item.description}
+						btnTitle={'Detail'}
+						btnLink={`/workouts/default/${item.id}`}
+					/>
+				))
+				}
 			</div>
+		</div>
+		
 		</>
 	);
 };

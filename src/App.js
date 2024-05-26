@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container';
 import NavbarComponent from './shared/components/NavbarComponent';
 import HomePage from './home/pages/HomePage';
 import ListWorkouts from './workouts/pages/ListWorkouts';
@@ -21,7 +21,8 @@ function App() {
 		<Router>
 			<>
 				<Navbar />
-				<Container className='margin-top'>
+				{/* <Container className='margin-top'> */}
+				<div className='container-custom'>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/workouts" element={<ListWorkouts />} />
@@ -34,7 +35,8 @@ function App() {
 						<Route path="/logout" element={<LogoutPage />} />
 						<Route path="/new" element={<Components />} />
 					</Routes>
-				</Container>
+				</div>
+				{/* </Container> */}
 			</>
 		</Router>
 	);
