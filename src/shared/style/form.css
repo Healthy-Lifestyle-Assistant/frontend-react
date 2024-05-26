@@ -1,0 +1,70 @@
+.form-label {
+    display: block;
+    font-family: var(--form-label-font-family);
+    font-size: var(--form-label-font-size);
+    font-weight: var(--form-label-font-weight);
+}
+
+.form-input {
+    border: var(--form-input-border-size) solid var(--form-input-border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--form-input-shadow-v) var(--form-input-shadow-h) var(--form-input-shadow-blur) var(--form-input-shadow-spread) var(--form-input-shadow-color);
+
+}
+
+.form-input:focus {
+    border: var(--form-input-border-size-focus) solid var(--form-input-border-color-focus);
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: var(--form-group-margin-bottom);
+}
+
+.form-border {
+    border: var(--form-border-width) solid var(--form-border-color);
+    border-radius: var(--form-border-radius);
+}
+
+.form-width {
+    width: var(--form-width);
+    min-width: var(--form-min-width);
+}
+
+.form-padding {
+    padding: var(--form-padding-x) var(--form-padding-y);
+}
+
+.form-margin {
+    margin: var(--form-margin-x) var(--form-margin-y);
+}
+
+.form-bg {
+    background-color: var(--form-bg-color);
+}
+
+.form-shadow {
+    box-shadow: var(--form-shadow-v) var(--form-shadow-h) var(--form-shadow-blur) var(--form-shadow-spread) var(--form-shadow-color);
+}
+
+.form-btn {
+    font-family: var(--form-btn-font-family);
+    font-size: var(--form-btn-font-size);
+    font-weight: var(--form-btn-font-weight);
+    letter-spacing: var(--form-btn-letter-spacing);
+    background-color: var(--form-btn-bg-color);
+    color: var(--form-btn-text-color);
+    border: var(--form-btn-border-width) solid var(--form-btn-border-color);
+    border-radius: var(--form-btn-border-radius);
+    cursor: pointer;
+    padding: var(--form-btn-padding-x) var(--form-btn-padding-y);
+    margin-top: var(--form-btn-margin-x);
+    margin-bottom: var(--form-btn-margin-x);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    transition: background-color var(--form-btn-transition-time) ease, color var(--form-btn-transition-time) ease;
+}
+
+.form-btn:hover {
+    background-color: var(--form-btn-hover-bg-color);
+    color: var(--form-btn-hover-text-color);
+}

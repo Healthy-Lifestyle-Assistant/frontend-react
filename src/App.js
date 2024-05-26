@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container';
 import NavbarComponent from './shared/components/NavbarComponent';
 import HomePage from './home/pages/HomePage';
 import ListWorkouts from './workouts/pages/ListWorkouts';
@@ -11,6 +11,8 @@ import StatisticsHome from './statistics/pages/StatisticsHome';
 import SignupPage from './users/pages/SignupPage';
 import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
+import Components from './new/pages/Components';
+import Navbar from './shared/components/Navbar';
 import './App.css';
 import './scss/custom.scss';
 
@@ -18,8 +20,9 @@ function App() {
 	return (
 		<Router>
 			<>
-				<NavbarComponent />
-				<Container className='margin-top'>
+				<Navbar />
+				{/* <Container className='margin-top'> */}
+				<div className='container-custom'>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/workouts" element={<ListWorkouts />} />
@@ -30,8 +33,10 @@ function App() {
 						<Route path="/signup" element={<SignupPage />} />
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/logout" element={<LogoutPage />} />
+						<Route path="/new" element={<Components />} />
 					</Routes>
-				</Container>
+				</div>
+				{/* </Container> */}
 			</>
 		</Router>
 	);

@@ -1,0 +1,19 @@
+.btn-custom {
+    padding: var(--btn-padding-x) var(--btn-padding-y);
+    border: var(--btn-border-width) solid var(--btn-border-color);
+    border-radius: var(--btn-border-radius);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    font-family: var(--btn-font-family);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    cursor: pointer;
+    transition: background-color var(--btn-transition-time) ease, color var(--btn-transition-time) ease;
+    letter-spacing: var(--btn-letter-spacing);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+}
+
+.btn-custom:hover {
+    background-color: var(--btn-hover-bg-color);
+    color: var(--btn-hover-text-color);
+}

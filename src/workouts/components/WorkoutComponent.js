@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardSubtitle from 'react-bootstrap/CardSubtitle';
-import { truncateStringWithWordBoundary } from '../../shared/services/util';
 import { CardText } from 'react-bootstrap';
+import { truncateStringWithWordBoundary } from '../../shared/services/util';
 
 function Workout({ id, title, description, isCustom, needsEquipment, bodyParts }) {
     return (

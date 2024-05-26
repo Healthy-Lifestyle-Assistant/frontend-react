@@ -1,0 +1,91 @@
+.card-title-custom {
+    color: var(--card-title-text-color);
+    font-family: var(--card-title-font-family);
+    font-size: var(--card-title-font-size);
+    font-weight: var(--card-title-font-weight);
+    letter-spacing: var(--card-title-letter-spacing);
+    margin-bottom: var(--card-title-margin-y);
+}
+
+.card-subtitle-custom {
+    color: var(--card-subtitle-text-color);
+    font-family: var(--card-subtitle-font-family);
+    font-size: var(--card-subtitle-font-size);
+    font-weight: var(--card-subtitle-font-weight);
+    letter-spacing: var(--card-subtitle-letter-spacing);
+    margin-bottom: var(--card-subtitle-margin-y);
+}
+
+.card-description {
+    color: var(--card-description-text-color);
+    font-family: var(--card-description-font-family);
+    font-size: var(--card-description-font-size);
+    font-weight: var(--card-description-font-weight);
+    letter-spacing: var(--card-description-letter-spacing);
+    margin-bottom: var(--card-description-margin-y);
+}
+
+.card-tag {
+    font-family: var(--card-tag-font-family);
+    font-size: var(--card-tag-font-size);
+    background-color: var(--card-tag-bg-color);
+    color: var(--card-tag-text-color);
+    border-radius: var(--card-tag-border-radius);
+    padding-top: calc(var(--card-tag-padding-y) * 0.7);
+    padding-bottom: var(--card-tag-padding-y);
+    padding-left: var(--card-tag-padding-x);
+    padding-right: var(--card-tag-padding-x);
+}
+
+.card-tags {
+    display: inline-block;
+    margin-bottom: var(--card-tag-margin-y);
+}
+
+.card-btn {
+    font-family: var(--card-btn-font-family);
+    font-size: var(--card-btn-font-size);
+    font-weight: var(--card-btn-font-weight);
+    letter-spacing: var(--card-btn-letter-spacing);
+    background-color: var(--card-btn-bg-color);
+    color: var(--card-btn-text-color);
+    cursor: pointer;
+    border: var(--card-btn-border-width) solid var(--card-btn-border-color);
+    border-radius: var(--card-btn-border-radius);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    padding: var(--card-btn-padding-x) var(--card-btn-padding-y);
+    margin-top: var(--card-btn-margin-x);
+    margin-bottom: var(--card-btn-margin-x);
+    transition: background-color var(--card-btn-transition-time) ease, color var(--card-btn-transition-time) ease;
+}
+
+.card-btn:hover {
+    background-color: var(--card-btn-hover-bg-color);
+    color: var(--card-btn-hover-text-color);
+}
+
+.card-border {
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+}
+
+.card-width {
+    width: var(--card-width);
+    min-width: var(--card-min-width);
+}
+
+.card-padding {
+    padding: var(--card-padding-x) var(--card-padding-y);
+}
+
+.card-margin {
+    margin: var(--card-margin-x) var(--card-margin-y);
+}
+
+.card-bg {
+    background-color: var(--card-bg-color);
+}
+
+.card-shadow {
+    box-shadow: var(--card-shadow-v) var(--card-shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+}

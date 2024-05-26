@@ -1,0 +1,215 @@
+:root {
+    /* 
+    Red: rgba(255, 0, 0, 1)
+    Vermilion: rgba(227, 66, 52, 1)
+    Orange: rgba(255, 165, 0, 1)
+    Amber: rgba(255, 191, 0, 1)
+    Yellow: rgba(255, 255, 0, 1)
+    Chartreuse: rgba(127, 255, 0, 1)
+    Green: rgba(0, 128, 0, 1)
+    Teal: rgba(0, 128, 128, 1)
+    Blue: rgba(0, 0, 255, 1)
+    Violet: rgba(127, 0, 255, 1)
+    Purple: rgba(128, 0, 128, 1)
+    Magenta: rgba(255, 0, 255, 1)
+    */
+    --color-white: rgba(250, 250, 250, 1);
+    --color-black: rgba(30, 30, 30, .9);
+    --color-blur: rgba(30, 30, 30, .6);
+    --color-primary: rgba(17, 80, 132, 0.9);
+    --color-primary-very-light: rgba(17, 80, 132, 0);
+    --color-border: rgba(17, 80, 132, 1);
+    --color-shadow: rgba(7, 32, 53, .5);
+    --color-warning: rgba(242, 195, 65, 0.9);
+    --color-success: rgba(0, 200, 0, .9);
+
+    --font-family-primary: 'Work Sans', sans-serif;
+    --font-family-secondary: 'Merriweather', sans-serif;
+
+    --shadow-v: 1px;
+    --shadow-h: 1px;
+    --shadow-blur: 1px;
+    --shadow-spread: 0px;
+
+    --border-radius: 3px;
+    --border-width: 1px;
+
+    --transition-time: 0.5s;
+
+    /* Navbar */
+    --navbar-bg-color: var(--color-primary);
+    --navbar-text-color: var(--color-white);
+    --navbar-text-hover-color: var(--color-white);
+    --navbar-font-family: var(--font-family-primary);
+    --navbar-font-size: 16px;
+    --navbar-font-weight: normal;
+    --navbar-padding-y: 24px;
+    --navbar-transition-time: var(--transition-time);
+
+    /* Button */
+    --btn-font-family: var(--font-family-primary);
+    --btn-font-size: 12px;
+    --btn-font-weight: bold;
+    --btn-letter-spacing: 2px;
+    --btn-bg-color: var(--color-primary);
+    --btn-text-color: var(--color-white);
+    --btn-border-color: var(--color-border);
+    --btn-border-radius: var(--border-radius);
+    --btn-border-width: var(--border-width);
+    --btn-shadow-color: var(--color-shadow); 
+    --btn-hover-bg-color: var(--color-white);
+    --btn-hover-text-color: var(--color-black);
+    --btn-transition-time: var(--transition-time);
+    --btn-padding-x: 12px;
+    --btn-padding-y: 28px;
+    --btn-margin-x: 5px;
+    --btn-margin-y: 5px;
+
+    /* Card */
+
+    /* Card title */
+    --card-title-text-color: var(--color-black);
+    --card-title-font-family: var(--font-family-primary);
+    --card-title-font-size: 18px;
+    --card-title-font-weight: bold;
+    --card-title-letter-spacing: 2px;
+    --card-title-margin-y: 15px;
+
+    /* Card subtitle */
+    --card-subtitle-text-color: var(--color-blur);
+    --card-subtitle-font-family: var(--font-family-secondary);
+    --card-subtitle-font-size: 14px;
+    --card-subtitle-font-weight: normal;
+    --card-subtitle-letter-spacing: 1px;
+    --card-subtitle-margin-y: 15px;
+
+    /* Card tags */
+    --card-tag-font-family: var(--font-family-primary);
+    --card-tag-font-size: 10px;
+    --card-tag-bg-color: var(--color-primary);
+    --card-tag-text-color: var(--color-white);
+    --card-tag-border-radius: 14px;
+    --card-tag-padding-x: 12px;
+    --card-tag-padding-y: 6px;
+    --card-tag-margin-y: 15px;
+
+    /* Card description */
+    --card-description-text-color: var(--color-black);
+    --card-description-font-family: var(--font-family-secondary);
+    --card-description-font-size: 14px;
+    --card-description-font-weight: normal;
+    --card-description-letter-spacing: 0px;
+    --card-description-margin-y: 15px;
+
+    /* Card button */
+    --card-btn-bg-color: var(--color-primary);
+    --card-btn-border-color: var(--color-border);
+    --card-btn-text-color: var(--color-white);
+    --card-btn-border-radius: var(--border-radius);
+    --card-btn-border-width: var(--border-width);
+    --card-btn-shadow-color: var(--color-shadow); 
+    --card-btn-font-family: var(--font-family-primary);
+    --card-btn-font-size: 12px;
+    --card-btn-font-weight: bold;
+    --card-btn-letter-spacing: 2px;
+    --card-btn-hover-bg-color: var(--color-white);
+    --card-btn-hover-text-color: var(--color-black);
+    --card-btn-transition-time: var(--transition-time);
+    --card-btn-padding-x: 12px;
+    --card-btn-padding-y: 28px;
+    --card-btn-margin-x: 5px;
+
+    /* Card border */
+    --card-border-color: rgba(45, 78, 123, .8);
+    --card-border-radius: var(--border-radius);
+    --card-border-width: var(--border-width);
+
+    /* Card width */
+    --card-width: 300px;
+    --card-min-width: 300px;
+
+    /* Card padding */
+    --card-padding-x: 20px;
+    --card-padding-y: 20px;
+
+    /* Card margin */
+    --card-margin-x: 10px;
+    --card-margin-y: 10px;
+
+    /* Card background */
+    --card-bg-color: var(--color-primary-very-light);
+
+    /* Card shadow */
+    --card-shadow-h: 2px;
+    --card-shadow-v: 2px;
+
+    /* Form */
+
+    /* Form label */
+    --form-label-text-color: var(--color-black);
+    --form-label-font-family: var(--font-family-primary);
+    --form-label-font-size: 12px;
+    --form-label-font-weight: bold;
+    --form-label-margin-top: 10px;
+    --form-label-margin-bottom: 10px;
+
+    /* Form input */
+    --form-input-border-color: var(--color-primary);
+    --form-input-border-size: var(--border-width);
+    --form-input-border-radius: var(--border-radius);
+    --form-input-border-color-focus: var(--color-warning);
+    --form-input-border-size-focus: var(--border-width);
+    --form-input-shadow-h: var(--shadow-h);
+    --form-input-shadow-v: var(--shadow-v);;
+    --form-input-shadow-blur: var(--shadow-blur);;
+    --form-input-shadow-spread: var(--shadow-spread);;
+    --form-input-shadow-color: var(--color-shadow);
+
+    /* Form group */
+    --form-group-margin-bottom: 18px;
+
+    /* Form border */
+    --form-border-color: var(--color-border);
+    --form-border-radius: var(--border-radius);
+    --form-border-width: var(--border-width);
+
+    /* Form width */
+    --form-width: 300px;
+    --form-min-width: 300px;
+
+    /* Form padding */
+    --form-padding-x: 20px;
+    --form-padding-y: 20px;
+
+    /* Form margin */
+    --form-margin-x: 10px;
+    --form-margin-y: 10px;
+
+    /* Form background */
+    --form-bg-color: var(--color-primary-very-light);
+
+    /* Form shadow */
+    --form-shadow-h: 2px;
+    --form-shadow-v: 2px;
+    --form-shadow-blur: var(--shadow-blur);
+    --form-shadow-spread: var(--shadow-spread);
+    --form-shadow-color: var(--color-shadow);
+
+    /* Form button */
+    --form-btn-bg-color: var(--color-primary);
+    --form-btn-border-color: var(--color-border);
+    --form-btn-text-color: var(--color-white);
+    --form-btn-border-radius: var(--border-radius);
+    --form-btn-border-width: var(--border-width);
+    --form-btn-shadow-color: var(--color-shadow); 
+    --form-btn-font-family: var(--font-family-primary);
+    --form-btn-font-size: 12px;
+    --form-btn-font-weight: bold;
+    --form-btn-letter-spacing: 2px;
+    --form-btn-hover-bg-color: var(--color-white);
+    --form-btn-hover-text-color: var(--color-black);
+    --form-btn-transition-time: var(--transition-time);
+    --form-btn-padding-x: 12px;
+    --form-btn-padding-y: 28px;
+    --form-btn-margin-x: 5px;
+}
