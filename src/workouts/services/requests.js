@@ -1,7 +1,7 @@
 import { DEFAULT_WORKOUTS, CUSTOM_WORKOUTS } from '../../shared/services/URL.js';
 
-export const getDefaultWorkouts = async () => {
-    const response = await fetch(DEFAULT_WORKOUTS, {
+export const getDefaultWorkouts = async (page) => {
+    const response = await fetch(`${DEFAULT_WORKOUTS}?pageNumber=${page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

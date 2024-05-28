@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 
-
-const WorkoutPagination = ({ totalCard, cardPerPage, paginate }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const WorkoutPagination = ({ totalPages, cardPerPage, paginate }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  console.log(totalPages);
 
   const pageNumber = [];
-  for (let i = 0; i < (totalCard/cardPerPage); i++) {
+  for (let i = 0; i < totalPages; i++) {
     pageNumber.push(i);
-    
   }
 
-  // const changePage = (page) => {
-  //   paginate(currentPage)
-  // }
   useEffect(() => {
-paginate(currentPage);
-  }, [paginate, currentPage])
-  
-
-  
+    paginate(currentPage);
+  }, [paginate, currentPage]);
 
   return (
     <>
       <Pagination>
         <Pagination.First onClick={() => setCurrentPage(0)} />
         <Pagination.Prev
-          disabled={currentPage<=0}
+          disabled={currentPage <= 0}
           onClick={() => setCurrentPage(currentPage - 1)}
         />
         {pageNumber.map((number) => {
@@ -53,6 +46,6 @@ paginate(currentPage);
       </Pagination>
     </>
   );
-}
+};
 
 export default WorkoutPagination;

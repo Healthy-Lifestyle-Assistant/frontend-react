@@ -17,8 +17,9 @@ const ListWorkouts = () => {
 	const [customWorkouts, setCustomWorkouts] = useState([]);
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
-	const [currentPage, setCurrentPage] = useState(1);
-	const [cardPerPage] = useState(2);
+	const [currentPage, setCurrentPage] = useState(0);
+	const [cardPerPage, setCardPerPage] = useState(10);
+	const [totalPages, setTotalPages] = useState();
 
 
 	useEffect(() => {
@@ -39,8 +40,11 @@ const ListWorkouts = () => {
 					dispatch({ type: 'CLEAR_USER_DATA' });
 					setMessageType("SECONDARY");
 					setMessage("You are unlogged");
-					const defaultWorkouts = await getDefaultWorkouts();
+					const defaultWorkouts = await getDefaultWorkouts(currentPage);
+					console.log(defaultWorkouts);
 					setDefaultWorkouts(defaultWorkouts.body.content);
+					setCardPerPage(defaultWorkouts.body.pageable.pageSize);
+					setTotalPages(defaultWorkouts.body.totalPages);
 				}
 			} catch (error) {
 				setMessageType("WARNING");
@@ -49,14 +53,10 @@ const ListWorkouts = () => {
 		};
 
 		fetchData();
-	}, []);
-
-	const lastCardIndex = currentPage * cardPerPage;
-	const firstCardIndex = lastCardIndex - cardPerPage;
-	const currentCurds = defaultWorkouts.slice(firstCardIndex, lastCardIndex);
+	}, [dispatch,currentPage]);
 
 	const paginate = (pageNumber) => {
-		setCurrentPage(pageNumber + 1);
+		setCurrentPage(pageNumber );
 	}
 
 	// useEffect(() => {
@@ -158,7 +158,7 @@ const ListWorkouts = () => {
 			<AlertComponent message={message} messageType={messageType} />
 
 			<div className='d-flex flex-wrap justify-content-left'>
-				{currentCurds.map(item => (
+					{defaultWorkouts.map(item => (
 					// <WorkoutComponent
 					// 	key={item.id}
 					// 	id={item.id}
@@ -180,7 +180,7 @@ const ListWorkouts = () => {
 				))
 				}
 				</div>
-				<WorkoutPagination totalCard={defaultWorkouts.length} cardPerPage={cardPerPage} paginate={paginate} />
+				<WorkoutPagination totalPages={totalPages} cardPerPage={cardPerPage} paginate={paginate} />
 		</div>
 		
 		</>
