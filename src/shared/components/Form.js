@@ -4,7 +4,7 @@ import '../style/form.css';
 function Form() {
     return (
         <>
-            <form action="/submit" method="post" className='form-custom form-border form-width form-padding form-margin form-bg form-shadow'>
+            <form action="/submit" method="post" className='form-custom'>
                 <div className='form-group'>
                     <label for="name" className='form-label'>Name:</label>
                     <input type="text" id="name" name="name" className='form-input' required />

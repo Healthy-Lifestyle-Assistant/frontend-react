@@ -1,0 +1,19 @@
+.pagination-custom {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-item {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-family-primary);
+    padding: 8px;
+    margin-right: 2px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.pagination-item-active {
+    color: var(--color-warning);
+    font-weight: bold;
+}

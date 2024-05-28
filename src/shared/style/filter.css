@@ -1,0 +1,52 @@
+.filter-custom-hidden {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.filter-custom-open {
+    max-height: 700px;
+    opacity: 1;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.filter-custom {
+    width: 600px;
+    min-width: 300px;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 20px 20px;
+    margin: 10px 10px;
+    background-color: var(--color-primary-very-light);
+    box-shadow: 2px 2px var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+}
+
+.filter-group-of-group {
+    display: flex;
+}
+
+.filter-checkbox-group {
+    display: flex;
+    margin-bottom: 14px;
+}
+
+.filter-checkbox-mx {
+    margin-left: 4px;
+    margin-right: 12px;
+}
+
+.filter-mr {
+    margin-right: 12px;
+}
+
+@media screen and (max-width: 620px) {
+    /* [0; 620] */
+    .filter-custom {
+        width: 300px;
+    }
+
+    .filter-group-of-group {
+        display: block;
+    }
+}

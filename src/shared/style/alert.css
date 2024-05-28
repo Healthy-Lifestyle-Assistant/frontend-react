@@ -1,0 +1,4 @@
+.alert-custom {
+    color: var(--color-warning);
+    margin-bottom: 18px;
+}

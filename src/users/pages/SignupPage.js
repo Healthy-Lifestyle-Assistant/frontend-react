@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Form, Button } from 'react-bootstrap';
-import AlertComponent from '../../shared/components/AlertComponent.js';
-import AlertsListComponent from '../../shared/components/AlertsListComponent.js';
+// import AlertComponent from '../../shared/components/AlertComponent.js';
+// import AlertsListComponent from '../../shared/components/AlertsListComponent.js';
 import { SIGNUP } from '../../shared/services/URL.js';
 import { getCountries, signup } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
@@ -97,9 +97,9 @@ const SignupPage = () => {
 
 			<h3 className="text-muted" style={{ marginBottom: "1rem" }}>Signup</h3>
 
-			<AlertComponent message={message} messageType={messageType} />
+			{/* <AlertComponent message={message} messageType={messageType} /> */}
 
-			<AlertsListComponent messages={messages} />
+			{/* <AlertsListComponent messages={messages} /> */}
 
 			<Form onSubmit={handleSubmit} style={{ width: 'fit-content' }} className='mb-5'>
 

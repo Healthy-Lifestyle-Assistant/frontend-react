@@ -1,91 +1,76 @@
+.card-custom {
+    width: 300px;
+    min-width: 300px;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 20px 20px;
+    margin: 10px 10px;
+    background-color: var(--color-primary-very-light);
+    box-shadow: 2px 2px var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+}
+
 .card-title-custom {
-    color: var(--card-title-text-color);
-    font-family: var(--card-title-font-family);
-    font-size: var(--card-title-font-size);
-    font-weight: var(--card-title-font-weight);
-    letter-spacing: var(--card-title-letter-spacing);
-    margin-bottom: var(--card-title-margin-y);
+    color: var(--color-black);
+    font-family: var(--font-family-primary);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
 }
 
 .card-subtitle-custom {
-    color: var(--card-subtitle-text-color);
-    font-family: var(--card-subtitle-font-family);
-    font-size: var(--card-subtitle-font-size);
-    font-weight: var(--card-subtitle-font-weight);
-    letter-spacing: var(--card-subtitle-letter-spacing);
-    margin-bottom: var(--card-subtitle-margin-y);
+    color: var(--color-blur);
+    font-family: var(--font-family-secondary);
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
 }
 
 .card-description {
-    color: var(--card-description-text-color);
-    font-family: var(--card-description-font-family);
-    font-size: var(--card-description-font-size);
-    font-weight: var(--card-description-font-weight);
-    letter-spacing: var(--card-description-letter-spacing);
-    margin-bottom: var(--card-description-margin-y);
+    color: var(--color-black);
+    font-family: var(--font-family-secondary);
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    margin-bottom: 15px;
 }
 
 .card-tag {
-    font-family: var(--card-tag-font-family);
-    font-size: var(--card-tag-font-size);
-    background-color: var(--card-tag-bg-color);
-    color: var(--card-tag-text-color);
-    border-radius: var(--card-tag-border-radius);
-    padding-top: calc(var(--card-tag-padding-y) * 0.7);
-    padding-bottom: var(--card-tag-padding-y);
-    padding-left: var(--card-tag-padding-x);
-    padding-right: var(--card-tag-padding-x);
+    font-family: var(--font-family-primary);
+    font-size: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 14px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .card-tags {
     display: inline-block;
-    margin-bottom: var(--card-tag-margin-y);
+    margin-bottom: 15px;
 }
 
 .card-btn {
-    font-family: var(--card-btn-font-family);
-    font-size: var(--card-btn-font-size);
-    font-weight: var(--card-btn-font-weight);
-    letter-spacing: var(--card-btn-letter-spacing);
-    background-color: var(--card-btn-bg-color);
-    color: var(--card-btn-text-color);
+    font-family: var(--font-family-primary);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     cursor: pointer;
-    border: var(--card-btn-border-width) solid var(--card-btn-border-color);
-    border-radius: var(--card-btn-border-radius);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
-    padding: var(--card-btn-padding-x) var(--card-btn-padding-y);
-    margin-top: var(--card-btn-margin-x);
-    margin-bottom: var(--card-btn-margin-x);
-    transition: background-color var(--card-btn-transition-time) ease, color var(--card-btn-transition-time) ease;
+    padding: 12px 28px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
 }
 
 .card-btn:hover {
-    background-color: var(--card-btn-hover-bg-color);
-    color: var(--card-btn-hover-text-color);
-}
-
-.card-border {
-    border: var(--card-border-width) solid var(--card-border-color);
-    border-radius: var(--card-border-radius);
-}
-
-.card-width {
-    width: var(--card-width);
-    min-width: var(--card-min-width);
-}
-
-.card-padding {
-    padding: var(--card-padding-x) var(--card-padding-y);
-}
-
-.card-margin {
-    margin: var(--card-margin-x) var(--card-margin-y);
-}
-
-.card-bg {
-    background-color: var(--card-bg-color);
-}
-
-.card-shadow {
-    box-shadow: var(--card-shadow-v) var(--card-shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    background-color: var(--color-white);
+    color: var(--color-black);
 }

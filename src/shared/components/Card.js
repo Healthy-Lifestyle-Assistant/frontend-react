@@ -6,7 +6,7 @@ import '../style/card.css';
 
 function Card({title, subtitle, tags, description, btnTitle, btnLink}) {
     return (
-        <div className='card-border card-width card-padding card-margin card-bg card-shadow'>
+        <div className='card-custom'>
             <div className='card-title-custom'>{truncateStringWithWordBoundary(title, 30)}</div>
             <div className='card-subtitle-custom'>{subtitle}</div>
             <CardTags tags={tags} />
