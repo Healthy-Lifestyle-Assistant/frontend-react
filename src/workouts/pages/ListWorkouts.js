@@ -7,6 +7,7 @@ import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
 import AlertComponent from '../../shared/components/AlertComponent.js';
 // import WorkoutComponent from '../components/WorkoutComponent.js'
 import Card from '../../shared/components/Card.js';
+import WorkoutPagination from '../components/WorkoutPagination.jsx';
 
 const ListWorkouts = () => {
 	// const isTokenValid = useRef(false);
@@ -16,6 +17,9 @@ const ListWorkouts = () => {
 	const [customWorkouts, setCustomWorkouts] = useState([]);
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
+	const [currentPage, setCurrentPage] = useState(1);
+	const [cardPerPage] = useState(2);
+
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -47,6 +51,13 @@ const ListWorkouts = () => {
 		fetchData();
 	}, []);
 
+	const lastCardIndex = currentPage * cardPerPage;
+	const firstCardIndex = lastCardIndex - cardPerPage;
+	const currentCurds = defaultWorkouts.slice(firstCardIndex, lastCardIndex);
+
+	const paginate = (pageNumber) => {
+		setCurrentPage(pageNumber + 1);
+	}
 
 	// useEffect(() => {
 	// 	const fetchToken = async () => {
@@ -147,7 +158,7 @@ const ListWorkouts = () => {
 			<AlertComponent message={message} messageType={messageType} />
 
 			<div className='d-flex flex-wrap justify-content-left'>
-				{defaultWorkouts.map(item => (
+				{currentCurds.map(item => (
 					// <WorkoutComponent
 					// 	key={item.id}
 					// 	id={item.id}
@@ -168,7 +179,8 @@ const ListWorkouts = () => {
 					/>
 				))
 				}
-			</div>
+				</div>
+				<WorkoutPagination totalCard={defaultWorkouts.length} cardPerPage={cardPerPage} paginate={paginate} />
 		</div>
 		
 		</>
