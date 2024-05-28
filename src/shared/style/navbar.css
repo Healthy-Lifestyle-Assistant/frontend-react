@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-family: var(--navbar-font-family);
-    font-size: var(--navbar-font-size);
-    font-weight: var(--navbar-font-weight);
-    background-color: var(--navbar-bg-color);
-    color: var(--navbar-text-color);
-    padding-top: var(--navbar-padding-y);
-    padding-bottom: var(--navbar-padding-y);
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .navbar-logo {
@@ -34,7 +34,7 @@
     cursor: pointer;
     padding: 10px;
     margin-right: 20px;
-    transition: background-color var(--navbar-transition-time) ease, color var(--navbar-transition-time) ease;
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
 }
 
 .navbar-menu-item:hover {
@@ -47,7 +47,7 @@
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
+    transition: max-height var(--transition-time) ease, opacity var(--transition-time) ease;
 }
 
 .navbar-hidden-open {
@@ -55,13 +55,13 @@
     opacity: 1;
     transition: max-height 0.4s ease, opacity 0.4s ease;
     flex-direction: column;
-    font-family: var(--navbar-font-family);
-    font-size: var(--navbar-font-size);
-    font-weight: var(--navbar-font-weight);
-    background-color: var(--navbar-bg-color);
-    color: var(--navbar-text-color);
-    padding-top: var(--navbar-padding-y);
-    padding-bottom: var(--navbar-padding-y);
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 .navbar-middle-menu-hidden {
