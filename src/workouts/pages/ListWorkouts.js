@@ -6,10 +6,9 @@ import { Button, Form } from 'react-bootstrap';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { validateToken, getToken } from '../../shared/services/auth.js'
 import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
-// import AlertComponent from '../../shared/components/AlertComponent.js';
+import Alert from '../../shared/components/Alert.js';
 import Card from '../../shared/components/Card.js';
 import Links from '../components/Links.js';
-import AlertComponent from '../../shared/components/AlertComponent.js';
 import { DropDownComponent } from '../components/DropDownComponent.js';
 import { sortByOrders, sortByTitles } from '../constants/sortBy.js';
 import { updateSearchParams } from '../utils/updateSearchParams.js';
@@ -68,44 +67,44 @@ const ListWorkouts = () => {
 	}, [defaultWorkouts, description, order, sort, title]);
 
 	const onSortChange = (sort) => {
-	  updateSearchParams(searchParams, setSearchParams, { sort });
+		updateSearchParams(searchParams, setSearchParams, { sort });
 	};
 
 	const onOrderChange = (order) => {
-    updateSearchParams(searchParams, setSearchParams, { order });
+		updateSearchParams(searchParams, setSearchParams, { order });
 	};
-	
+
 	const onPerPageChange = (perPage) => {
-    updateSearchParams(searchParams, setSearchParams, { perPage });
+		updateSearchParams(searchParams, setSearchParams, { perPage });
 	};
 
 	const debounce = (callback, delay) => {
-    let timerId;
+		let timerId;
 
-    return (...args) => {
-      clearTimeout(timerId);
-      timerId = setTimeout(callback, delay, ...args);
-    };
-  };
+		return (...args) => {
+			clearTimeout(timerId);
+			timerId = setTimeout(callback, delay, ...args);
+		};
+	};
 
-  const onTitleChange = useCallback(debounce((title) => {
-    updateSearchParams(
-      searchParams,
-      setSearchParams,
-      { title: title.trim().toLowerCase() || null }
-    )
-  }, 1000), [searchParams, setSearchParams]);
+	const onTitleChange = useCallback(debounce((title) => {
+		updateSearchParams(
+			searchParams,
+			setSearchParams,
+			{ title: title.trim().toLowerCase() || null }
+		)
+	}, 1000), [searchParams, setSearchParams]);
 
 	const onDescriptionChange = useCallback(debounce((description) => {
-    updateSearchParams(
-      searchParams,
-      setSearchParams,
-      { description: description.trim().toLowerCase() || null }
-    )
-  }, 1000), [searchParams, setSearchParams]);
+		updateSearchParams(
+			searchParams,
+			setSearchParams,
+			{ description: description.trim().toLowerCase() || null }
+		)
+	}, 1000), [searchParams, setSearchParams]);
 
 	const updateTitleQuery = (value) => {
-    setTitleQuery(value);
+		setTitleQuery(value);
 		onTitleChange(value);
 	};
 	const updateDescriptionQuery = (value) => {
@@ -114,7 +113,7 @@ const ListWorkouts = () => {
 	};
 
 	const toggleFilters = () => {
-	  setShowFilters(prev => !prev);
+		setShowFilters(prev => !prev);
 	};
 
 	useEffect(() => {
@@ -130,8 +129,6 @@ const ListWorkouts = () => {
 				} else {
 					dispatch({ type: 'LOGGED_OUT' });
 					dispatch({ type: 'CLEAR_USER_DATA' });
-					// setMessageType("SECONDARY");
-					// setMessage("You are unlogged");
 					const defaultWorkouts = await getDefaultWorkouts();
 					setDefaultWorkouts(defaultWorkouts.body.content);
 				}
@@ -159,7 +156,7 @@ const ListWorkouts = () => {
 		{ defaultTitle: 'Direction', searchParam: order, variables: sortOrders, names: sortByOrders, defaultValue: 0, onChange: onOrderChange },
 		{ defaultTitle: 'Page Size', searchParam: perPage, variables: arrayOfItems, defaultValue: 0, onChange: onPerPageChange }
 	];
-	
+
 
 	return (
 		<div className="ListWorkouts">
@@ -171,55 +168,65 @@ const ListWorkouts = () => {
 			</HelmetProvider>
 
 			<div>
-				<AlertComponent message={message} messageType={messageType} />
+				<Alert message={message} messageType={messageType} />
 
 				<p>Workouts / Exercises / Reminders / Media</p>
 
 				<Button variant="outline-secondary">New Workout</Button>
 
 				<div>
-				  <Button style={{ marginBlock: 20 }} variant="secondary" onClick={toggleFilters}>
-					  {showFilters ? 'Hide Filter' : 'Filter'}
-				  </Button>
+					<Button style={{ marginBlock: 20 }} variant="secondary" onClick={toggleFilters}>
+						{showFilters ? 'Hide Filter' : 'Filter'}
+					</Button>
 
-				  {showFilters && (
-					  <Form className="ListWorkouts_form">
+					{showFilters && (
+						<Form className="ListWorkouts_form">
 							<Form.Group className="ListWorkouts_checkboxs">
 								{checkboxsList.map(({ id, label, onChange }) => (
 									<FormCheck key={id} id={id} label={label} onChange={onChange} />
 								))}
 							</Form.Group>
-              <Form.Group className="ListWorkouts_inputs">
+							<Form.Group className="ListWorkouts_inputs">
 								{inputsList.map(({ placeholder, value, onChange }) => (
 									<FormInput key={placeholder} placeholder={placeholder} value={value} onChange={onChange} />
 								))}
 							</Form.Group>
 							<Form.Group className="ListWorkouts_dropDown">
 								{dropDownList.map(({ defaultTitle, searchParam, variables, names, defaultValue, onChange }) => (
-								  <DropDownComponent
-									  key={defaultTitle}
-								    defaultTitle={defaultTitle}
-								    searchParam={searchParam}
-									  variables={variables}
-									  names={names}
-									  defaultValue={defaultValue}
-									  onChange={onChange}
-								  />
+									<DropDownComponent
+										key={defaultTitle}
+										defaultTitle={defaultTitle}
+										searchParam={searchParam}
+										variables={variables}
+										names={names}
+										defaultValue={defaultValue}
+										onChange={onChange}
+									/>
 								))}
 							</Form.Group>
-					  </Form>
-				  )}
+						</Form>
+					)}
 				</div>
+
 				<p>{visibleWorkouts.length} found</p>
-				{visibleWorkouts.map(item => (
-					<Card
-						key={item.id}
-						id={item.id}
-						title={item.title}
-						description={item.description}
-						isCustom={item.isCustom} />
-					))
-				}
+
+				{visibleWorkouts && visibleWorkouts.length > 0 && (
+					<div className='d-flex flex-wrap justify-content-left'>
+						{visibleWorkouts.map(item => (
+							<Card
+								key={item.id}
+								title={item.title}
+								subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
+								tags={item.bodyParts}
+								description={item.description}
+								btnTitle={'Detail'}
+								btnLink={`/workouts/default/${item.id}`}
+							/>
+						))
+						}
+					</div>
+				)}
+
 			</div>
 		</div>
 	);
