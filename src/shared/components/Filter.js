@@ -20,9 +20,7 @@ function Filter({ onFilterChange, isLoggedIn }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const validationMessage = validateInput(mediaName, description);
-        console.log(validationMessage);
         if (validationMessage !== null) {
-            console.log("Validation failed. Showing message...");
             setValidationMessage(validationMessage);
             setValidationMessageType(WARNING);
         } else {
