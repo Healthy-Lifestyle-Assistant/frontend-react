@@ -1,0 +1,55 @@
+.form-custom {
+    width: 300px;
+    min-width: 300px;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 20px 20px;
+    margin: 10px 10px;
+    background-color: var(--color-primary-very-light);
+    box-shadow: 2px 2px var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+}
+
+.form-label {
+    display: block;
+    font-family: var(--font-family-primary);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-input {
+    border: var(--border-width) solid var(--color-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+
+}
+
+.form-input:focus {
+    border: var(--border-width) solid var(--color-warning);
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-btn {
+    font-family: var(--font-family-primary);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: var(--border-width) solid var(--color-white);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    padding: 12px 28px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
+}
+
+.form-btn:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}

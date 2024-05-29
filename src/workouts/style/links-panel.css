@@ -1,0 +1,8 @@
+.links-panel {
+    margin-bottom: 26px;
+}
+
+.links-panel-active {
+    text-decoration: none;
+    color: grey;
+}

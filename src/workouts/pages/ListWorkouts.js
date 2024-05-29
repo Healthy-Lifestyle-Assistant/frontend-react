@@ -6,8 +6,10 @@ import { Button, Form } from 'react-bootstrap';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { validateToken, getToken } from '../../shared/services/auth.js'
 import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
+// import AlertComponent from '../../shared/components/AlertComponent.js';
+import Card from '../../shared/components/Card.js';
+import Links from '../components/Links.js';
 import AlertComponent from '../../shared/components/AlertComponent.js';
-import WorkoutComponent from '../components/WorkoutComponent.js'
 import { DropDownComponent } from '../components/DropDownComponent.js';
 import { sortByOrders, sortByTitles } from '../constants/sortBy.js';
 import { updateSearchParams } from '../utils/updateSearchParams.js';
@@ -15,7 +17,6 @@ import { FormInput } from '../components/FormInput.js';
 import { FormCheck } from '../components/FormCheck.js';
 
 const ListWorkouts = () => {
-	// const isTokenValid = useRef(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [defaultWorkouts, setDefaultWorkouts] = useState([]);
@@ -120,20 +121,17 @@ const ListWorkouts = () => {
 		const fetchData = async () => {
 			try {
 				const data = await validateToken();
-				console.log("data", data);
 				if (data.status === 200) {
 					dispatch({ type: 'LOGGED_IN' });
-					dispatch({ type: 'SET_USER_DATA', payload: { fullName: data.body[1]} });
-					console.log(1);
+					dispatch({ type: 'SET_USER_DATA', payload: { fullName: data.body[1] } });
 					const token = getToken();
 					const customWorkouts = await getCustomWorkouts(token);
-					setDefaultWorkouts(customWorkouts.body.content);
+					setCustomWorkouts(customWorkouts.body.content);
 				} else {
-					console.log(3);
 					dispatch({ type: 'LOGGED_OUT' });
 					dispatch({ type: 'CLEAR_USER_DATA' });
-					setMessageType("SECONDARY");
-					setMessage("You are unlogged");
+					// setMessageType("SECONDARY");
+					// setMessage("You are unlogged");
 					const defaultWorkouts = await getDefaultWorkouts();
 					setDefaultWorkouts(defaultWorkouts.body.content);
 				}
@@ -142,7 +140,7 @@ const ListWorkouts = () => {
 				setMessage(error.message);
 			}
 		};
-	
+
 		fetchData();
 	}, []);
 
@@ -162,91 +160,6 @@ const ListWorkouts = () => {
 		{ defaultTitle: 'Page Size', searchParam: perPage, variables: arrayOfItems, defaultValue: 0, onChange: onPerPageChange }
 	];
 	
-
-	// useEffect(() => {
-	// 	const fetchToken = async () => {
-	// 		const data = await validateToken();
-	// 		console.log("data", data);
-	// 		if (data.status === 200) {
-	// 			isTokenValid.current = true;
-	// 			dispatch({ type: 'SET_USER_DATA', payload: { fullName: data.body[1]} });
-	// 			console.log(1, isTokenValid.current);
-	// 		} else {
-	// 			isTokenValid.current = false;
-	// 		}
-	// 	};
-	// 	fetchToken();
-
-	// 	if (isTokenValid.current) {
-	// 		dispatch({ type: 'LOGGED_IN' });
-	// 		// dispatch({ type: 'SET_USER_DATA', payload: { fullName: "Test full name" } });
-	// 		console.log(2);
-	// 		const fetchDefaultWorkouts = async () => {
-	// 			try {
-	// 				const token = getToken();
-	// 				const data = await getCustomWorkouts(token);
-	// 				setDefaultWorkouts(data.body.content);
-	// 			} catch (error) {
-	// 				setMessageType("WARNING");
-	// 				setMessage(error.message);
-	// 			}
-	// 		};
-	// 		fetchDefaultWorkouts();
-	// 	} else {
-	// 		console.log(3, isTokenValid.current);
-	// 		dispatch({ type: 'LOGGED_OUT' });
-	// 		dispatch({ type: 'CLEAR_USER_DATA' });
-	// 		setMessageType("SECONDARY");
-	// 		setMessage("You are unlogged");
-
-	// 		const fetchCustomWorkouts = async () => {
-	// 			try {
-	// 				const data = await getDefaultWorkouts();
-	// 				setDefaultWorkouts(data.body.content);
-	// 			} catch (error) {
-	// 				setMessageType("WARNING");
-	// 				setMessage(error.message);
-	// 			}
-	// 		};
-	// 		fetchCustomWorkouts();
-	// 	}
-	// }, []);
-
-	// useEffect(() => {
-	// 	if (isTokenValid.current) {
-	// 		dispatch({ type: 'LOGGED_IN' });
-	// 		dispatch({ type: 'SET_USER_DATA', payload: { fullName: "Test full name" } });
-	// 		console.log(2);
-	// 		const fetchDefaultWorkouts = async () => {
-	// 			try {
-	// 				const token = getToken();
-	// 				const data = await getCustomWorkouts(token);
-	// 				setDefaultWorkouts(data.body.content);
-	// 			} catch (error) {
-	// 				setMessageType("WARNING");
-	// 				setMessage(error.message);
-	// 			}
-	// 		};
-	// 		fetchDefaultWorkouts();
-	// 	} else {
-	// 		console.log(3, isTokenValid.current);
-	// 		dispatch({ type: 'LOGGED_OUT' });
-	// 		dispatch({ type: 'CLEAR_USER_DATA' });
-	// 		setMessageType("SECONDARY");
-	// 		setMessage("You are unlogged");
-
-	// 		const fetchCustomWorkouts = async () => {
-	// 			try {
-	// 				const data = await getDefaultWorkouts();
-	// 				setDefaultWorkouts(data.body.content);
-	// 			} catch (error) {
-	// 				setMessageType("WARNING");
-	// 				setMessage(error.message);
-	// 			}
-	// 		};
-	// 		fetchCustomWorkouts();
-	// 	}
-	// }, []);
 
 	return (
 		<div className="ListWorkouts">
@@ -299,7 +212,7 @@ const ListWorkouts = () => {
 				</div>
 				<p>{visibleWorkouts.length} found</p>
 				{visibleWorkouts.map(item => (
-					<WorkoutComponent
+					<Card
 						key={item.id}
 						id={item.id}
 						title={item.title}

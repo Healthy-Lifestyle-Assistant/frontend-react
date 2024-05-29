@@ -1,0 +1,13 @@
+.body-part-tag {
+    background-color: lightgray;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    border-radius: 12px;
+}
+
+.body-part-tags {
+    display: inline-block;
+    margin-bottom: 8px;
+}

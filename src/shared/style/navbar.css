@@ -1,0 +1,104 @@
+.navbar-custom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.navbar-logo {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.navbar-middle-menu {
+    display: flex;
+}
+
+.navbar-right-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.navbar-menu-item {
+    display: block;
+    color: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 20px;
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
+}
+
+.navbar-menu-item:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-radius: var(--border-radius);
+}
+
+.navbar-hidden {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height var(--transition-time) ease, opacity var(--transition-time) ease;
+}
+
+.navbar-hidden-open {
+    max-height: 450px;
+    opacity: 1;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    flex-direction: column;
+    font-family: var(--font-family-primary);
+    font-size: 16px;
+    font-weight: normal;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.navbar-middle-menu-hidden {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-right-menu-hidden {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+.navbar-bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+@media screen and (max-width: 1100px) {
+    .navbar-custom {
+        justify-content:space-around;
+    }
+
+    .navbar-middle-menu {
+        display: none;
+    }
+
+    .navbar-right-menu {
+        display: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+}
