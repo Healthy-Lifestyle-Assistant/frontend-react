@@ -102,6 +102,7 @@ function ListMedia() {
 							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
 							description={item.description}
 							httpRef={item.ref}
+							httpRefTypeName={item.httpRefTypeName}
 						/>
 					))
 					}
