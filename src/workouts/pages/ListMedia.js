@@ -6,7 +6,6 @@ import YouTubeCard from '../components/YouTubeCard.js';
 import Links from '../components/Links.js';
 import Filter from '../../shared/components/Filter.js';
 import Pagination from '../../shared/components/Pagination.js';
-// import AlertComponent from '../../shared/components/AlertComponent.js';
 import { validateToken, getToken } from '../../shared/services/auth';
 import { getDefaultMedia, getCustomMedia } from '../services/requests';
 import { buildUrlMediaFilter } from '../../shared/services/util.js';
@@ -102,7 +101,7 @@ function ListMedia() {
 							title={item.name}
 							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
 							description={item.description}
-							src={item.ref}
+							httpRef={item.ref}
 						/>
 					))
 					}
