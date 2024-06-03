@@ -1,12 +1,60 @@
 export const SUCCESS = 'success';
 export const WARNING = 'warning';
 
+const containsForbiddenChars = (str, forbiddenChars) => {
+    for (let char of str) {
+        if (forbiddenChars.includes(char)) {
+            return true;
+        }
+    }
+    return false;
+};
+
+export const validateTitle = (title) => {
+    const invalidChars = ['@', '$', '%', '^', '*']; 
+    const minLength = 3;
+    const maxLength = 20;
+    let message = '';
+
+    if (title !== '' && title !== null && title !== undefined) {
+        if (title.length < minLength || title.length > maxLength) {
+            message += "Length should be between " + minLength + " and " + maxLength + " characters. ";
+        }
+    
+        if (containsForbiddenChars(title, invalidChars)) {
+            message += "Contains forbidden characters ('@', '$', '%', '^', '*'). ";
+        }
+    }
+
+    return message;
+}
+
+export const validateDescription = (description) => {
+    const minLength = 3;
+    const maxLength = 20;
+    let message = '';
+
+    if (description.length < minLength || description.length > maxLength) {
+        message += "Length should be between " + minLength + " and " + maxLength + " characters. ";
+    }
+    return message;
+}
+
+export const validateHttpLink = (link) => {
+    let message = '';
+
+    if (!(link.startsWith("http://") || link.startsWith("https://"))) {
+        message += "HTTP link should start with http:// or https://"
+    }
+
+    return message;
+}
+
 export const validateInput = (title, description) => {
     const invalidChars = ['!', ',', '.', '@', '#', '$', '%', '^', '&', '*', '&']; 
     const minLength = 3;
     const maxLength = 20;
     let message = '';
-    console.log('title: ', title, 'description: ', description);
 
     const containsForbiddenChars = (str, forbiddenChars) => {
         for (let char of str) {

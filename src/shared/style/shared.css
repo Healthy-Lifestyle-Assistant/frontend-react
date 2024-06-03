@@ -1,0 +1,5 @@
+.custom-heading {
+    font-family: var(--font-family-primary);
+    font-size: 20px;
+    margin-bottom: 16px;
+}
