@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -9,8 +10,9 @@ import Pagination from '../../shared/components/Pagination.js';
 import { validateToken, getToken } from '../../shared/services/auth';
 import { getDefaultMedia, getCustomMedia } from '../services/requests';
 import { buildUrlMediaFilter } from '../../shared/services/util.js';
+import Button from '../../shared/components/Button.js';
 
-function ListMedia() {
+function ListMedia({ isLoggedIn }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [defaultMedia, setDefaultMedia] = useState([]);
@@ -90,7 +92,15 @@ function ListMedia() {
 			</HelmetProvider>
 
 			<Links active='media' />
+				
+			{isLoggedIn && (
+				<div>
+					<Button title='Add media' link='/workouts-add-media' />
+					<br/><br/>
+				</div>
+			)}
 			<Filter onFilterChange={handleFilterChange} />
+			
 			<div>Found {totalElements}</div>
 
 			{defaultMedia && defaultMedia.length > 0 && (
@@ -133,4 +143,10 @@ function ListMedia() {
 	);
 }
 
-export default ListMedia;
+const mapStateToProps = (state) => {
+	return {
+		isLoggedIn: state.isLoggedIn
+	};
+};
+
+export default connect(mapStateToProps)(ListMedia);

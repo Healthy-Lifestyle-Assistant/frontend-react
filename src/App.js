@@ -13,6 +13,7 @@ import LogoutPage from './users/pages/LogoutPage';
 import Components from './new/pages/Components';
 import Navbar from './shared/components/Navbar';
 import ListMedia from './workouts/pages/ListMedia';
+import AddMedia from './workouts/pages/AddMedia';
 import './App.css';
 import './scss/custom.scss';
 
@@ -27,6 +28,7 @@ function App() {
 						<Route path="/" element={<HomePage />} />
 						<Route path="/workouts" element={<ListWorkouts />} />
 						<Route path="/workouts-media" element={<ListMedia />} />
+						<Route path="/workouts-add-media" element={<AddMedia />} />
 						<Route path="/nutrition" element={<ListMeals />} />
 						<Route path="/mental-health" element={<ListMentalActivities />} />
 						<Route path="/calendar" element={<CalendarHome />} />

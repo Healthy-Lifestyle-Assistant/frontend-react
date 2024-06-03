@@ -9,3 +9,4 @@ export const LIST_DEFAULT_EXERCISES = `${BASE_URL}/workouts/exercises/default`;
 export const LIST_CUSTOM_EXERCISES = `${BASE_URL}/workouts/exercises`;
 export const LIST_DEFAULT_MEDIA = `${BASE_URL}/workouts/httpRefs/default`;
 export const LIST_CUSTOM_MEDIA = `${BASE_URL}/workouts/httpRefs`;
+export const CREATE_CUSTOM_MEDIA = `${BASE_URL}/workouts/httpRefs`;

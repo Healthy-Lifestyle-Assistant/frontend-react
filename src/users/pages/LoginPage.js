@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Form, Button } from 'react-bootstrap';
-// import AlertComponent from '../../shared/components/AlertComponent.js';
+import Alert from '../../shared/components/Alert.js';
 import { login, setToken } from '../../shared/services/auth.js';
 
 const LoginPage = ({ globalMessage }) => {
@@ -69,8 +69,8 @@ const LoginPage = ({ globalMessage }) => {
 
 			<h3 className="text-muted" style={{ marginBottom: "1rem" }}>Login</h3>
 
-			{/* {globalMessage && globalMessage.body ?
-				<AlertComponent message={globalMessage.body.message} messageType={globalMessage.body.messageType} /> : <></>} */}
+			{globalMessage && globalMessage.body ?
+				<Alert message={globalMessage.body.message} messageType={globalMessage.body.messageType} /> : <></>}
 
 			{/* <AlertComponent message={message} messageType={messageType} /> */}
 

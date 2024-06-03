@@ -1,4 +1,11 @@
 .alert-custom {
-    color: var(--color-warning);
     margin-bottom: 18px;
+}
+
+.alert-warning {
+    color: var(--color-warning);
+}
+
+.alert-success {
+    color: var(--color-success);
 }
