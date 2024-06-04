@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import YouTubeCard from '../components/YouTubeCard.js';
 import Links from '../components/Links.js';
-import Filter from '../../shared/components/Filter.js';
-import Pagination from '../../shared/components/Pagination.js';
-import { validateToken, getToken } from '../../shared/services/auth';
-import { getDefaultMedia, getCustomMedia } from '../services/requests';
-import { buildUrlMediaFilter } from '../../shared/services/util.js';
-import Button from '../../shared/components/Button.js';
+import Filter from '../components/Filter.js';
+import Pagination from '../components/Pagination.js';
+import { validateToken, getToken } from '../services/auth.js';
+import { getDefaultMedia, getCustomMedia } from '../services/requests.js';
+import { buildUrlMediaFilter } from '../services/util.js';
+import Button from '../components/Button.js';
 
 function ListMedia({ isLoggedIn }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
+
 	const [defaultMedia, setDefaultMedia] = useState([]);
 	const [customMedia, setCustomMedia] = useState([]);
 	const [filterParams, setFilterParams] = useState({
@@ -33,6 +35,8 @@ function ListMedia({ isLoggedIn }) {
 	const [messageType, setMessageType] = useState('');
 
 	useEffect(() => {
+		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
+
 		const fetchData = async () => {
 			const urlPostfix = buildUrlMediaFilter(
 				filterParams.mediaName,
@@ -92,15 +96,15 @@ function ListMedia({ isLoggedIn }) {
 			</HelmetProvider>
 
 			<Links active='media' />
-				
+
 			{isLoggedIn && (
 				<div>
-					<Button title='Add media' link='/workouts-add-media' />
-					<br/><br/>
+					<Button title='Add media' link='/media/workouts/add' />
+					<br /><br />
 				</div>
 			)}
 			<Filter onFilterChange={handleFilterChange} />
-			
+
 			<div>Found {totalElements}</div>
 
 			{defaultMedia && defaultMedia.length > 0 && (
@@ -108,11 +112,13 @@ function ListMedia({ isLoggedIn }) {
 					{defaultMedia.map(item => (
 						<YouTubeCard
 							key={item.id}
+							id={item.id}
 							title={item.name}
 							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
 							description={item.description}
 							httpRef={item.ref}
 							httpRefTypeName={item.httpRefTypeName}
+							isCustom={item.isCustom}
 						/>
 					))
 					}
@@ -124,10 +130,13 @@ function ListMedia({ isLoggedIn }) {
 					{customMedia.map(item => (
 						<YouTubeCard
 							key={item.id}
+							id={item.id}
 							title={item.name}
 							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
 							description={item.description}
-							src={item.ref}
+							httpRef={item.ref}
+							httpRefTypeName={item.httpRefTypeName}
+							isCustom={item.isCustom}
 						/>
 					))
 					}

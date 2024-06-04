@@ -6,7 +6,7 @@ import { validateToken, getToken } from '../../shared/services/auth.js'
 import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
 // import AlertComponent from '../../shared/components/AlertComponent.js';
 import Card from '../../shared/components/Card.js';
-import Links from '../components/Links.js';
+import Links from '../../shared/components/Links.js';
 
 const ListWorkouts = () => {
 	const dispatch = useDispatch();

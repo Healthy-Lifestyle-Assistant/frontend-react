@@ -1,0 +1,12 @@
+.back-link {
+    font-family: var(--font-family-secondary);
+    color: var(--color-blur);
+    margin-bottom: 16px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.back-link-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
