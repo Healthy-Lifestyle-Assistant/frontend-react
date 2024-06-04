@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import Links from '../components/Links.js';
-import { validateToken, getToken } from '../../shared/services/auth';
-import { validateTitle, validateDescription, validateHttpLink } from '../../shared/services/validation.js';
-import { createHttpRef } from '../services/requests.js';
-import { buildMessage, buildAlertsList } from '../../shared/services/util.js';
-import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_ADDED } from '../../shared/services/message.js';
-import Button from '../../shared/components/Button.js';
+
 import Alert from '../../shared/components/Alert.js';
 import AlertsList from '../../shared/components/AlertsList.js';
 import ValidationMessage from '../../shared/components/ValidationMessage.js';
+import BackLink from '../components/BackLink.js';
 
-function ListMedia({ isLoggedIn }) {
+import { validateToken, getToken } from '../../shared/services/auth';
+import { validateTitle, validateDescription, validateHttpLink } from '../../shared/services/validation.js';
+import { createHttpRef } from '../../shared/services/requests.js';
+import { buildAlertsList } from '../../shared/services/util.js';
+import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_ADDED } from '../../shared/services/message.js';
+
+function ListMedia({ isLoggedIn, urlHistory }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+
     const [mediaName, setMediaName] = useState('');
     const [description, setDescription] = useState('');
     const [httpRef, setHttpRef] = useState('');
@@ -32,6 +35,8 @@ function ListMedia({ isLoggedIn }) {
     const [messagesType, setMessagesType] = useState('');
 
     useEffect(() => {
+        dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
+
         const fetchData = async () => {
             try {
                 const data = await validateToken();
@@ -65,6 +70,7 @@ function ListMedia({ isLoggedIn }) {
                 }
                 const response = await createHttpRef(token, requestBody);
                 if (response.status === 201) {
+                    handleClearForm();
                     setMessage(MEDIA_ADDED);
                     setMessageType(SUCCESS);
                     setMessagesList([]);
@@ -109,10 +115,10 @@ function ListMedia({ isLoggedIn }) {
         setMediaNameValidation('');
         setDescriptionValidation('');
         setHttpRefValidation('');
-        
+
         setMessagesList([]);
         setMessagesType('');
-        
+
         setMediaName('');
         setDescription('');
         setHttpRef('');
@@ -130,13 +136,13 @@ function ListMedia({ isLoggedIn }) {
                 </Helmet>
             </HelmetProvider>
 
-            <Links active='' />
+            <BackLink previousUrl={urlHistory.previousUrl} currentUrl={urlHistory.currentUrl} />
 
             <div className='custom-heading'>Add a new media</div>
 
             <Alert message={message} messageType={messageType} />
 
-            {messagesList && messagesList.length > 0 && 
+            {messagesList && messagesList.length > 0 &&
                 (<AlertsList messages={messagesList} messageType={messagesType} />)}
 
             <form onSubmit={handleSubmit}>
@@ -152,7 +158,7 @@ function ListMedia({ isLoggedIn }) {
                     <label htmlFor="description" className='form-label'>Description</label>
                     <input type="text" id="description" name="description" className='form-input'
                         value={description} onChange={(e) => setDescription(e.target.value)} />
-                        {descriptionValidation && <ValidationMessage message={descriptionValidation} />}
+                    {descriptionValidation && <ValidationMessage message={descriptionValidation} />}
                 </div>
 
                 <div className='form-group'>
@@ -168,7 +174,7 @@ function ListMedia({ isLoggedIn }) {
                     <label htmlFor="httpRef" className='form-label'>Link</label>
                     <input type="text" id="httpRef" name="httpRef" className='form-input'
                         value={httpRef} onChange={(e) => setHttpRef(e.target.value)} required />
-                        {httpRefValidation && <ValidationMessage message={httpRefValidation} />}
+                    {httpRefValidation && <ValidationMessage message={httpRefValidation} />}
                 </div>
 
                 <button type="button" className='form-btn' onClick={handleClearForm} style={{ marginRight: 8 }}>Clear</button>
@@ -180,7 +186,8 @@ function ListMedia({ isLoggedIn }) {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn
+        isLoggedIn: state.isLoggedIn,
+        urlHistory: state.urlHistory
     };
 };
 

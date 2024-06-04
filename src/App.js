@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Container from 'react-bootstrap/Container';
+
 import HomePage from './home/pages/HomePage';
 import ListWorkouts from './workouts/pages/ListWorkouts';
 import ListMeals from './nutrition/pages/ListMeals';
@@ -12,8 +12,10 @@ import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
 import Components from './new/pages/Components';
 import Navbar from './shared/components/Navbar';
-import ListMedia from './workouts/pages/ListMedia';
-import AddMedia from './workouts/pages/AddMedia';
+import ListMedia from './shared/pages/ListMedia';
+import AddMedia from './shared/pages/AddMedia';
+import ManageMedia from './shared/pages/ManageMedia';
+
 import './App.css';
 import './scss/custom.scss';
 
@@ -22,13 +24,13 @@ function App() {
 		<Router>
 			<>
 				<Navbar />
-				{/* <Container className='margin-top'> */}
 				<div className='container-custom'>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/workouts" element={<ListWorkouts />} />
-						<Route path="/workouts-media" element={<ListMedia />} />
-						<Route path="/workouts-add-media" element={<AddMedia />} />
+						<Route path="/media/:type" element={<ListMedia />} />
+						<Route path="/media/:type/add" element={<AddMedia />} />
+						<Route path="/media/:type/:id" element={<ManageMedia />} />
 						<Route path="/nutrition" element={<ListMeals />} />
 						<Route path="/mental-health" element={<ListMentalActivities />} />
 						<Route path="/calendar" element={<CalendarHome />} />
@@ -39,7 +41,6 @@ function App() {
 						<Route path="/new" element={<Components />} />
 					</Routes>
 				</div>
-				{/* </Container> */}
 			</>
 		</Router>
 	);

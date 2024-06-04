@@ -11,9 +11,15 @@
     transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
     letter-spacing: var(--btn-letter-spacing);
     box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    margin-right: 10px;
 }
 
 .btn-custom:hover {
     background-color: var(--color-white);
     color: var(--color-black);
+}
+
+.btn-disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }

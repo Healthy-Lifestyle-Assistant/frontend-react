@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Alert from './Alert';
-import { validateInput, WARNING } from '../services/validation';
+import { validateInput } from '../services/validation';
+import { WARNING } from '../services/message';
 import '../style/form.css';
 import '../style/filter.css';
 
