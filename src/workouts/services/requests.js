@@ -1,6 +1,7 @@
 import {
     DEFAULT_WORKOUTS, CUSTOM_WORKOUTS,
     LIST_DEFAULT_EXERCISES, LIST_CUSTOM_EXERCISES,
+    LIST_BODY_PARTS,
 } from '../../shared/services/URL.js';
 
 export const getDefaultWorkouts = async () => {
@@ -42,8 +43,8 @@ export const getCustomWorkouts = async (token) => {
     };
 };
 
-export const getDefaultExercises = async () => {
-    const response = await fetch(LIST_DEFAULT_EXERCISES, {
+export const getDefaultExercises = async (urlPostfix) => {
+    const response = await fetch(LIST_DEFAULT_EXERCISES + urlPostfix, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -61,8 +62,8 @@ export const getDefaultExercises = async () => {
     };
 };
 
-export const getCustomExercises = async (token) => {
-    const response = await fetch(LIST_CUSTOM_EXERCISES, {
+export const getCustomExercises = async (token, urlPostfix) => {
+    const response = await fetch(LIST_CUSTOM_EXERCISES + urlPostfix, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -72,6 +73,25 @@ export const getCustomExercises = async (token) => {
 
     if (!response.ok) {
         throw new Error(`Failed to fetch custom exercises: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data
+    };
+};
+
+export const getBodyParts = async () => {
+    const response = await fetch(LIST_BODY_PARTS, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch body parts: ${response.status}`);
     }
 
     const data = await response.json();

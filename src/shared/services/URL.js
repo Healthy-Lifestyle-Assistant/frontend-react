@@ -13,3 +13,4 @@ export const CREATE_CUSTOM_MEDIA = `${BASE_URL}/workouts/httpRefs`;
 export const GET_CUSTOM_MEDIA_BY_ID = `${BASE_URL}/workouts/httpRefs/`;
 export const UPDATE_CUSTOM_MEDIA_BY_ID = `${BASE_URL}/workouts/httpRefs/`;
 export const DELETE_CUSTOM_MEDIA_BY_ID = `${BASE_URL}/workouts/httpRefs/`;
+export const LIST_BODY_PARTS = `${BASE_URL}/workouts/bodyParts`;

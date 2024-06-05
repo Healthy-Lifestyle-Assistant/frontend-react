@@ -15,6 +15,7 @@ import Navbar from './shared/components/Navbar';
 import ListMedia from './shared/pages/ListMedia';
 import AddMedia from './shared/pages/AddMedia';
 import ManageMedia from './shared/pages/ManageMedia';
+import ListExercises from './workouts/pages/ListExercises';
 
 import './App.css';
 import './scss/custom.scss';
@@ -28,6 +29,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/workouts" element={<ListWorkouts />} />
+						<Route path="/workouts/exercises" element={<ListExercises />} />
 						<Route path="/media/:type" element={<ListMedia />} />
 						<Route path="/media/:type/add" element={<AddMedia />} />
 						<Route path="/media/:type/:id" element={<ManageMedia />} />
