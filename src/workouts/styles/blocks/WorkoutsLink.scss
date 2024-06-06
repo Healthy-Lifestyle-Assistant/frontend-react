@@ -1,0 +1,25 @@
+.WorkoutsLink {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-white);
+  padding: .5rem;
+  border-radius: 5px;
+  z-index: 1;
+  transition: color .2s ease;
+    
+  &-active {
+    color: var(--color-primary);
+  }
+
+  &_underline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    z-index: -1;
+  }
+}

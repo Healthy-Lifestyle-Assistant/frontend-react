@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
 // import Container from 'react-bootstrap/Container';
 import HomePage from './home/pages/HomePage';
 import ListWorkouts from './workouts/pages/ListWorkouts';
@@ -18,6 +18,12 @@ import './scss/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+	const workoutsCategories = {
+    workouts: '/workouts',
+		exercises: '/workouts-exercises',
+		reminders: '/workouts-reminders',
+		media: '/workouts-media',
+	};
 	return (
 		<Router>
 			<>
@@ -25,9 +31,15 @@ function App() {
 				{/* <Container className='margin-top'> */}
 				<div className='container-custom'>
 					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/workouts" element={<ListWorkouts />} />
-						<Route path="/workouts-media" element={<ListMedia />} />
+						<Route path="/" element={<Outlet />}>
+						  <Route index element={<HomePage />} />
+						  {Object.entries(workoutsCategories).map(([category, path]) => (
+								<Route key={category} path={path} element={<Outlet />}>
+									<Route index element={<ListWorkouts category={category} />} />
+									<Route path=":itemId" element={<ListWorkouts />} />
+								</Route>
+							))}
+						<Route path="/media" element={<ListMedia />} />
 						<Route path="/nutrition" element={<ListMeals />} />
 						<Route path="/mental-health" element={<ListMentalActivities />} />
 						<Route path="/calendar" element={<CalendarHome />} />
@@ -36,6 +48,7 @@ function App() {
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/logout" element={<LogoutPage />} />
 						<Route path="/new" element={<Components />} />
+						</Route>
 					</Routes>
 				</div>
 				{/* </Container> */}

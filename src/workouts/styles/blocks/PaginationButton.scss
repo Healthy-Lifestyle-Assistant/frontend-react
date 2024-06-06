@@ -1,0 +1,15 @@
+@import '../mixins.scss';
+
+.PaginationButton {
+  @extend %flex-center;
+  background-color: var(--color-secondary);
+  min-width: 2rem;
+  min-height: 2rem;
+  border: none;
+
+  &-disabled {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-secondary);
+    pointer-events: none;
+  }
+}

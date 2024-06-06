@@ -15,6 +15,7 @@
     */
     --color-white: rgba(250, 250, 250, 1);
     --color-black: rgba(30, 30, 30, .9);
+    --color-secondary: rgb(137, 147, 154);
     --color-blur: rgba(30, 30, 30, .6);
     --color-primary: rgba(17, 80, 132, 0.9);
     --color-primary-very-light: rgba(17, 80, 132, 0);

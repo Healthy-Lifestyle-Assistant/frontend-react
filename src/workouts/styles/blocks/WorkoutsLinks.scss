@@ -1,0 +1,19 @@
+.WorkoutsLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  padding: .5rem;
+  border-radius: 5px;
+  margin: 0 auto;
+  max-width: max-content;
+
+  &_list {
+    display: flex;
+    background-color: var(--color-shadow);
+    border-radius: 5px;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+}

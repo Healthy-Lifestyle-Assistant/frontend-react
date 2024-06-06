@@ -1,0 +1,36 @@
+@import '../mixins.scss';
+
+.LinkLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 0 24px;
+  gap: 14px;
+
+  @include onTablet {
+    margin: 0 0 40px; 
+  }
+
+  &__arrow {
+    max-width: 14px;
+    max-height: 14px;
+  }
+  
+  &__link {
+    @extend %flex-center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 12px;
+    text-decoration: none;
+    color: var(--color-secondary);
+
+    &--active {
+      color: var(--color-black);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: .9rem;
+  }
+}
