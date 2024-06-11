@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 import { Form, Button } from 'react-bootstrap';
-// import AlertComponent from '../../shared/components/AlertComponent.js';
-// import AlertsListComponent from '../../shared/components/AlertsListComponent.js';
-import { SIGNUP } from '../../shared/services/URL.js';
-import { getCountries, signup } from '../services/requests.js';
+import Alert from '../../shared/components/Alert.js';
+import AlertsList from '../../shared/components/AlertsList.js';
+
+import { getCountries, signup, getTimezones } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
+import { SUCCESS, SIGNUP_SUCCESSFULL, WARNING } from '../../shared/services/message.js';
 
 const SignupPage = () => {
 	const navigate = useNavigate();
@@ -18,22 +20,24 @@ const SignupPage = () => {
 		password: '',
 		confirmPassword: '',
 		countryId: '',
+		timezoneId: '',
 		age: ''
 	});
 	const [countries, setCountries] = useState([]);
-	const [message, setMessage] = useState("");
-	const [messageType, setMessageType] = useState("");
+	const [timezones, setTimezones] = useState([]);
+	const [message, setMessage] = useState('');
+	const [messageType, setMessageType] = useState('');
 	const [messages, setMessages] = useState([]);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchCountries = async () => {
+		const fetchData = async () => {
 			const countriesResponse = await getCountries();
 			setCountries(countriesResponse.body);
-			console.log('countries', countries);
+			const timezonesResponse = await getTimezones();
+			setTimezones(timezonesResponse.body);
 		};
-		console.log("useEffect");
-		fetchCountries();
+		fetchData();
 	}, []);
 
 	const handleChange = (e) => {
@@ -52,6 +56,7 @@ const SignupPage = () => {
 			password: '',
 			confirmPassword: '',
 			countryId: '',
+			timezoneId: '',
 			age: ''
 		});
 		setMessage('');
@@ -61,7 +66,6 @@ const SignupPage = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
 		handleClear();
 		const fetchSignup = async () => {
 			try {
@@ -70,16 +74,16 @@ const SignupPage = () => {
 					dispatch({
 						type: 'SET_GLOBAL_MESSAGE',
 						payload: {
-							messageType: "SUCCESS",
-							message: "User account has been created successfully! Please login"
+							messageType: SUCCESS,
+							message: SIGNUP_SUCCESSFULL
 						}
 					});
 					navigate('/login');
 				} else {
-					setMessages(buildAlertsList(response.body, "WARNING"));
+					setMessages(buildAlertsList(response.body, WARNING));
 				}
 			} catch (error) {
-				setMessageType("WARNING");
+				setMessageType(WARNING);
 				setMessage(error.message);
 			}
 		};
@@ -87,58 +91,58 @@ const SignupPage = () => {
 	};
 
 	return (
-		<div className="d-flex flex-column align-items-center" style={{ marginTop: "6rem" }}>
+		<div className='d-flex flex-column align-items-center' style={{ marginTop: '6rem' }}>
 			<HelmetProvider>
 				<Helmet>
 					<title>Signup</title>
-					<html lang="en" />
+					<html lang='en' />
 				</Helmet>
 			</HelmetProvider>
 
-			<h3 className="text-muted" style={{ marginBottom: "1rem" }}>Signup</h3>
+			<h3 className='text-muted' style={{ marginBottom: '1rem' }}>Signup</h3>
 
-			{/* <AlertComponent message={message} messageType={messageType} /> */}
+			<Alert message={message} messageType={messageType} />
 
-			{/* <AlertsListComponent messages={messages} /> */}
+			<AlertsList messages={messages} />
 
 			<Form onSubmit={handleSubmit} style={{ width: 'fit-content' }} className='mb-5'>
 
-				<Form.Group className="mb-3" controlId="fullName">
+				<Form.Group className='mb-3' controlId='fullName'>
 					<Form.Label>Full Name</Form.Label>
-					<Form.Control type="text" name="fullName" placeholder="Enter full name"
+					<Form.Control type='text' name='fullName' placeholder='Enter full name'
 						value={formData.fullName} onChange={handleChange} required />
 				</Form.Group>
 
-				<Form.Group className="mb-3" controlId="username">
+				<Form.Group className='mb-3' controlId='username'>
 					<Form.Label>Username</Form.Label>
-					<Form.Control type="text" name="username" placeholder="Enter username"
+					<Form.Control type='text' name='username' placeholder='Enter username'
 						value={formData.username} onChange={handleChange} required />
 				</Form.Group>
 
-				<Form.Group className="mb-3" controlId="email">
+				<Form.Group className='mb-3' controlId='email'>
 					<Form.Label>Email address</Form.Label>
-					<Form.Control type="email" name="email" placeholder="Enter email"
+					<Form.Control type='email' name='email' placeholder='Enter email'
 						value={formData.email} onChange={handleChange} required />
 				</Form.Group>
 
-				<Form.Group className="mb-3" controlId="password">
+				<Form.Group className='mb-3' controlId='password'>
 					<Form.Label>Password</Form.Label>
-					<Form.Control type="password" name="password" placeholder="Password"
+					<Form.Control type='password' name='password' placeholder='Password'
 						value={formData.password} onChange={handleChange} required />
 				</Form.Group>
 
-				<Form.Group className="mb-3" controlId="confirmPassword">
+				<Form.Group className='mb-3' controlId='confirmPassword'>
 					<Form.Label>Confirm Password</Form.Label>
-					<Form.Control type="password" name="confirmPassword" placeholder="Confirm password"
+					<Form.Control type='password' name='confirmPassword' placeholder='Confirm password'
 						value={formData.confirmPassword} onChange={handleChange} required />
 				</Form.Group>
 
 				{countries && (
-					<Form.Group className="mb-3" controlId="countryId">
+					<Form.Group className='mb-3' controlId='countryId'>
 						<Form.Label>Country</Form.Label>
-						<Form.Select aria-label="Select Country" name='countryId'
+						<Form.Select aria-label='Select Country' name='countryId'
 							value={formData.countryId} onChange={handleChange} required>
-							<option disabled value="" aria-readonly>Select Country</option>
+							<option disabled value='' aria-readonly>Select Country</option>
 							{countries.map((elt) => (
 								<option key={elt.id} value={elt.id}>
 									{elt.name}
@@ -148,16 +152,31 @@ const SignupPage = () => {
 					</Form.Group>
 				)}
 
-				<Form.Group controlId="age" className="mb-4">
+				{timezones && (
+					<Form.Group className='mb-3' controlId='timezoneId'>
+						<Form.Label>Timezone</Form.Label>
+						<Form.Select aria-label='Select Timezone' name='timezoneId'
+							value={formData.timezoneId} onChange={handleChange} required>
+							<option disabled value='' aria-readonly>Select Timezone</option>
+							{timezones.map((elt) => (
+								<option key={elt.id} value={elt.id}>
+									{elt.name}, {elt.gmt}
+								</option>
+							))}
+						</Form.Select>
+					</Form.Group>
+				)}
+
+				<Form.Group controlId='age' className='mb-4'>
 					<Form.Label>Age (optional)</Form.Label>
-					<Form.Control type="text" name='age' value={formData.age} onChange={handleChange} />
+					<Form.Control type='text' name='age' value={formData.age} onChange={handleChange} />
 				</Form.Group>
 
-				<Button onClick={handleClear} variant="primary" className='me-3'>
+				<Button onClick={handleClear} variant='primary' className='me-3'>
 					Clear
 				</Button>
 
-				<Button variant="primary" type="submit">
+				<Button variant='primary' type='submit'>
 					Submit
 				</Button>
 
