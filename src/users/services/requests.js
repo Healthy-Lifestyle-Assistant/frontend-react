@@ -1,4 +1,4 @@
-import { SIGNUP, COUNTRIES } from '../../shared/services/URL.js';
+import { SIGNUP, COUNTRIES, TIMEZONES } from '../../shared/services/URL.js';
 
 export const getCountries = async () => {
     const response = await fetch(COUNTRIES, {
@@ -19,6 +19,25 @@ export const getCountries = async () => {
     };
 };
 
+export const getTimezones = async () => {
+    const response = await fetch(TIMEZONES, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch timezones: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data,
+    };
+};
+
 export const signup = async (requestBody) => {
     const response = await fetch(SIGNUP, {
         method: "POST",
@@ -28,13 +47,11 @@ export const signup = async (requestBody) => {
         body: JSON.stringify(requestBody)
     });
 
-    // if (!response.ok) {
-        // throw new Error(`Failed to signup: ${response.status}`);
-    // }
+    if (response.status !== 201) {
+        throw new Error(`Failed to signup: ${response.status}`);
+    }
 
-    const data = await response.json();
     return {
-        status: response.status,
-        body: data,
+        status: response.status
     };
 };

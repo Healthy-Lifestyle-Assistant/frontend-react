@@ -1,6 +1,7 @@
 export const BASE_URL = "/api/v1";
 export const SIGNUP = `${BASE_URL}/users`;
 export const COUNTRIES = `${BASE_URL}/users/countries`;
+export const TIMEZONES = `${BASE_URL}/users/timezones`;
 export const LOGIN = `${BASE_URL}/users/auth/login`;
 export const VALIDATE_TOKEN = `${BASE_URL}/users/auth/validate`;
 export const DEFAULT_WORKOUTS = `${BASE_URL}/workouts/default`;
