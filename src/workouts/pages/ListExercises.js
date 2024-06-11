@@ -111,7 +111,7 @@ function ListExercises({ isLoggedIn }) {
                 </Helmet>
             </HelmetProvider>
 
-            <Links active='workouts' />
+            <Links active='exercises' />
 
             {isLoggedIn && (
                 <div>

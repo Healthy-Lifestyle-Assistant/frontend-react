@@ -18,8 +18,8 @@ function Navbar({ isLoggedIn, userData }) {
                 </div>
                 <div className='navbar-middle-menu'>
                     <Link className='navbar-menu-item' to={'/workouts'}>Workouts</Link>
-                    <Link className='navbar-menu-item' to={'/meals'}>Meals</Link>
-                    <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link>
+                    {/* <Link className='navbar-menu-item' to={'/meals'}>Meals</Link> */}
+                    {/* <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link> */}
                     <Link className='navbar-menu-item' to={'/calendar'}>Calendar</Link>
                     <Link className='navbar-menu-item' to={'/statistics'}>Statistics</Link>
                 </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Alert from '../../shared/components/Alert.js';
 import AlertsList from '../../shared/components/AlertsList.js';
 import ValidationMessage from '../../shared/components/ValidationMessage.js';
-import BackLink from '../components/BackLink.js';
+import BackLink from '../../shared/components/BackLink.js';
 
 import { validateToken, getToken } from '../../shared/services/auth';
 import { validateTitle, validateDescription, validateHttpLink } from '../../shared/services/validation.js';
@@ -15,10 +15,15 @@ import { createHttpRef } from '../../shared/services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
 import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_ADDED } from '../../shared/services/message.js';
 
-function ListMedia({ isLoggedIn, urlHistory }) {
+function CreatePlan({ isLoggedIn, urlHistory }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const { type, id } = useParams();
+
+    const [selectedOption, setSelectedOption] = useState('once');
+    const [components, setComponents] = useState([]);
+    const [activityId, setActivityId] = useState('');
 
     const [mediaName, setMediaName] = useState('');
     const [description, setDescription] = useState('');
@@ -57,6 +62,15 @@ function ListMedia({ isLoggedIn, urlHistory }) {
 
         fetchData();
     }, []);
+
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    const handleAddComponent = () => {
+        // Add a new component to the list
+        setComponents([...components, <YourComponent />]);
+    };
 
     const handleSubmit = (event) => {
         const requestAPI = async () => {
@@ -131,14 +145,14 @@ function ListMedia({ isLoggedIn, urlHistory }) {
         <>
             <HelmetProvider>
                 <Helmet>
-                    <title>Add Media</title>
+                    <title>Add to Calendar</title>
                     <html lang='en' />
                 </Helmet>
             </HelmetProvider>
 
             <BackLink previousUrl={urlHistory.previousUrl} currentUrl={urlHistory.currentUrl} />
 
-            <div className='custom-heading'>Add a new media</div>
+            <div className='custom-heading'>Add activity to the calendar</div>
 
             <Alert message={message} messageType={messageType} />
 
@@ -146,6 +160,77 @@ function ListMedia({ isLoggedIn, urlHistory }) {
                 (<AlertsList messages={messagesList} messageType={messagesType} />)}
 
             <form onSubmit={handleSubmit}>
+                {/* select workout, once or repeat,
+                once: day and time,
+                repeat: start date, end date, days with hours, minutes */}
+
+                <div className='form-group'>
+                    <select id='activityId' name='activityId' className='form-label form-input filter-mr'
+                        value={activityId} onChange={(e) => setActivityId(e.target.value)} required>
+                        <option value='' disabled>Select Activity</option>
+                        <option value='id1'>Workout 1</option>
+                        <option value='id2'>Workout 2</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div>
+                        <input
+                            type="radio"
+                            id="once"
+                            value="once"
+                            checked={selectedOption === 'once'}
+                            onChange={handleOptionChange}
+                        />
+                        <label htmlFor="once">Once</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            id="repeat"
+                            value="repeat"
+                            checked={selectedOption === 'repeat'}
+                            onChange={handleOptionChange}
+                        />
+                        <label htmlFor="repeat">Repeat</label>
+                    </div>
+
+                    {selectedOption === 'once' ? (
+                        <div>
+                            <label>Date and Time:</label>
+                            {/* Render your date and time input fields here */}
+                            {/* Example: <input type="datetime-local" /> */}
+                        </div>
+                    ) : (
+                        <div>
+                            <label>Repeat Interval:</label>
+                            <div>
+                                <label>Day:</label>
+                                <input type="number" />
+                            </div>
+                            <div>
+                                <label>Hours:</label>
+                                <input type="number" />
+                            </div>
+                            <div>
+                                <label>Minutes:</label>
+                                <input type="number" />
+                            </div>
+
+                            {/* plus button */}
+                            <div>
+                                <button onClick={handleAddComponent}>Add day</button>
+                                <div>
+                                    {components.map((Component, index) => (
+                                        <div key={index}>
+                                            <Component />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
 
                 <div className='form-group filter-mr'>
                     <label htmlFor='name' className='form-label'>Name</label>
@@ -161,14 +246,7 @@ function ListMedia({ isLoggedIn, urlHistory }) {
                     {descriptionValidation && <ValidationMessage message={descriptionValidation} />}
                 </div>
 
-                <div className='form-group'>
-                    <select id='httpRefType' name='httpRefType' className='form-label form-input filter-mr'
-                        value={httpRefType} onChange={(e) => setHttpRefType(e.target.value)} required>
-                        <option value='' disabled>Media Type</option>
-                        <option value='YOUTUBE'>YouTube</option>
-                        <option value='OTHER'>Other</option>
-                    </select>
-                </div>
+
 
                 <div className='form-group'>
                     <label htmlFor='httpRef' className='form-label'>Link</label>
@@ -191,4 +269,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ListMedia);
+export default connect(mapStateToProps)(CreatePlan);
