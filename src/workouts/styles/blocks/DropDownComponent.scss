@@ -1,0 +1,18 @@
+@import '../mixins.scss';
+
+.DropDownComponent {
+  display: flex;
+  flex-grow: 1;
+
+  @include onDesktop {
+    width: max-content;
+  }
+
+  &_toggle {
+    flex-basis: 100%;
+  }
+
+  &_menu {
+    width: 100%;
+  }
+}

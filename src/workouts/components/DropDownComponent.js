@@ -1,5 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
+import '../styles/blocks/DropDownComponent.scss';
 
 export const DropDownComponent = memo(({
   defaultTitle,
@@ -24,12 +25,12 @@ export const DropDownComponent = memo(({
 
   return (
     <>
-    <Dropdown data-bs-theme="light">
-      <Dropdown.Toggle variant="outline-secondary">
+    <Dropdown className="DropDownComponent" data-bs-theme="light">
+      <Dropdown.Toggle className="DropDownComponent_toggle" variant="outline-secondary">
         {stateDropDown === variables[defaultValue] ? defaultTitle : ((names && names[stateDropDown]) || stateDropDown)}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu className="DropDownComponent_menu">
         {variables.map((item) => (
           <Dropdown.Item 
             onClick={() => handleChange(item)}

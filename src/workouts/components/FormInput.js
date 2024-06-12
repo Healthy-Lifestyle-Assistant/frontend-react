@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import '../styles/FormInput.scss';
+import '../styles/blocks/FormInput.scss';
 
 export const FormInput = ({ placeholder, value, min, max, onChange }) => {
   return (

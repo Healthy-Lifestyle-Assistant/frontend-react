@@ -4,7 +4,7 @@ import {
     LIST_DEFAULT_MEDIA, LIST_CUSTOM_MEDIA
 } from '../../shared/services/URL.js';
 
-export const getDefaultWorkouts = async (pageNumber,pageSize, sortField, sortDirection, title, description) => {
+export const getDefaultWorkouts = async (pageNumber,pageSize, sortField, sortDirection, title, description, needsEquipment) => {
     let searchParam = [];
 
     if (pageNumber) searchParam.push(`pageNumber=${pageNumber}`);
@@ -13,6 +13,7 @@ export const getDefaultWorkouts = async (pageNumber,pageSize, sortField, sortDir
     if (sortDirection) searchParam.push(`sortDirection=${sortDirection}`);
     if (title) searchParam.push(`title=${title}`);
     if (description) searchParam.push(`description=${description}`);
+    if (needsEquipment !== undefined) searchParam.push(`needsEquipment=${needsEquipment}`);
 
     const response = await fetch(`${DEFAULT_WORKOUTS}${searchParam.length ? `?${searchParam.join('&')}` : ''}`, {
         method: "GET",

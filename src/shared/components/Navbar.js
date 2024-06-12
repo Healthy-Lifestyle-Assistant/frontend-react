@@ -10,6 +10,14 @@ function Navbar({ isLoggedIn, userData }) {
         setIsOpen(!isOpen);
     }
 
+    const navbarLinks = [
+      { title: 'Workout', to: '/workouts' },
+      { title: 'Meals', to: '/meals' },
+      { title: 'Mental Health', to: '/mental-health' },
+      { title: 'Calendar', to: '/calendar' },
+      { title: 'Statistics', to: '/statistics' },
+    ];
+
     return (
         <>
             <div className='navbar-custom'>
@@ -17,11 +25,9 @@ function Navbar({ isLoggedIn, userData }) {
                     <div><span style={{ fontWeight: 'bold' }}>HEALTHY</span><span style={{ fontStyle: 'italic' }}>Life</span></div>
                 </div>
                 <div className='navbar-middle-menu'>
-                    <Link className='navbar-menu-item' to={'/workouts'}>Workouts</Link>
-                    <Link className='navbar-menu-item' to={'/meals'}>Meals</Link>
-                    <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link>
-                    <Link className='navbar-menu-item' to={'/calendar'}>Calendar</Link>
-                    <Link className='navbar-menu-item' to={'/statistics'}>Statistics</Link>
+                    {navbarLinks.map(({ title, to }) => (
+                      <Link key={title} className='navbar-menu-item' to={to}>{title}</Link>
+                    ))}
                 </div>
                 <div className='navbar-right-menu'>
                     {isLoggedIn ? <>
@@ -42,11 +48,9 @@ function Navbar({ isLoggedIn, userData }) {
 
             <div className={`${isOpen ? 'navbar-hidden-open' : 'navbar-hidden'}`}>
                 <div className='navbar-middle-menu-hidden'>
-                    <Link className='navbar-menu-item' to={'/workouts'}>Workouts</Link>
-                    <Link className='navbar-menu-item' to={'/meals'}>Meals</Link>
-                    <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link>
-                    <Link className='navbar-menu-item' to={'/calendar'}>Calendar</Link>
-                    <Link className='navbar-menu-item' to={'/statistics'}>Statistics</Link>
+                    {navbarLinks.map(({ title, to }) => (
+                      <Link key={title} className='navbar-menu-item' to={to}>{title}</Link>
+                    ))}
                 </div>
                 <div className='navbar-right-menu-hidden'>
                     {isLoggedIn ? <>

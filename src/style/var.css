@@ -23,6 +23,9 @@
     --color-shadow: rgba(7, 32, 53, .5);
     --color-warning: rgba(242, 195, 65, 0.9);
     --color-success: rgba(0, 200, 0, .9);
+    --color-selected: rgba(31, 136, 222, 0.1);
+    --color-unselected: rgba(30, 30, 30, .1);
+    --color-accent: rgb(85, 168, 236);
 
     --font-family-primary: 'Work Sans', sans-serif;
     --font-family-secondary: 'Merriweather', sans-serif;

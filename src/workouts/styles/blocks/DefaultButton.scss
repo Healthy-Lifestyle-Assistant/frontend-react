@@ -1,0 +1,31 @@
+@import '../mixins.scss';
+
+.DefaultButton {
+  @extend %flex-center;
+  gap: .5rem;
+  flex-grow: 1;
+  padding: .5rem 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50px;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  transition: opacity .3s ease;
+
+  &:hover {
+    opacity: .8;
+  }
+  &:active {
+    opacity: .6;
+  }
+
+  @include onDesktop {
+    max-width: 150px;
+  }
+
+  &_icon {
+    max-width: 16px;
+    max-height: 16px;
+  }
+}
