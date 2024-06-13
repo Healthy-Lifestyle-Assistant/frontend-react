@@ -1,0 +1,16 @@
+.add {
+    font-family: var(--font-family-primary);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: var(--border-width) solid var(--color-white);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    padding: 6px 6px;
+    margin-bottom: 12px;
+    margin-right: 6px;
+    box-shadow: var(--shadow-v) var(--shadow-h) var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
+}

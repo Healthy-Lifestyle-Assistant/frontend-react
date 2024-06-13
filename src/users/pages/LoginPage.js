@@ -36,7 +36,6 @@ const LoginPage = ({ globalMessage }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
 		handleClear();
 		const fetchLogin = async () => {
 			try {

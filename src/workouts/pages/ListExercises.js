@@ -91,7 +91,6 @@ function ListExercises({ isLoggedIn }) {
     }, [filterParams]);
 
     const handleFilterChange = (newFilterParams) => {
-        console.log(newFilterParams)
         setFilterParams(newFilterParams);
     };
 
@@ -148,11 +147,13 @@ function ListExercises({ isLoggedIn }) {
                         <Card
                             key={item.id}
                             id={item.id}
-                            title={item.name}
+                            title={item.title}
                             subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
                             tags={item.bodyParts}
                             description={item.description}
                             isCustom={item.isCustom}
+                            btnTitle='Detail'
+                            btnLink={`/workouts/exercises/${item.id}`}
                         />
                     ))
                     }
