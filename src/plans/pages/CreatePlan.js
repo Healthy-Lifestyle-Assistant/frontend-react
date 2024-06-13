@@ -61,6 +61,9 @@ function CreatePlan({ isLoggedIn, urlHistory }) {
                     const response = await getDefaultAndCustomWorkoutsWithoutPlans(getToken());
                     if (response.status === 200) {
                         setDropdownWorkoutsWithoutPlans(response.body);
+                        if (id !== null) {
+                            setActivityId(id);
+                        }
                     } else {
                         setMessageType(WARNING);
                         setMessage(ERROR_ON_GETTING_WORKOUTS);
@@ -151,6 +154,7 @@ function CreatePlan({ isLoggedIn, urlHistory }) {
     };
 
     const handleClearForm = () => {
+        setActivityId('');
         setStartDate('');
         setEndDate('');
         setOnceDate('');
@@ -206,10 +210,8 @@ function CreatePlan({ isLoggedIn, urlHistory }) {
                     <select id='activityId' name='activityId' className='form-label form-input filter-mr'
                         value={activityId} onChange={(e) => setActivityId(e.target.value)} required>
                         <option value='' disabled>Select Activity</option>
-                        {/* <option value={1}>1</option>
-                        <option value={2}>2</option> */}
                         {dropdownWorkoutsWithoutPlans && dropdownWorkoutsWithoutPlans.map(elt => (
-                            <option key={elt.id} value={elt.id}>{elt.title}</option>
+                            <option key={elt.id} value={elt.id}>{elt.id} {elt.title}</option>
                         ))}
                     </select>
                 </div>
