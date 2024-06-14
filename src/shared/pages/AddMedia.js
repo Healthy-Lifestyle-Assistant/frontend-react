@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Alert from '../../shared/components/Alert.js';
 import AlertsList from '../../shared/components/AlertsList.js';
@@ -132,7 +132,7 @@ function ListMedia({ isLoggedIn, urlHistory }) {
             <HelmetProvider>
                 <Helmet>
                     <title>Add Media</title>
-                    <html lang="en" />
+                    <html lang='en' />
                 </Helmet>
             </HelmetProvider>
 
@@ -148,37 +148,37 @@ function ListMedia({ isLoggedIn, urlHistory }) {
             <form onSubmit={handleSubmit}>
 
                 <div className='form-group filter-mr'>
-                    <label htmlFor="name" className='form-label'>Name</label>
-                    <input type="text" id="name" name="name" className='form-input'
+                    <label htmlFor='name' className='form-label'>Name</label>
+                    <input type='text' id='name' name='name' className='form-input'
                         value={mediaName} onChange={(e) => setMediaName(e.target.value)} required />
                     {mediaNameValidation && <ValidationMessage message={mediaNameValidation} />}
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="description" className='form-label'>Description</label>
-                    <input type="text" id="description" name="description" className='form-input'
+                    <label htmlFor='description' className='form-label'>Description</label>
+                    <input type='text' id='description' name='description' className='form-input'
                         value={description} onChange={(e) => setDescription(e.target.value)} />
                     {descriptionValidation && <ValidationMessage message={descriptionValidation} />}
                 </div>
 
                 <div className='form-group'>
-                    <select id="httpRefType" name="httpRefType" className='form-label form-input filter-mr'
+                    <select id='httpRefType' name='httpRefType' className='form-label form-input filter-mr'
                         value={httpRefType} onChange={(e) => setHttpRefType(e.target.value)} required>
-                        <option value="" disabled>Media Type</option>
-                        <option value="YOUTUBE">YouTube</option>
-                        <option value="OTHER">Other</option>
+                        <option value='' disabled>Media Type</option>
+                        <option value='YOUTUBE'>YouTube</option>
+                        <option value='OTHER'>Other</option>
                     </select>
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="httpRef" className='form-label'>Link</label>
-                    <input type="text" id="httpRef" name="httpRef" className='form-input'
+                    <label htmlFor='httpRef' className='form-label'>Link</label>
+                    <input type='text' id='httpRef' name='httpRef' className='form-input'
                         value={httpRef} onChange={(e) => setHttpRef(e.target.value)} required />
                     {httpRefValidation && <ValidationMessage message={httpRefValidation} />}
                 </div>
 
-                <button type="button" className='form-btn' onClick={handleClearForm} style={{ marginRight: 8 }}>Clear</button>
-                <input type="submit" value="Apply" className='form-btn' />
+                <button type='button' className='form-btn' onClick={handleClearForm} style={{ marginRight: 8 }}>Clear</button>
+                <input type='submit' value='Apply' className='form-btn' />
             </form>
         </>
     );
