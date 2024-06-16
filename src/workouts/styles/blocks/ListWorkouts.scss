@@ -1,0 +1,64 @@
+@import '../mixins.scss';
+
+.ListWorkouts {
+  &_form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 20px;
+    padding: 2rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 20px;
+  }
+  &_container {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+
+    @include onDesktop {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  &_checkboxs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  &_inputs {
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+
+    @include onTablet {
+      flex-direction: row;
+    }
+  }
+  &_dropDown {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 20px;
+
+    @include onDesktop {
+      justify-content: center;
+    }
+  }
+
+  &_button {
+    flex-basis: 50%;
+
+    @include onDesktop {
+      max-width: max-content;
+    }
+  }
+}

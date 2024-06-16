@@ -1,0 +1,7 @@
+@import '../mixins.scss';
+
+.FormInput {
+  @include onDesktop {
+    max-width: 200px;
+  }
+}

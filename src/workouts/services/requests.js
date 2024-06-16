@@ -4,8 +4,18 @@ import {
     LIST_BODY_PARTS,
 } from '../../shared/services/URL.js';
 
-export const getDefaultWorkouts = async () => {
-    const response = await fetch(DEFAULT_WORKOUTS, {
+export const getDefaultWorkouts = async (pageNumber,pageSize, sortField, sortDirection, title, description, needsEquipment) => {
+    let searchParam = [];
+
+    if (pageNumber) searchParam.push(`pageNumber=${pageNumber}`);
+    if (pageSize) searchParam.push(`pageSize=${pageSize}`);
+    if (sortField) searchParam.push(`sortField=${sortField}`);
+    if (sortDirection) searchParam.push(`sortDirection=${sortDirection}`);
+    if (title) searchParam.push(`title=${title}`);
+    if (description) searchParam.push(`description=${description}`);
+    if (needsEquipment !== undefined) searchParam.push(`needsEquipment=${needsEquipment}`);
+
+    const response = await fetch(`${DEFAULT_WORKOUTS}${searchParam.length ? `?${searchParam.join('&')}` : ''}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
