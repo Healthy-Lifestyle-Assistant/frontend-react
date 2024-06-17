@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { validateToken, getToken } from '../../shared/services/auth.js'
 import { getCustomWorkouts, getDefaultWorkouts } from '../services/requests.js';
-// import AlertComponent from '../../shared/components/AlertComponent.js';
+
 import Card from '../../shared/components/Card.js';
 import Links from '../../shared/components/Links.js';
 
 const ListWorkouts = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
+
 	const [defaultWorkouts, setDefaultWorkouts] = useState([]);
 	const [customWorkouts, setCustomWorkouts] = useState([]);
 	const [message, setMessage] = useState("");
@@ -29,8 +31,6 @@ const ListWorkouts = () => {
 				} else {
 					dispatch({ type: 'LOGGED_OUT' });
 					dispatch({ type: 'CLEAR_USER_DATA' });
-					// setMessageType("SECONDARY");
-					// setMessage("You are unlogged");
 					const defaultWorkouts = await getDefaultWorkouts();
 					setDefaultWorkouts(defaultWorkouts.body.content);
 				}
@@ -40,6 +40,7 @@ const ListWorkouts = () => {
 			}
 		};
 
+		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
 		fetchData();
 	}, []);
 
@@ -54,21 +55,41 @@ const ListWorkouts = () => {
 
 			<div>
 				<Links active='workouts' />
-				{/* <AlertComponent message={message} messageType={messageType} /> */}
-				<div className='d-flex flex-wrap justify-content-left'>
-					{defaultWorkouts.map(item => (
-						<Card
-							key={item.id}
-							title={item.title}
-							subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
-							tags={item.bodyParts}
-							description={item.description}
-							btnTitle={'Detail'}
-							btnLink={`/workouts/default/${item.id}`}
-						/>
-					))
-					}
-				</div>
+
+				{defaultWorkouts && defaultWorkouts.length > 0 && (
+					<div className='d-flex flex-wrap justify-content-left'>
+						{defaultWorkouts.map(item => (
+							<Card
+								key={item.id}
+								title={item.title}
+								subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
+								tags={item.bodyParts}
+								description={item.description}
+								btnTitle={'Detail'}
+								btnLink={item.isCustom ? `/workouts/custom/${item.id}` : `/workouts/default/${item.id}`}
+							/>
+						))
+						}
+					</div>
+				)}
+
+				{customWorkouts && customWorkouts.length > 0 && (
+					<div className='d-flex flex-wrap justify-content-left'>
+						{customWorkouts.map(item => (
+							<Card
+								key={item.id}
+								title={item.title}
+								subtitle={`${item.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${item.needsEquipment ? 'With equipment' : 'Without equipment'}`}
+								tags={item.bodyParts}
+								description={item.description}
+								btnTitle={'Detail'}
+								btnLink={item.isCustom ? `/workouts/custom/${item.id}` : `/workouts/default/${item.id}`}
+							/>
+						))
+						}
+					</div>
+				)}
+
 			</div>
 		</>
 	);
