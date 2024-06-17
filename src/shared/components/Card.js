@@ -9,7 +9,7 @@ function Card({title, subtitle, tags, description, btnTitle, btnLink}) {
         <div className='card-custom'>
             <div className='card-title-custom'>{truncateStringWithWordBoundary(title, 30)}</div>
             <div className='card-subtitle-custom'>{subtitle}</div>
-            <CardTags tags={tags} />
+            {tags && tags.length > 0 && (<CardTags tags={tags} />)}
             <div className='card-description'>{truncateStringWithWordBoundary(description, 200)}</div>
             <CardButton title={btnTitle} link={btnLink} />
         </div>

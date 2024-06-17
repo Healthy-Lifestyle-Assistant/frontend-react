@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import HomePage from './home/pages/HomePage';
 import ListWorkouts from './workouts/pages/ListWorkouts';
+import GetWorkoutDetail from './workouts/pages/GetWorkoutDetail';
+import ListExercises from './workouts/pages/ListExercises';
 import ListMeals from './nutrition/pages/ListMeals';
 import ListMentalActivities from './mental/pages/ListMentalActivities';
 import CalendarHome from './calendar/pages/CalendarHome';
@@ -14,9 +16,7 @@ import Navbar from './shared/components/Navbar';
 import ListMedia from './shared/pages/ListMedia';
 import AddMedia from './shared/pages/AddMedia';
 import ManageMedia from './shared/pages/ManageMedia';
-import ListExercises from './workouts/pages/ListExercises';
 import CreatePlan from './plans/pages/CreatePlan';
-// import Components from './new/pages/Components';
 
 import './App.css';
 import './scss/custom.scss';
@@ -31,7 +31,9 @@ function App() {
 						<Route path="/" element={<HomePage />} />
 
 						<Route path="/workouts" element={<ListWorkouts />} />
+						<Route path="/workouts/:type/:id" element={<GetWorkoutDetail />} />
 						<Route path="/workouts/exercises" element={<ListExercises />} />
+						{/* <Route path="/workouts/exercise/:type/:id" element={<GetExerciseDetail />} /> */}
 
 						<Route path="/media/:type" element={<ListMedia />} />
 						<Route path="/media/:type/add" element={<AddMedia />} />
@@ -48,7 +50,6 @@ function App() {
 						<Route path="/signup" element={<SignupPage />} />
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/logout" element={<LogoutPage />} />
-						{/* <Route path="/new" element={<Components />} /> */}
 					</Routes>
 				</div>
 			</>
