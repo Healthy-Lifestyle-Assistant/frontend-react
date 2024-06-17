@@ -18,7 +18,7 @@ function Links({ active }) {
                         to={'/media/workouts'}>Media</Link><span style={{ color: 'grey' }}> &gt; </span>
 
                     <Link className={(active === 'reminders' ? ' links-panel-active' : '')}
-                        to={'/workouts/reminders'}>Reminders</Link>
+                        to={'/plans/workouts'}>Reminders</Link>
                 </div>
             )
     );

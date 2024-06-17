@@ -1,5 +1,5 @@
 import React from 'react';
-import { WARNING, SUCCESS } from '../services/message';
+import { SUCCESS } from '../services/message';
 import '../style/alert.css';
 
 function Alert ({message, messageType}) {

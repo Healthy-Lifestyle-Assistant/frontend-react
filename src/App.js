@@ -17,6 +17,7 @@ import ListMedia from './shared/pages/ListMedia';
 import AddMedia from './shared/pages/AddMedia';
 import ManageMedia from './shared/pages/ManageMedia';
 import CreatePlan from './plans/pages/CreatePlan';
+import ListPlans from './plans/pages/ListPlans';
 
 import './App.css';
 import './scss/custom.scss';
@@ -39,6 +40,8 @@ function App() {
 						<Route path="/media/:type/add" element={<AddMedia />} />
 						<Route path="/media/:type/:id" element={<ManageMedia />} />
 
+						<Route path="/plans/:type" element={<ListPlans />} />
+						{/* <Route path="/plans/:type/:id?" element={<CreatePlan />} /> */}
 						<Route path="/plans/:type/add/:id?" element={<CreatePlan />} />
 
 						<Route path="/nutrition" element={<ListMeals />} />
