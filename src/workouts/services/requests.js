@@ -5,8 +5,8 @@ import {
     GET_DEFAULT_WORKOUT_BY_ID
 } from '../services/URL.js';
 
-export const getDefaultWorkouts = async () => {
-    const response = await fetch(LIST_DEFAULT_WORKOUTS, {
+export const getDefaultWorkouts = async (urlPostfix) => {
+    const response = await fetch(`${LIST_DEFAULT_WORKOUTS}${urlPostfix}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -24,8 +24,8 @@ export const getDefaultWorkouts = async () => {
     };
 };
 
-export const getCustomWorkouts = async (token) => {
-    const response = await fetch(LIST_CUSTOM_WORKOUTS, {
+export const getCustomWorkouts = async (token, urlPostfix) => {
+    const response = await fetch(`${LIST_CUSTOM_WORKOUTS}${urlPostfix}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
