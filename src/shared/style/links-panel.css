@@ -1,8 +1,15 @@
 .links-panel {
+    font-family: var(--font-family-primary);
     margin-bottom: 26px;
+}
+
+.link-panel-inactive {
+    text-decoration: none;
+    color: var(--color-blur);
 }
 
 .links-panel-active {
     text-decoration: none;
-    color: grey;
+    color: var(--color-black);
+    font-weight: bold;
 }

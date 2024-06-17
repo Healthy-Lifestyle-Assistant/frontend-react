@@ -1,9 +1,10 @@
 import React from 'react';
-import Card from '../../shared/components/Card';
 import CardTags from '../../shared/components/CardTags';
+import YouTubeCard from '../../shared/components/YouTubeCard';
+
 import '../../shared/style/card.css';
 
-const WorkoutDetail = ({ title, subtitle, tags, description, exercises }) => {
+const ExerciseDetail = ({ title, subtitle, tags, description, media }) => {
     return (
         <div>
             <div className='card-title-custom'>{title}</div>
@@ -11,21 +12,20 @@ const WorkoutDetail = ({ title, subtitle, tags, description, exercises }) => {
             {tags && tags.length > 0 && (<CardTags tags={tags} />)}
             <div className='card-description' style={{ marginBottom: 28 }}>{description}</div>
 
-            <div className='custom-heading'>Exercises included</div>
+            <div className='custom-heading'>Related media</div>
 
-            {exercises && exercises.length > 0 && (
+            {media && media.length > 0 && (
                 <div className='d-flex flex-wrap justify-content-left'>
-                    {exercises.map(item => (
-                        <Card
+                    {media.map(item => (
+                        <YouTubeCard
                             key={item.id}
                             id={item.id}
-                            title={item.title}
+                            title={item.name}
                             subtitle={`${item.isCustom ? 'Custom' : 'In-app'}`}
-                            tags={item.bodyParts}
                             description={item.description}
+                            httpRef={item.ref}
+                            httpRefTypeName={item.httpRefTypeName}
                             isCustom={item.isCustom}
-                            btnTitle='Detail'
-                            btnLink={item.isCustom ? `/workouts/exercise/custom/${item.id}` : `/workouts/exercise/default/${item.id}`}
                         />
                     ))
                     }
@@ -34,4 +34,4 @@ const WorkoutDetail = ({ title, subtitle, tags, description, exercises }) => {
     );
 }
 
-export default WorkoutDetail;
+export default ExerciseDetail;

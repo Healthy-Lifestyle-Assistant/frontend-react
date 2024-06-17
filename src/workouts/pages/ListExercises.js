@@ -134,7 +134,7 @@ function ListExercises({ isLoggedIn }) {
                             description={item.description}
                             isCustom={item.isCustom}
                             btnTitle='Detail'
-                            btnLink={item.isCustom ? `/workouts/exercise/custom/${item.id}` : `/workouts/exexrcise/default/${item.id}`}
+                            btnLink={item.isCustom ? `/workouts/exercise/custom/${item.id}` : `/workouts/exercise/default/${item.id}`}
                         />
                     ))
                     }
@@ -153,7 +153,7 @@ function ListExercises({ isLoggedIn }) {
                             description={item.description}
                             isCustom={item.isCustom}
                             btnTitle='Detail'
-                            btnLink={item.isCustom ? `/workouts/exercise/custom/${item.id}` : `/workouts/exexrcise/default/${item.id}`}
+                            btnLink={item.isCustom ? `/workouts/exercise/custom/${item.id}` : `/workouts/exercise/default/${item.id}`}
                         />
                     ))
                     }
