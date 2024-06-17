@@ -5,13 +5,12 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import BackLink from '../../shared/components/BackLink';
-import WorkoutDetail from '../components/WorkoutDetail';
-import Card from '../../shared/components/Card';
+import ExerciseDetail from '../components/ExerciseDetail';
 
-import { getDefaultWorkoutById, getCustomWorkoutById } from '../services/requests';
+import { getDefaultExerciseById, getCustomExerciseById } from '../services/requests';
 import { validateToken, getToken } from '../../shared/services/auth';
 
-const GetWorkoutDetail = ({ isLoggedIn, urlHistory }) => {
+const GetExerciseDetail = ({ isLoggedIn, urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -32,15 +31,15 @@ const GetWorkoutDetail = ({ isLoggedIn, urlHistory }) => {
                     let response;
                     if (type === 'custom') {
                         const token = getToken();
-                        response = await getCustomWorkoutById(id, token);
+                        response = await getCustomExerciseById(id, token);
                     } else if (type === 'default') {
-                        response = await getDefaultWorkoutById(id);
+                        response = await getDefaultExerciseById(id);
                     }
                     setEntity(response.body);
                 } else {
                     dispatch({ type: 'LOGGED_OUT' });
                     dispatch({ type: 'CLEAR_USER_DATA' });
-                    const response = await getDefaultWorkoutById(id);
+                    const response = await getDefaultExerciseById(id);
                     setEntity(response.body);
                 }
             } catch (error) {
@@ -57,20 +56,20 @@ const GetWorkoutDetail = ({ isLoggedIn, urlHistory }) => {
         <>
             <HelmetProvider>
                 <Helmet>
-                    <title>Workout Detail</title>
+                    <title>Exercise Detail</title>
                     <html lang="en" />
                 </Helmet>
             </HelmetProvider>
 
             <BackLink previousUrl={urlHistory.previousUrl} currentUrl={urlHistory.currentUrl} />
 
-            <WorkoutDetail
+            <ExerciseDetail
                 key={entity.id}
                 title={entity.title}
                 subtitle={`${entity.isCustom ? 'Custom' : 'In-app'}` + ' | ' + `${entity.needsEquipment ? 'With equipment' : 'Without equipment'}`}
                 tags={entity.bodyParts}
                 description={entity.description}
-                exercises={entity.exercises}
+                media={entity.httpRefs}
             />
         </>
     );
@@ -83,4 +82,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(GetWorkoutDetail);
+export default connect(mapStateToProps)(GetExerciseDetail);

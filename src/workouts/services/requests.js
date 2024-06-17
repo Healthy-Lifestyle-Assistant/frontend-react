@@ -2,7 +2,7 @@ import {
     LIST_DEFAULT_WORKOUTS, LIST_CUSTOM_WORKOUTS,
     LIST_DEFAULT_EXERCISES, LIST_CUSTOM_EXERCISES,
     LIST_BODY_PARTS, GET_CUSTOM_WORKOUT_BY_ID,
-    GET_DEFAULT_WORKOUT_BY_ID
+    GET_DEFAULT_WORKOUT_BY_ID, GET_CUSTOM_EXERCISE_BY_ID, GET_DEFAULT_EXERCISE_BY_ID
 } from '../services/URL.js';
 
 export const getDefaultWorkouts = async () => {
@@ -113,6 +113,45 @@ export const getCustomExercises = async (token, urlPostfix) => {
 
     if (!response.ok) {
         throw new Error(`Failed to fetch custom exercises: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data
+    };
+};
+
+export const getDefaultExerciseById = async (id) => {
+    const response = await fetch(GET_DEFAULT_EXERCISE_BY_ID + id, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch default workout: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data
+    };
+};
+
+export const getCustomExerciseById = async (id, token) => {
+    const response = await fetch(GET_CUSTOM_EXERCISE_BY_ID + id, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch custom workout: ${response.status}`);
     }
 
     const data = await response.json();
