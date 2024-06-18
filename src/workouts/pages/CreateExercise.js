@@ -82,7 +82,11 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
         const requestAPI = async () => {
             try {
                 const token = getToken();
-                const response = await createExercise(token, formData);
+                const requestDto = formData;
+                if (formData.description === '') {
+                    requestDto.description = null;
+                }
+                const response = await createExercise(token, requestDto);
                 if (response.status === 201) {
                     handleClearForm();
                     setMessage(EXERCISE_CREATED);
@@ -108,6 +112,7 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
         event.preventDefault();
         const validated = validateCreateExercise(formData.title, formData.description);
         setFormValidation(validated);
+        console.log(formValidation);
         if (validated.isValid) {
             requestAPI();
         }
