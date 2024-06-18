@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { validateToken, getToken } from '../../shared/services/auth.js'
-import { buildUrlExercisesFilter } from '../../shared/services/util.js';
+import { buildUrlFilter } from '../services/util.js';
 import { getCustomWorkouts, getDefaultWorkouts, getBodyParts } from '../services/requests.js';
 
 import Card from '../../shared/components/Card.js';
@@ -13,8 +13,6 @@ import ExercisesFilter from '../components/ExercisesFilter.js';
 
 const ListWorkouts = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const location = useLocation();
 
 	const [defaultWorkouts, setDefaultWorkouts] = useState([]);
 	const [customWorkouts, setCustomWorkouts] = useState([]);
@@ -25,44 +23,40 @@ const ListWorkouts = () => {
 	const { pathname } = useLocation();
 
 	const [filterParams, setFilterParams] = useState({
-	  pageSize: '',
-	  sortField: '',
-	  sortDirection: '',
-	  isDefault: false,
-	  isCustom: false,
-	  bodyPartsIds: [],
-	  title: '',
-	  description: '',
-	  equipment: undefined,
+		pageSize: '',
+		sortField: '',
+		sortDirection: '',
+		isDefault: false,
+		isCustom: false,
+		bodyPartsIds: [],
+		title: '',
+		description: '',
 		currentPageZeroBased: 0,
 	});
-
-	const { pageSize, sortField, sortDirection, isDefault, isCustom, bodyPartsIds, title, description, equipment, currentPageZeroBased } = filterParams;
 
 	const [totalPages, setTotalPages] = useState(1);
 	const [totalElements, setTotalElements] = useState(0);
 
 	const handlePageChange = (currentPageZeroBased) => {
 		setFilterParams(prev => ({ ...prev, currentPageZeroBased }));
-  }
+	}
 
 	const handleApplyChanges = (newFilterParams) => {
-    setFilterParams(newFilterParams);
+		setFilterParams(newFilterParams);
 	};
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const urlPostfix = buildUrlExercisesFilter(
-				title,
-				description,
-				isCustom,
-				isDefault,
-				bodyPartsIds,
-				sortField,
-				sortDirection,
-				pageSize,
-				currentPageZeroBased,
-			  equipment,
+			const urlPostfix = buildUrlFilter(
+				filterParams.title,
+				filterParams.description,
+				filterParams.isCustom,
+				filterParams.isDefault,
+				filterParams.bodyPartsIds,
+				filterParams.sortField,
+				filterParams.sortDirection,
+				filterParams.pageSize,
+				filterParams.currentPageZeroBased,
 			);
 			try {
 				const data = await validateToken();
@@ -73,21 +67,22 @@ const ListWorkouts = () => {
 					const customWorkouts = await getCustomWorkouts(token, urlPostfix);
 					setCustomWorkouts(customWorkouts.body.content);
 					setTotalPages(customWorkouts.body.totalPages);
+					setTotalElements(customWorkouts.body.totalElements);
 					if (bodyParts.length === 0) {
 						const bodyPartsResponse = await getBodyParts();
 						setBodyParts(bodyPartsResponse.body);
-				}
+					}
 				} else {
 					dispatch({ type: 'LOGGED_OUT' });
 					dispatch({ type: 'CLEAR_USER_DATA' });
 					const defaultWorkouts = await getDefaultWorkouts(urlPostfix);
 					setDefaultWorkouts(defaultWorkouts.body.content);
 					setTotalPages(defaultWorkouts.body.totalPages);
-          setTotalElements(defaultWorkouts.body.totalElements);
-          if (bodyParts.length === 0) {
-              const bodyPartsResponse = await getBodyParts();
-              setBodyParts(bodyPartsResponse.body);
-          }
+					setTotalElements(defaultWorkouts.body.totalElements);
+					if (bodyParts.length === 0) {
+						const bodyPartsResponse = await getBodyParts();
+						setBodyParts(bodyPartsResponse.body);
+					}
 				}
 			} catch (error) {
 				setMessageType("WARNING");
@@ -95,9 +90,9 @@ const ListWorkouts = () => {
 			}
 		};
 
-		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
+		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: pathname } });
 		fetchData();
-	}, [dispatch, bodyPartsIds, description, isCustom, isDefault, pageSize, sortDirection, sortField, title, pathname, equipment, location.pathname, bodyParts.length, currentPageZeroBased]);
+	}, [filterParams]);
 
 	return (
 		<>
@@ -149,8 +144,8 @@ const ListWorkouts = () => {
 					</div>
 				)}
 
-        <Pagination
-				  currentPageZeroBased={currentPageZeroBased}
+				<Pagination
+					currentPageZeroBased={filterParams.currentPageZeroBased}
 					totalPages={totalPages}
 					onPageChange={handlePageChange}
 				/>
