@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import '../style/pagination.css';
 
-function Pagination({ currentPageZeroBased, totalPages, onPageChange }) {
+const Pagination = ({ currentPageZeroBased, totalPages, onPageChange }) => {
 
     const onPageNumberClick = (newPageNumberZeroBased) => {
         onPageChange(newPageNumberZeroBased);

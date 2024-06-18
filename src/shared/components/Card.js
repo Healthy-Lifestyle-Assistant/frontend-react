@@ -1,10 +1,13 @@
 import React from 'react';
+
 import CardButton from './CardButton';
 import CardTags from './CardTags';
+
 import { truncateStringWithWordBoundary } from '../services/util';
+
 import '../style/card.css';
 
-function Card({title, subtitle, tags, description, btnTitle, btnLink}) {
+const Card = ({ title, subtitle, tags, description, btnTitle, btnLink }) => {
     return (
         <div className='card-custom'>
             <div className='card-title-custom'>{truncateStringWithWordBoundary(title, 30)}</div>

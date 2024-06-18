@@ -1,10 +1,10 @@
-import { VALIDATE_TOKEN, LOGIN } from "./URL";
+import { VALIDATE_TOKEN, LOGIN } from './URL';
 
 export function getToken() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token === null) return null;
-    if (token === "") {
-        localStorage.removeItem("token");
+    if (token === '') {
+        localStorage.removeItem('token');
         return null;
     }
     return token;
@@ -15,10 +15,10 @@ export async function validateToken() {
     if (token === null) return { status: 401 };
 
     const response = await fetch(VALIDATE_TOKEN, {
-        method: "GET",
+        method: 'GET',
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     });
 
@@ -30,15 +30,15 @@ export async function validateToken() {
 }
 
 export const setToken = (token) => {
-    localStorage.setItem("token", token);
-    // localStorage.setItem("token", JSON.stringify(token).slice(1, -1));
+    localStorage.setItem('token', token);
+    // localStorage.setItem('token', JSON.stringify(token).slice(1, -1));
 }
 
 export const login = async (requestBody) => {
     const response = await fetch(LOGIN, {
-        method: "POST",
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestBody)
     });
@@ -51,5 +51,5 @@ export const login = async (requestBody) => {
 };
 
 export const deleteToken = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
 }

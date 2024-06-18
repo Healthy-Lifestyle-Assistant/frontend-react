@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { validateToken, getToken } from '../../shared/services/auth.js'
-import { buildUrlFilter } from '../services/util.js';
-import { getCustomWorkouts, getDefaultWorkouts, getBodyParts } from '../services/requests.js';
 
 import Card from '../../shared/components/Card.js';
-import Links from '../../shared/components/Links.js';
+import Links from '../components/Links.js';
 import Pagination from '../../shared/components/Pagination.js';
 import ExercisesFilter from '../components/ExercisesFilter.js';
 
+import { validateToken, getToken } from '../../auth/services/auth.js'
+import { buildUrlFilter } from '../services/util.js';
+import { getCustomWorkouts, getDefaultWorkouts, getBodyParts } from '../services/requests.js';
+
 const ListWorkouts = () => {
 	const dispatch = useDispatch();
+	const location = useLocation();
 
 	const [defaultWorkouts, setDefaultWorkouts] = useState([]);
 	const [customWorkouts, setCustomWorkouts] = useState([]);
 	const [bodyParts, setBodyParts] = useState([]);
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
-
-	const { pathname } = useLocation();
 
 	const [filterParams, setFilterParams] = useState({
 		pageSize: '',
@@ -90,7 +90,7 @@ const ListWorkouts = () => {
 			}
 		};
 
-		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: pathname } });
+		dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
 		fetchData();
 	}, [filterParams]);
 

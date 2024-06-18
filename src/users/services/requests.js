@@ -1,4 +1,4 @@
-import { SIGNUP, COUNTRIES, TIMEZONES } from '../../shared/services/URL.js';
+import { SIGNUP, COUNTRIES, TIMEZONES } from './URL.js';
 
 export const getCountries = async () => {
     const response = await fetch(COUNTRIES, {

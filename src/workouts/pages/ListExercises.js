@@ -4,20 +4,18 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-import Links from '../../shared/components/Links.js';
+import Links from '../components/Links.js';
 import ExercisesFilter from '../components/ExercisesFilter.js';
 import Pagination from '../../shared/components/Pagination.js';
 import Button from '../../shared/components/Button.js';
 import Card from '../../shared/components/Card.js';
 
-import { validateToken, getToken } from '../../shared/services/auth.js';
+import { validateToken, getToken } from '../../auth/services/auth.js';
 import { getDefaultExercises, getCustomExercises, getBodyParts } from '../services/requests.js';
 import { buildUrlFilter } from '../services/util.js';
 
-
-function ListExercises({ isLoggedIn }) {
+const ListExercises = ({ isLoggedIn }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const location = useLocation();
 
     const [defaultEntities, setDefaultEntities] = useState([]);
@@ -53,7 +51,7 @@ function ListExercises({ isLoggedIn }) {
                 filterParams.sortDirection,
                 filterParams.pageSize,
                 filterParams.currentPageZeroBased);
-                console.log(urlPostfix);
+            console.log(urlPostfix);
 
             try {
                 const data = await validateToken();

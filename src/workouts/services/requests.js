@@ -197,23 +197,3 @@ export const getBodyParts = async () => {
         body: data
     };
 };
-
-export const getDefaultAndCustomHttpRefs = async (token) => {
-    const response = await fetch(LIST_DEFAULT_AND_CUSTOM_HTTP_REFS, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        }
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch media: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return {
-        status: response.status,
-        body: data
-    };
-};

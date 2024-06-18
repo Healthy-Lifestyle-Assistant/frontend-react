@@ -6,15 +6,16 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import Alert from '../../shared/components/Alert.js';
 import PlanCard from '../components/PlanCard';
-import Links from '../../shared/components/Links.js';
+import Links from '../../workouts/components/Links.js';
 import Button from '../../shared/components/Button.js';
 
 import { getWorkoutPlans } from '../services/requests';
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth';
+import { SESSION_EXPIRED } from '../../auth/services/message';
 import { ERROR_ON_GETTING_PLANS } from '../services/message';
-import { WARNING, SESSION_EXPIRED } from '../../shared/services/message';
+import { WARNING } from '../../shared/services/message';
 
-const ListPlans = ({ isLoggedIn, urlHistory }) => {
+const ListPlans = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -95,11 +96,4 @@ const ListPlans = ({ isLoggedIn, urlHistory }) => {
     </>);
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.isLoggedIn,
-        urlHistory: state.urlHistory
-    };
-};
-
-export default connect(mapStateToProps)(ListPlans);
+export default ListPlans;

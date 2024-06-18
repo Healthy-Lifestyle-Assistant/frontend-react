@@ -7,15 +7,17 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Alert from '../../shared/components/Alert.js';
 import AlertsList from '../../shared/components/AlertsList.js';
 import ValidationMessage from '../../shared/components/ValidationMessage.js';
-import BackLink from '../components/BackLink.js';
+import BackLink from '../../shared/components/BackLink.js';
 
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth.js';
 import { validateTitle, validateDescription, validateHttpLink } from '../../shared/services/validation.js';
-import { createHttpRef } from '../../shared/services/requests.js';
+import { createMedia } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
-import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_ADDED } from '../../shared/services/message.js';
+import { MEDIA_ADDED } from '../services/message.js';
+import { SUCCESS, WARNING } from '../../shared/services/message.js';
+import { SESSION_EXPIRED } from '../../auth/services/message.js';
 
-function ListMedia({ isLoggedIn, urlHistory }) {
+const ListMedia = ({ urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -68,7 +70,7 @@ function ListMedia({ isLoggedIn, urlHistory }) {
                     httpRefType: httpRefType,
                     ref: httpRef
                 }
-                const response = await createHttpRef(token, requestBody);
+                const response = await createMedia(token, requestBody);
                 if (response.status === 201) {
                     handleClearForm();
                     setMessage(MEDIA_ADDED);
@@ -177,7 +179,8 @@ function ListMedia({ isLoggedIn, urlHistory }) {
                     {httpRefValidation && <ValidationMessage message={httpRefValidation} />}
                 </div>
 
-                <button type='button' className='form-btn' onClick={handleClearForm} style={{ marginRight: 8 }}>Clear</button>
+                <button type='button' className='form-btn' onClick={handleClearForm}
+                    style={{ marginRight: 8 }}>Clear</button>
                 <input type='submit' value='Apply' className='form-btn' />
             </form>
         </>
@@ -186,7 +189,6 @@ function ListMedia({ isLoggedIn, urlHistory }) {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
         urlHistory: state.urlHistory
     };
 };

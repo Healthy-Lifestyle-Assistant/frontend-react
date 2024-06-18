@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function DaySelection({ index, onChangeRepeatSelection: onChangeDaySelection }) {
+const DaySelection = ({ index, onChangeRepeatSelection: onChangeDaySelection }) => {
     const [repeatData, setRepeatData] = useState({
         dayOfWeek: '',
         hours: '',

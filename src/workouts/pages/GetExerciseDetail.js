@@ -8,9 +8,9 @@ import BackLink from '../../shared/components/BackLink';
 import ExerciseDetail from '../components/ExerciseDetail';
 
 import { getDefaultExerciseById, getCustomExerciseById } from '../services/requests';
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth';
 
-const GetExerciseDetail = ({ isLoggedIn, urlHistory }) => {
+const GetExerciseDetail = ({ urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -77,7 +77,6 @@ const GetExerciseDetail = ({ isLoggedIn, urlHistory }) => {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
         urlHistory: state.urlHistory
     };
 };

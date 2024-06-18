@@ -9,7 +9,8 @@ import AlertsList from '../../shared/components/AlertsList.js';
 
 import { getCountries, signup, getTimezones } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
-import { SUCCESS, SIGNUP_SUCCESSFULL, WARNING } from '../../shared/services/message.js';
+import { SUCCESS, WARNING } from '../../shared/services/message.js';
+import { SIGNUP_SUCCESSFULL } from '../services/message.js';
 
 const SignupPage = () => {
 	const navigate = useNavigate();

@@ -1,6 +1,7 @@
 import React from 'react';
+
 import CardTags from '../../shared/components/CardTags';
-import YouTubeCard from '../../shared/components/YouTubeCard';
+import YouTubeCard from '../../media/components/YouTubeCard';
 
 import '../../shared/style/card.css';
 

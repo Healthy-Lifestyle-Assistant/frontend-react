@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { useLocation } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 import YouTubeCard from '../components/YouTubeCard.js';
-import Links from '../components/Links.js';
-import Filter from '../components/Filter.js';
-import Pagination from '../components/Pagination.js';
-import { validateToken, getToken } from '../services/auth.js';
+import Links from '../../workouts/components/Links.js';
+import Filter from '../../shared/components/Filter.js';
+import Pagination from '../../shared/components/Pagination.js';
+import Button from '../../shared/components/Button.js';
+
+import { validateToken, getToken } from '../../auth/services/auth.js';
 import { getDefaultMedia, getCustomMedia } from '../services/requests.js';
 import { buildUrlMediaFilter } from '../services/util.js';
-import Button from '../components/Button.js';
 
-function ListMedia({ isLoggedIn }) {
+const ListMedia = ({ isLoggedIn }) => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const location = useLocation();
 
 	const [defaultMedia, setDefaultMedia] = useState([]);
@@ -67,7 +68,7 @@ function ListMedia({ isLoggedIn }) {
 					setTotalElements(defaultMedia.body.totalElements);
 				}
 			} catch (error) {
-				setMessageType("WARNING");
+				setMessageType('WARNING');
 				setMessage(error.message);
 			}
 		};
@@ -91,7 +92,7 @@ function ListMedia({ isLoggedIn }) {
 			<HelmetProvider>
 				<Helmet>
 					<title>Workouts Media</title>
-					<html lang="en" />
+					<html lang='en' />
 				</Helmet>
 			</HelmetProvider>
 

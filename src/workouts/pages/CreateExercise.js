@@ -9,14 +9,16 @@ import AlertsList from '../../shared/components/AlertsList.js';
 import ValidationMessage from '../../shared/components/ValidationMessage.js';
 import BackLink from '../../shared/components/BackLink.js';
 
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth';
 import { buildAlertsList } from '../../shared/services/util.js';
-import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_ADDED } from '../../shared/services/message.js';
-import { createExercise, getBodyParts, getDefaultAndCustomHttpRefs } from '../services/requests.js';
+import { SESSION_EXPIRED } from '../../auth/services/message.js';
+import { SUCCESS, WARNING } from '../../shared/services/message.js';
+import { createExercise, getBodyParts } from '../services/requests.js';
+import { getDefaultAndCustomMedia } from '../../media/services/requests.js';
 import { EXERCISE_CREATED } from '../services/messages.js';
 import { validateCreateExercise } from '../services/util.js';
 
-const CreateExercise = ({ isLoggedIn, urlHistory }) => {
+const CreateExercise = ({ urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,12 +39,6 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
         description: ''
     });
 
-    // const [title, setTitle] = useState('');
-    // const [description, setDescription] = useState('');
-    // const [needsEquipment, setNeedsEquipment] = useState(false);
-    // const [bodyPartsSelected, setBodyPartsSelected] = useState([]);
-    // const [httpRefsSelected, setHttpRefsSelected] = useState([]);
-
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
     const [messagesList, setMessagesList] = useState([]);
@@ -61,12 +57,15 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
                     const bodyPartsDropdownResponse = await getBodyParts();
                     setBodyPartsDropdown(bodyPartsDropdownResponse.body);
 
-                    const httpRefsDropdownResponse = await getDefaultAndCustomHttpRefs(getToken());
+                    const httpRefsDropdownResponse = await getDefaultAndCustomMedia(getToken());
                     setHttpRefsDropdown(httpRefsDropdownResponse.body.content);
                 } else {
                     dispatch({ type: 'LOGGED_OUT' });
                     dispatch({ type: 'CLEAR_USER_DATA' });
-                    dispatch({ type: 'SET_GLOBAL_MESSAGE', payload: { message: SESSION_EXPIRED, messageType: WARNING } });
+                    dispatch({
+                        type: 'SET_GLOBAL_MESSAGE',
+                        payload: { message: SESSION_EXPIRED, messageType: WARNING }
+                    });
                     navigate('/login');
                 }
             } catch (error) {
@@ -96,7 +95,10 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
                 } else if (response.status === 401) {
                     dispatch({ type: 'LOGGED_OUT' });
                     dispatch({ type: 'CLEAR_USER_DATA' });
-                    dispatch({ type: 'SET_GLOBAL_MESSAGE', payload: { message: SESSION_EXPIRED, messageType: WARNING } });
+                    dispatch({
+                        type: 'SET_GLOBAL_MESSAGE',
+                        payload: { message: SESSION_EXPIRED, messageType: WARNING }
+                    });
                     navigate('/login');
                 } else {
                     const messages = buildAlertsList(response.body)
@@ -157,7 +159,8 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
                 <div className='form-group filter-mr'>
                     <label htmlFor='title' className='form-label'>Title</label>
                     <input type='text' id='title' name='title' className='form-input'
-                        value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required />
+                        value={formData.title} onChange={(e) =>
+                            setFormData({ ...formData, title: e.target.value })} required />
                     {formValidation && !formValidation.isValid && formValidation.title !== ''
                         && <ValidationMessage message={formValidation.title} />}
                 </div>
@@ -166,22 +169,26 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
                     <label htmlFor='description' className='form-label'>Description</label>
                     <textarea type='text' id='description' name='description' className='form-input'
                         rows={5} cols={24}
-                        value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
+                        value={formData.description} onChange={(e) =>
+                            setFormData({ ...formData, description: e.target.value })} />
                     {formValidation && !formValidation.isValid && formValidation.description !== ''
                         && <ValidationMessage message={formValidation.description} />}
                 </div>
 
                 <div className='filter-checkbox-group'>
                     <input type="checkbox" id="needsEquipment" name="needsEquipment"
-                        checked={formData.needsEquipment} onChange={(e) => setFormData({ ...formData, needsEquipment: e.target.checked })} />
+                        checked={formData.needsEquipment} onChange={(e) =>
+                            setFormData({ ...formData, needsEquipment: e.target.checked })} />
                     <label htmlFor="needsEquipment" className='filter-checkbox-mx'>Needs equipment</label><br></br>
                 </div>
 
                 <div className='form-group'>
                     <label htmlFor="bodyPartsIds" className='form-label'>Focus area</label>
-                    <select id="bodyPartsIds" name="bodyPartsIds" className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
+                    <select id="bodyPartsIds" name="bodyPartsIds"
+                        className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
                         value={formData.bodyParts}
-                        onChange={(e) => setFormData({ ...formData, bodyParts: Array.from(e.target.selectedOptions, option => option.value) })}
+                        onChange={(e) =>
+                            setFormData({ ...formData, bodyParts: Array.from(e.target.selectedOptions, option => option.value) })}
                         multiple required >
                         {bodyPartsDropdown.map(item => <option value={item.id} key={item.id}>{item.name}</option>)}
                     </select>
@@ -189,15 +196,18 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
 
                 <div className='form-group'>
                     <label htmlFor="httpRefsIds" className='form-label'>Related media</label>
-                    <select id="httpRefsIds" name="httpRefsIds" className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
+                    <select id="httpRefsIds" name="httpRefsIds"
+                        className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
                         value={formData.httpRefs}
-                        onChange={(e) => setFormData({ ...formData, httpRefs: Array.from(e.target.selectedOptions, option => option.value) })}
+                        onChange={(e) =>
+                            setFormData({ ...formData, httpRefs: Array.from(e.target.selectedOptions, option => option.value) })}
                         multiple >
                         {httpRefsDropdown.map(item => <option value={item.id} key={item.id}>{item.name}</option>)}
                     </select>
                 </div>
 
-                <button type='button' className='form-btn' onClick={handleClearForm} style={{ marginRight: 8 }}>Clear</button>
+                <button type='button' className='form-btn' onClick={handleClearForm}
+                    style={{ marginRight: 8 }}>Clear</button>
                 <input type='submit' value='Apply' className='form-btn' />
             </form>
         </>
@@ -206,7 +216,6 @@ const CreateExercise = ({ isLoggedIn, urlHistory }) => {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
         urlHistory: state.urlHistory
     };
 };
