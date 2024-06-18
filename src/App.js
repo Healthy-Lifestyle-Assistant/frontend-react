@@ -2,22 +2,29 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import HomePage from './home/pages/HomePage';
-import ListWorkouts from './workouts/pages/ListWorkouts';
-import GetWorkoutDetail from './workouts/pages/GetWorkoutDetail';
-import ListExercises from './workouts/pages/ListExercises';
-import ListMeals from './nutrition/pages/ListMeals';
-import ListMentalActivities from './mental/pages/ListMentalActivities';
-import CalendarHome from './calendar/pages/CalendarHome';
-import StatisticsHome from './statistics/pages/StatisticsHome';
+import Navbar from './shared/components/Navbar';
+
 import SignupPage from './users/pages/SignupPage';
 import LoginPage from './users/pages/LoginPage';
 import LogoutPage from './users/pages/LogoutPage';
-import Navbar from './shared/components/Navbar';
+
+import ListWorkouts from './workouts/pages/ListWorkouts';
+import GetWorkoutDetail from './workouts/pages/GetWorkoutDetail';
+import ListExercises from './workouts/pages/ListExercises';
+import GetExerciseDetail from './workouts/pages/GetExerciseDetail';
+import CreateExercise from './workouts/pages/CreateExercise';
+
 import ListMedia from './shared/pages/ListMedia';
 import AddMedia from './shared/pages/AddMedia';
 import ManageMedia from './shared/pages/ManageMedia';
+
 import CreatePlan from './plans/pages/CreatePlan';
 import ListPlans from './plans/pages/ListPlans';
+import CalendarHome from './calendar/pages/CalendarHome';
+import StatisticsHome from './statistics/pages/StatisticsHome';
+
+import ListMeals from './nutrition/pages/ListMeals';
+import ListMentalActivities from './mental/pages/ListMentalActivities';
 
 import './App.css';
 import './scss/custom.scss';
@@ -34,14 +41,14 @@ function App() {
 						<Route path="/workouts" element={<ListWorkouts />} />
 						<Route path="/workouts/:type/:id" element={<GetWorkoutDetail />} />
 						<Route path="/workouts/exercises" element={<ListExercises />} />
-						{/* <Route path="/workouts/exercise/:type/:id" element={<GetExerciseDetail />} /> */}
+						<Route path="/workouts/exercise/:type/:id" element={<GetExerciseDetail />} />
+						<Route path="/workouts/exercises/add" element={<CreateExercise />} />
 
 						<Route path="/media/:type" element={<ListMedia />} />
 						<Route path="/media/:type/add" element={<AddMedia />} />
 						<Route path="/media/:type/:id" element={<ManageMedia />} />
 
 						<Route path="/plans/:type" element={<ListPlans />} />
-						{/* <Route path="/plans/:type/:id?" element={<CreatePlan />} /> */}
 						<Route path="/plans/:type/add/:id?" element={<CreatePlan />} />
 
 						<Route path="/nutrition" element={<ListMeals />} />
