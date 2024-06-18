@@ -12,6 +12,7 @@ import ListWorkouts from './workouts/pages/ListWorkouts';
 import GetWorkoutDetail from './workouts/pages/GetWorkoutDetail';
 import ListExercises from './workouts/pages/ListExercises';
 import GetExerciseDetail from './workouts/pages/GetExerciseDetail';
+import CreateExercise from './workouts/pages/CreateExercise';
 
 import ListMedia from './shared/pages/ListMedia';
 import AddMedia from './shared/pages/AddMedia';
@@ -41,6 +42,7 @@ function App() {
 						<Route path="/workouts/:type/:id" element={<GetWorkoutDetail />} />
 						<Route path="/workouts/exercises" element={<ListExercises />} />
 						<Route path="/workouts/exercise/:type/:id" element={<GetExerciseDetail />} />
+						<Route path="/workouts/exercises/add" element={<CreateExercise />} />
 
 						<Route path="/media/:type" element={<ListMedia />} />
 						<Route path="/media/:type/add" element={<AddMedia />} />

@@ -42,6 +42,20 @@ export const validateDescription = (description) => {
     return message;
 }
 
+export const validateDescriptionEmptyAllowed = (description) => {
+    const maxLength = 255;
+    let message = '';
+
+    if (description === '' || description === null) {
+        return message;
+    } else {
+        if (description.length > maxLength) {
+            message += 'Length should be 255 characters or less';
+        }
+        return message;
+    }
+}
+
 export const validateHttpLink = (link) => {
     let message = '';
 
