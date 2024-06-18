@@ -1,7 +1,8 @@
 import React from 'react';
+
 import '../style/form.css';
 
-function Form() {
+const Form = () => {
     return (
         <>
             <form action="/submit" method="post" className='form-custom'>

@@ -1,5 +1,5 @@
 const initialState = {
-  body: {}
+    body: {}
 };
 
 const userDataReducer = (state = initialState, action) => {

@@ -1,7 +1,8 @@
 import React from 'react';
+
 import '../style/card.css';
 
-function CardTags({ tags }) {
+const CardTags = ({ tags }) => {
     return (
         <>
             {tags.map(tag => (

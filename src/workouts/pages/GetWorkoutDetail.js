@@ -6,12 +6,11 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import BackLink from '../../shared/components/BackLink';
 import WorkoutDetail from '../components/WorkoutDetail';
-import Card from '../../shared/components/Card';
 
 import { getDefaultWorkoutById, getCustomWorkoutById } from '../services/requests';
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth';
 
-const GetWorkoutDetail = ({ isLoggedIn, urlHistory }) => {
+const GetWorkoutDetail = ({ urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -78,7 +77,6 @@ const GetWorkoutDetail = ({ isLoggedIn, urlHistory }) => {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
         urlHistory: state.urlHistory
     };
 };

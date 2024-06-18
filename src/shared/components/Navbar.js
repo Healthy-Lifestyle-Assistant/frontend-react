@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import '../style/navbar.css';
 
-function Navbar({ isLoggedIn, userData }) {
+const Navbar = ({ isLoggedIn, userData }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -43,8 +44,8 @@ function Navbar({ isLoggedIn, userData }) {
             <div className={`${isOpen ? 'navbar-hidden-open' : 'navbar-hidden'}`}>
                 <div className='navbar-middle-menu-hidden'>
                     <Link className='navbar-menu-item' to={'/workouts'}>Workouts</Link>
-                    <Link className='navbar-menu-item' to={'/meals'}>Meals</Link>
-                    <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link>
+                    {/* <Link className='navbar-menu-item' to={'/meals'}>Meals</Link> */}
+                    {/* <Link className='navbar-menu-item' to={'/mental-health'}>Mental Health</Link> */}
                     <Link className='navbar-menu-item' to={'/calendar'}>Calendar</Link>
                     <Link className='navbar-menu-item' to={'/statistics'}>Statistics</Link>
                 </div>

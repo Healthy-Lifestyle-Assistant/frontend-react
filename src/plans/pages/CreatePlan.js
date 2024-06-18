@@ -10,16 +10,17 @@ import ValidationMessage from '../../shared/components/ValidationMessage.js';
 import BackLink from '../../shared/components/BackLink.js';
 import DaySelection from '../components/DaySelection.js';
 
-import { validateToken, getToken } from '../../shared/services/auth';
+import { validateToken, getToken } from '../../auth/services/auth';
 import { createWorkoutPlan, getDefaultAndCustomWorkoutsWithoutPlans } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
-import { SESSION_EXPIRED, SUCCESS, WARNING } from '../../shared/services/message.js';
+import { SESSION_EXPIRED } from '../../auth/services/message.js';
+import { SUCCESS, WARNING } from '../../shared/services/message.js';
 import { WORKOUT_PLAN_CREATED, ERROR_ON_GETTING_WORKOUTS } from '../services/message.js';
 import { buildCreatePlanDto, validateCreatePlan } from '../services/util.js';
 
 import '../style/repeat-selection.css';
 
-function CreatePlan({ isLoggedIn, urlHistory }) {
+const CreatePlan = ({ isLoggedIn, urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();

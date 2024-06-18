@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from './Button';
-import { truncateStringWithWordBoundary, replaceYouTubeURl } from '../services/util';
 
-function YouTubeCard({ id, title, subtitle, description, httpRef, httpRefTypeName, isCustom }) {
+import Button from '../../shared/components/Button';
+
+import { truncateStringWithWordBoundary } from '../../shared/services/util';
+
+const YouTubeCard = ({ id, title, subtitle, description, httpRef, httpRefTypeName, isCustom }) => {
     return (
         <div className='card-custom'>
             <div className='card-title-custom'>{truncateStringWithWordBoundary(title, 30)}</div>
@@ -18,7 +19,7 @@ function YouTubeCard({ id, title, subtitle, description, httpRef, httpRefTypeNam
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
                         style={{ marginBottom: 8 }}
-                        >
+                    >
                     </iframe>
                     {isCustom && <Button title='Manage' link={`/media/workouts/${id}`} />}
                 </div>

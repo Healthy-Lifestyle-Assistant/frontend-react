@@ -1,0 +1,1 @@
+export const SIGNUP_SUCCESSFULL = 'Account created successfully! Please login';

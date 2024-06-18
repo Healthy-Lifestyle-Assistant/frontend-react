@@ -10,7 +10,7 @@ import '../../shared/style/form.css';
 import '../../shared/style/filter.css';
 import '../style/exercises-filter.css';
 
-function ExercisesFilter({ onFilterChange, isLoggedIn, bodyParts }) {
+const ExercisesFilter = ({ onFilterChange, isLoggedIn, bodyParts }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -101,8 +101,9 @@ function ExercisesFilter({ onFilterChange, isLoggedIn, bodyParts }) {
                 </div>
 
                 <div className='form-group'>
-                <label htmlFor="bodyPartsIds" className='form-label'>Focus area</label>
-                    <select id="bodyPartsIds" name="bodyPartsIds" className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
+                    <label htmlFor="bodyPartsIds" className='form-label'>Focus area</label>
+                    <select id="bodyPartsIds" name="bodyPartsIds"
+                        className='form-label form-input filter-mr exercises-filter-multiple-dropdown'
                         value={bodyPartsIds}
                         onChange={(e) => setBodyPartsIds(Array.from(e.target.selectedOptions, option => option.value))}
                         multiple >
@@ -110,7 +111,8 @@ function ExercisesFilter({ onFilterChange, isLoggedIn, bodyParts }) {
                     </select>
                 </div>
 
-                {validationMessage && (<Alert message={validationMessage} validationMessageType={validationMessageType} />)}
+                {validationMessage && (<Alert message={validationMessage}
+                    validationMessageType={validationMessageType} />)}
 
                 {isLoggedIn && (
                     <div className='filter-checkbox-group'>
@@ -154,7 +156,8 @@ function ExercisesFilter({ onFilterChange, isLoggedIn, bodyParts }) {
                     </div>
                 </div>
 
-                <button type="button" className='form-btn' onClick={handleClearFilter} style={{ marginRight: 8 }}>Clear</button>
+                <button type="button" className='form-btn' onClick={handleClearFilter}
+                    style={{ marginRight: 8 }}>Clear</button>
                 <input type="submit" value="Apply" className='form-btn' />
             </form>
         </>

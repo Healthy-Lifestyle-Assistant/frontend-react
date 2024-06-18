@@ -1,7 +1,8 @@
 import React from 'react';
+
 import '../style/validation-message.css';
 
-function ValidationMessage ({message}) {
+const ValidationMessage = ({ message }) => {
     return (<div className='validation-message'>{message}</div>);
 }
 

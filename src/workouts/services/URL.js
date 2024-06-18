@@ -1,7 +1,6 @@
 export const BASE_URL = '/api/v1';
 
 export const LIST_BODY_PARTS = `${BASE_URL}/workouts/bodyParts`;
-export const LIST_DEFAULT_AND_CUSTOM_HTTP_REFS = `${BASE_URL}/workouts/httpRefs`;
 
 export const LIST_DEFAULT_WORKOUTS = `${BASE_URL}/workouts/default`;
 export const LIST_CUSTOM_WORKOUTS = `${BASE_URL}/workouts`;

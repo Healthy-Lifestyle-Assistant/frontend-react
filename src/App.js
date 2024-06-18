@@ -5,8 +5,8 @@ import HomePage from './home/pages/HomePage';
 import Navbar from './shared/components/Navbar';
 
 import SignupPage from './users/pages/SignupPage';
-import LoginPage from './users/pages/LoginPage';
-import LogoutPage from './users/pages/LogoutPage';
+import LoginPage from './auth/pages/LoginPage'
+import LogoutPage from './auth/pages/LogoutPage'
 
 import ListWorkouts from './workouts/pages/ListWorkouts';
 import GetWorkoutDetail from './workouts/pages/GetWorkoutDetail';
@@ -14,9 +14,9 @@ import ListExercises from './workouts/pages/ListExercises';
 import GetExerciseDetail from './workouts/pages/GetExerciseDetail';
 import CreateExercise from './workouts/pages/CreateExercise';
 
-import ListMedia from './shared/pages/ListMedia';
-import AddMedia from './shared/pages/AddMedia';
-import ManageMedia from './shared/pages/ManageMedia';
+import ListMedia from './media/pages/ListMedia';
+import AddMedia from './media/pages/AddMedia';
+import ManageMedia from './media/pages/ManageMedia';
 
 import CreatePlan from './plans/pages/CreatePlan';
 import ListPlans from './plans/pages/ListPlans';
@@ -29,37 +29,37 @@ import ListMentalActivities from './mental/pages/ListMentalActivities';
 import './App.css';
 import './scss/custom.scss';
 
-function App() {
+const App = () => {
 	return (
 		<Router>
 			<>
 				<Navbar />
 				<div className='container-custom'>
 					<Routes>
-						<Route path="/" element={<HomePage />} />
+						<Route path='/' element={<HomePage />} />
 
-						<Route path="/workouts" element={<ListWorkouts />} />
-						<Route path="/workouts/:type/:id" element={<GetWorkoutDetail />} />
-						<Route path="/workouts/exercises" element={<ListExercises />} />
-						<Route path="/workouts/exercise/:type/:id" element={<GetExerciseDetail />} />
-						<Route path="/workouts/exercises/add" element={<CreateExercise />} />
+						<Route path='/workouts' element={<ListWorkouts />} />
+						<Route path='/workouts/:type/:id' element={<GetWorkoutDetail />} />
+						<Route path='/workouts/exercises' element={<ListExercises />} />
+						<Route path='/workouts/exercise/:type/:id' element={<GetExerciseDetail />} />
+						<Route path='/workouts/exercises/add' element={<CreateExercise />} />
 
-						<Route path="/media/:type" element={<ListMedia />} />
-						<Route path="/media/:type/add" element={<AddMedia />} />
-						<Route path="/media/:type/:id" element={<ManageMedia />} />
+						<Route path='/media/:type' element={<ListMedia />} />
+						<Route path='/media/:type/add' element={<AddMedia />} />
+						<Route path='/media/:type/:id' element={<ManageMedia />} />
 
-						<Route path="/plans/:type" element={<ListPlans />} />
-						<Route path="/plans/:type/add/:id?" element={<CreatePlan />} />
+						<Route path='/plans/:type' element={<ListPlans />} />
+						<Route path='/plans/:type/add/:id?' element={<CreatePlan />} />
 
-						<Route path="/nutrition" element={<ListMeals />} />
-						<Route path="/mental-health" element={<ListMentalActivities />} />
+						<Route path='/nutrition' element={<ListMeals />} />
+						<Route path='/mental-health' element={<ListMentalActivities />} />
 
-						<Route path="/calendar" element={<CalendarHome />} />
-						<Route path="/statistics" element={<StatisticsHome />} />
+						<Route path='/calendar' element={<CalendarHome />} />
+						<Route path='/statistics' element={<StatisticsHome />} />
 
-						<Route path="/signup" element={<SignupPage />} />
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/logout" element={<LogoutPage />} />
+						<Route path='/signup' element={<SignupPage />} />
+						<Route path='/login' element={<LoginPage />} />
+						<Route path='/logout' element={<LogoutPage />} />
 					</Routes>
 				</div>
 			</>

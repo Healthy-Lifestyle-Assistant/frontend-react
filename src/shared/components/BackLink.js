@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '../style/back-link.css';
 
-function BackLink({ previousUrl, currentUrl }) {
+const BackLink = ({ previousUrl, currentUrl }) => {
 
     return (<Link className={`back-link ${(previousUrl === currentUrl) || previousUrl === '/' ? 'back-link-disabled' : ''}`}
         to={(previousUrl === currentUrl) || previousUrl === '/' ? null : previousUrl}>&lt; Back</Link>);

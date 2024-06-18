@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+
 import Alert from './Alert';
+
 import { validateInput } from '../services/validation';
 import { WARNING } from '../services/message';
+
 import '../style/form.css';
 import '../style/filter.css';
 
-function Filter({ onFilterChange, isLoggedIn }) {
+const Filter = ({ onFilterChange, isLoggedIn }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [mediaName, setMediaName] = useState('');
     const [description, setDescription] = useState('');
@@ -69,7 +72,7 @@ function Filter({ onFilterChange, isLoggedIn }) {
     }
 
     return (
-        <>            
+        <>
             <div>
                 <button className='btn-custom' onClick={handleFilterClick}>Filter</button>
             </div>

@@ -7,15 +7,17 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Alert from '../../shared/components/Alert.js';
 import AlertsList from '../../shared/components/AlertsList.js';
 import ValidationMessage from '../../shared/components/ValidationMessage.js';
-import BackLink from '../components/BackLink.js';
+import BackLink from '../../shared/components/BackLink.js';
 
-import { validateToken, getToken } from '../../shared/services/auth';
-import { validateUpdateHttpRef } from '../../shared/services/validation.js';
-import { updateCustomHttpRefById, getCustomHttpRefById, deleteCustomHttpRefById } from '../../shared/services/requests.js';
+import { validateToken, getToken } from '../../auth/services/auth.js';
+import { validateUpdateMedia } from '../services/util.js';
+import { updateCustomMediaById, getCustomMediaById, deleteCustomMediaById } from '../services/requests.js';
 import { buildAlertsList } from '../../shared/services/util.js';
-import { SESSION_EXPIRED, SUCCESS, WARNING, MEDIA_UPDATED, MEDIA_DELETED } from '../../shared/services/message.js';
+import { SESSION_EXPIRED } from '../../auth/services/message.js';
+import { SUCCESS, WARNING, } from '../../shared/services/message.js';
+import { MEDIA_UPDATED, MEDIA_DELETED } from '../services/message.js';
 
-function ManageMedia({ isLoggedIn, urlHistory }) {
+const ManageMedia = ({ urlHistory }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -53,7 +55,7 @@ function ManageMedia({ isLoggedIn, urlHistory }) {
                     //const type = params[0];
                     const id = params[1];
                     const token = getToken();
-                    const response = await getCustomHttpRefById(id, token);
+                    const response = await getCustomMediaById(id, token);
                     setCurrentHttpRef(response.body);
                 } else {
                     dispatch({ type: 'LOGGED_OUT' });
@@ -77,7 +79,7 @@ function ManageMedia({ isLoggedIn, urlHistory }) {
                 const params = location.pathname.split('/').slice(2);
                 //const type = params[0];
                 const id = params[1];
-                const response = await updateCustomHttpRefById(token, id, requestBody);
+                const response = await updateCustomMediaById(token, id, requestBody);
                 if (response.status === 200) {
                     setMessage(MEDIA_UPDATED);
                     setMessageType(SUCCESS);
@@ -102,7 +104,7 @@ function ManageMedia({ isLoggedIn, urlHistory }) {
 
         event.preventDefault();
 
-        const validationResult = validateUpdateHttpRef(currentHttpRef, mediaName, description, httpRef, httpRefType);
+        const validationResult = validateUpdateMedia(currentHttpRef, mediaName, description, httpRef, httpRefType);
 
         if (validationResult.status) {
             handleClearForm();
@@ -131,8 +133,8 @@ function ManageMedia({ isLoggedIn, urlHistory }) {
                 const params = location.pathname.split('/').slice(2);
                 //const type = params[0];
                 const id = params[1];
-                const response = await deleteCustomHttpRefById(token, id);
-                
+                const response = await deleteCustomMediaById(token, id);
+
                 if (response.status === 204) {
                     setMessage(MEDIA_DELETED);
                     setMessageType(SUCCESS);
@@ -249,7 +251,6 @@ function ManageMedia({ isLoggedIn, urlHistory }) {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
         urlHistory: state.urlHistory
     };
 };

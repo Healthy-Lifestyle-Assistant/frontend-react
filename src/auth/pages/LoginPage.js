@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import { Form, Button } from 'react-bootstrap';
 import Alert from '../../shared/components/Alert.js';
-import { login, setToken } from '../../shared/services/auth.js';
+
+import { login, setToken } from '../services/auth.js';
 
 const LoginPage = ({ globalMessage }) => {
 	const navigate = useNavigate();
