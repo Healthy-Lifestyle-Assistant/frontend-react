@@ -1,0 +1,1 @@
+export const EXERCISE_CREATED = 'Exercise created successfully';

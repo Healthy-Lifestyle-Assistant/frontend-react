@@ -2,7 +2,9 @@ import {
     LIST_DEFAULT_WORKOUTS, LIST_CUSTOM_WORKOUTS,
     LIST_DEFAULT_EXERCISES, LIST_CUSTOM_EXERCISES,
     LIST_BODY_PARTS, GET_CUSTOM_WORKOUT_BY_ID,
-    GET_DEFAULT_WORKOUT_BY_ID, GET_CUSTOM_EXERCISE_BY_ID, GET_DEFAULT_EXERCISE_BY_ID
+    GET_DEFAULT_WORKOUT_BY_ID, GET_CUSTOM_EXERCISE_BY_ID, GET_DEFAULT_EXERCISE_BY_ID,
+    LIST_DEFAULT_AND_CUSTOM_HTTP_REFS,
+    CREATE_EXERCISE
 } from '../services/URL.js';
 
 export const getDefaultWorkouts = async () => {
@@ -161,6 +163,22 @@ export const getCustomExerciseById = async (id, token) => {
     };
 };
 
+export const createExercise = async (token, requestBody) => {
+    const response = await fetch(CREATE_EXERCISE, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(requestBody)
+    });
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data
+    };
+}
+
 export const getBodyParts = async () => {
     const response = await fetch(LIST_BODY_PARTS, {
         method: "GET",
@@ -171,6 +189,26 @@ export const getBodyParts = async () => {
 
     if (!response.ok) {
         throw new Error(`Failed to fetch body parts: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return {
+        status: response.status,
+        body: data
+    };
+};
+
+export const getDefaultAndCustomHttpRefs = async (token) => {
+    const response = await fetch(LIST_DEFAULT_AND_CUSTOM_HTTP_REFS, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch media: ${response.status}`);
     }
 
     const data = await response.json();
