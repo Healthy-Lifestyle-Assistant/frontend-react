@@ -12,7 +12,7 @@ import Card from '../../shared/components/Card.js';
 
 import { validateToken, getToken } from '../../shared/services/auth.js';
 import { getDefaultExercises, getCustomExercises, getBodyParts } from '../services/requests.js';
-import { buildUrlExercisesFilter } from '../../shared/services/util.js';
+import { buildUrlFilter } from '../services/util.js';
 
 
 function ListExercises({ isLoggedIn }) {
@@ -43,7 +43,7 @@ function ListExercises({ isLoggedIn }) {
         dispatch({ type: 'SET_CURRENT_URL', payload: { currentUrl: location.pathname } });
 
         const fetchData = async () => {
-            const urlPostfix = buildUrlExercisesFilter(
+            const urlPostfix = buildUrlFilter(
                 filterParams.title,
                 filterParams.description,
                 filterParams.isCustom,
