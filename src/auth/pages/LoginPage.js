@@ -100,26 +100,26 @@ const LoginPage = ({ globalMessage }) => {
 
 				<div className="form-group mb-3" controlId="usernameOrEmail">
 					<label className="form-label" for="usernameOrEmail">Username or Email</label>
-					<input 
-					  type="text" 
-					  className="form-input" 
-					  name="usernameOrEmail" 
-					  id="usernameOrEmail" 
-					  placeholder="Enter username or email"
-						value={formData.usernameOrEmail} 
-						onChange={handleChange} 
-						required 
+					<input
+						type="text"
+						className="form-input"
+						name="usernameOrEmail"
+						id="usernameOrEmail"
+						placeholder="Enter username or email"
+						value={formData.usernameOrEmail}
+						onChange={handleChange}
+						required
 					/>
 					{errros.usernameOrEmail && <p className="form-error">{errros.usernameOrEmail}</p>}
 				</div>
 
 				<div className="form-group mb-3" controlId="password">
 					<label className="form-label" for="password">Password</label>
-					<input 
-					  type="password" 
-					  className="form-input" name="password" id="password" placeholder="Password"
-						value={formData.password} 
-						onChange={handleChange} 
+					<input
+						type="password"
+						className="form-input" name="password" id="password" placeholder="Password"
+						value={formData.password}
+						onChange={handleChange}
 						required
 					/>
 					{errros.password && <p className="form-error">{errros.password}</p>}

@@ -71,7 +71,7 @@ export const validatePassword = (title) => {
         }
     }
 
-    return message.trim();
+    return message;
 };
 
 export const validateTitle = (title) => {
