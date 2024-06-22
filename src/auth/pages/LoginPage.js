@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
-import { Form, Button } from 'react-bootstrap';
 import Alert from '../../shared/components/Alert.js';
 
 import { login, setToken } from '../services/auth.js';
+import { validatePassword, validateUsernameOrEmail } from '../../shared/services/validation.js';
 
 const LoginPage = ({ globalMessage }) => {
 	const navigate = useNavigate();
@@ -15,9 +14,15 @@ const LoginPage = ({ globalMessage }) => {
 		usernameOrEmail: '',
 		password: ''
 	});
+	const [errros, setErrors] = useState({
+		usernameOrEmail: '',
+		password: '',
+	});
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
 	const dispatch = useDispatch();
+
+	const isFormInvalid = !formData.usernameOrEmail.length && !formData.password.length;
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -32,6 +37,10 @@ const LoginPage = ({ globalMessage }) => {
 			usernameOrEmail: '',
 			password: ''
 		});
+		setErrors({
+			usernameOrEmail: '',
+			password: ''
+		});
 		setMessage('');
 		setMessageType('');
 	}
@@ -39,7 +48,19 @@ const LoginPage = ({ globalMessage }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handleClear();
+
 		const fetchLogin = async () => {
+			const usernameOrEmailError = validateUsernameOrEmail(formData.usernameOrEmail);
+			const passwordError = validatePassword(formData.password);
+
+			if (usernameOrEmailError.length || passwordError.length) {
+				setErrors({
+					usernameOrEmail: usernameOrEmailError,
+					password: passwordError,
+				});
+				return;
+			}
+
 			try {
 				const response = await login(formData);
 				if (response.status === 200) {
@@ -75,28 +96,43 @@ const LoginPage = ({ globalMessage }) => {
 
 			{/* <AlertComponent message={message} messageType={messageType} /> */}
 
-			<Form onSubmit={handleSubmit} style={{ width: 'fit-content' }}>
+			<form onSubmit={handleSubmit} className="form-custom" style={{ width: 'fit-content' }}>
 
-				<Form.Group className="mb-3" controlId="usernameOrEmail">
-					<Form.Label>Username or Email</Form.Label>
-					<Form.Control type="text" name="usernameOrEmail" placeholder="Enter username or email"
-						value={formData.usernameOrEmail} onChange={handleChange} required />
-				</Form.Group>
+				<div className="form-group mb-3" controlId="usernameOrEmail">
+					<label className="form-label" for="usernameOrEmail">Username or Email</label>
+					<input 
+					  type="text" 
+					  className="form-input" 
+					  name="usernameOrEmail" 
+					  id="usernameOrEmail" 
+					  placeholder="Enter username or email"
+						value={formData.usernameOrEmail} 
+						onChange={handleChange} 
+						required 
+					/>
+					{errros.usernameOrEmail && <p className="form-error">{errros.usernameOrEmail}</p>}
+				</div>
 
-				<Form.Group className="mb-3" controlId="password">
-					<Form.Label>Password</Form.Label>
-					<Form.Control type="password" name="password" placeholder="Password"
-						value={formData.password} onChange={handleChange} required />
-				</Form.Group>
+				<div className="form-group mb-3" controlId="password">
+					<label className="form-label" for="password">Password</label>
+					<input 
+					  type="password" 
+					  className="form-input" name="password" id="password" placeholder="Password"
+						value={formData.password} 
+						onChange={handleChange} 
+						required
+					/>
+					{errros.password && <p className="form-error">{errros.password}</p>}
+				</div>
 
-				<Button onClick={handleClear} variant="primary" className='me-3'>
+				<button className="form-btn me-3" onClick={handleClear} variant="primary">
 					Clear
-				</Button>
+				</button>
 
-				<Button variant="primary" type="submit">
+				<button className="form-btn" disabled={isFormInvalid} variant="primary" type="submit">
 					Submit
-				</Button>
-			</Form>
+				</button>
+			</form>
 		</div>
 	);
 }

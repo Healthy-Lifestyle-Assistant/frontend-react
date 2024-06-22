@@ -1,3 +1,5 @@
+/* Propose use BEM for styles: */
+/* form__custom */
 .form-custom {
     width: 300px;
     min-width: 300px;
@@ -8,14 +10,14 @@
     background-color: var(--color-primary-very-light);
     box-shadow: 2px 2px var(--shadow-blur) var(--shadow-spread) var(--color-shadow);
 }
-
+/* form__label */
 .form-label {
     display: block;
     font-family: var(--font-family-primary);
     font-size: 12px;
     font-weight: bold;
 }
-
+/* form__input */
 .form-input {
     border: var(--border-width) solid var(--color-primary);
     border-radius: var(--border-radius);
@@ -27,11 +29,11 @@
     border: var(--border-width) solid var(--color-warning);
     outline: none;
 }
-
+/* form__group */
 .form-group {
     margin-bottom: 18px;
 }
-
+/* form__btn */
 .form-btn {
     font-family: var(--font-family-primary);
     font-size: 12px;
@@ -52,4 +54,15 @@
 .form-btn:hover {
     background-color: var(--color-white);
     color: var(--color-black);
+}
+
+.form-btn:disabled {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.form-error {
+    color: red;
 }
