@@ -7,22 +7,46 @@ const containsForbiddenChars = (str, forbiddenChars) => {
     return false;
 };
 
-export const validateUsernameOrEmail = (title) => {
-    const usernameInvalidChars = ['@', '$', '%', '^', '*'];
-    const emailInvalidChars = [' ', ',', ';', '<', '>', '(', ')', '[', ']', '\\', '\"', '$', '%', '^', '*'];
-    const isEmail = title.includes('@');
-    const minUsernameLength = 3;
-    const maxUsernameLength = 20;
+export const validateUsername = (username) => {
+    const invalidChars = [' ', ',', ';', '<', '>', '(', ')', '[', ']', '\\', '\"', '@', '$', '%', '^', '*'];
+    const minLength = 3;
+    const maxLength = 20;
+    const validation = {
+        isValid: true,
+        message: '',
+    };
+
+    if (username !== '' && username !== null && username !== undefined) {
+        if (username.length < minLength || username.length > maxLength) {
+            validation.isValid = false;
+            validation.message += 'Length should be between ' + minLength + ' and ' + maxLength + ' characters. ';
+        }
+
+        if (containsForbiddenChars(username, invalidChars)) {
+            validation.isValid = false;
+            validation.message += `Username contains forbidden characters: (${invalidChars.join(' ')}). `;
+        }
+    }
+
+    return validation;
+};
+
+export const validateEmail = (email) => {
+    const invalidChars = [' ', ',', ';', '<', '>', '(', ')', '[', ']', '\\', '\"', '$', '%', '^', '*'];
     const minEmailLength = 3;
     const maxEmailLength = 50;
-    let message = '';
+    const validation = {
+        isValid: true,
+        message: '',
+    };
 
-    if (title !== '' && title !== null && title !== undefined) {
-        if (isEmail) {
-            const [localPart, domain] = title.split('@', 2);
+    if (email !== '' && email !== null && email !== undefined) {
+        if (email.includes('@')) {
+            const [localPart, domain] = email.split('@', 2);
 
             if (!localPart.length || !domain.length) {
-                message += 'Email should contain an "@" symbol with text before and after it. ';
+                validation.isValid = false;
+                validation.message += 'Email should contain an "@" symbol with text before and after it. ';
             } else {
                 const domainParts = domain.split('.');
                 const isDomainInvalid = domainParts.length < 2
@@ -31,28 +55,48 @@ export const validateUsernameOrEmail = (title) => {
                     || domainParts[domainParts.length - 1].length === 0;
 
                 if (isDomainInvalid) {
-                    message += 'Email should contain a "." symbol (not the first or last character). ';
+                    validation.isValid = false;
+                    validation.message += 'Email should contain a "." symbol (not the first or last character). ';
                 }
             }
 
-            if (title.length < minEmailLength || title.length > maxEmailLength) {
-                message += 'Email length should be between ' + minEmailLength + ' and ' + maxEmailLength + ' characters. ';
+            if (email.length < minEmailLength || email.length > maxEmailLength) {
+                validation.isValid = false;
+                validation.message += 'Email length should be between ' + minEmailLength + ' and ' + maxEmailLength + ' characters. ';
             }
 
-            if (containsForbiddenChars(title, emailInvalidChars)) {
-                message += `Email contains forbidden characters: (${emailInvalidChars.join(' ')}). `;
+            if (containsForbiddenChars(email, invalidChars)) {
+                validation.isValid = false;
+                validation.message += `Email contains forbidden characters: (${invalidChars.join(' ')}). `;
             }
         } else {
-            if (title.length < minUsernameLength || title.length > maxUsernameLength) {
-                message += 'Username length should be between ' + minUsernameLength + ' and ' + maxUsernameLength + ' characters. ';
-            }
-            if (containsForbiddenChars(title, usernameInvalidChars)) {
-                message += "Username contains forbidden characters: '@', '$', '%', '^', '*'. ";
-            }
+            validation.isValid = false;
+            validation.message += 'Email should contain an "@" symbol. ';
         }
     }
 
-    return message;
+    return validation;
+};
+
+export const validateUsernameOrEmail = (title) => {
+    const validation = {
+        isValid: true,
+        message: '',
+    };
+
+    if (title !== '' && title !== null && title !== undefined) {
+        if (title.includes('@')) {
+            const { isValid, message } = validateEmail(title);
+            validation.isValid = isValid;
+            validation.message = message;
+        } else {
+            const { isValid, message } = validateUsername(title);
+            validation.isValid = isValid;
+            validation.message = message;
+        }
+    }
+
+    return validation;
 };
 
 export const validatePassword = (title) => {

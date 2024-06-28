@@ -14,15 +14,16 @@ const LoginPage = ({ globalMessage }) => {
 		usernameOrEmail: '',
 		password: ''
 	});
-	const [errros, setErrors] = useState({
+
+	const [validationMessage, setValidationMessage] = useState({
+		isValid: true,
 		usernameOrEmail: '',
 		password: '',
 	});
+	const isFormInvalid = !formData.usernameOrEmail.length || !formData.password.length;
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
 	const dispatch = useDispatch();
-
-	const isFormInvalid = !formData.usernameOrEmail.length && !formData.password.length;
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -37,9 +38,10 @@ const LoginPage = ({ globalMessage }) => {
 			usernameOrEmail: '',
 			password: ''
 		});
-		setErrors({
+		setValidationMessage({
+			isValid: true,
 			usernameOrEmail: '',
-			password: ''
+			password: '',
 		});
 		setMessage('');
 		setMessageType('');
@@ -50,13 +52,14 @@ const LoginPage = ({ globalMessage }) => {
 		handleClear();
 
 		const fetchLogin = async () => {
-			const usernameOrEmailError = validateUsernameOrEmail(formData.usernameOrEmail);
-			const passwordError = validatePassword(formData.password);
+			const usernameOrEmailValidation = validateUsernameOrEmail(formData.usernameOrEmail);
+			const passwordValidation = validatePassword(formData.password);
 
-			if (usernameOrEmailError.length || passwordError.length) {
-				setErrors({
-					usernameOrEmail: usernameOrEmailError,
-					password: passwordError,
+			if (!usernameOrEmailValidation.isValid || !passwordValidation.isValid) {
+				setValidationMessage({
+					isValid: false,
+					usernameOrEmail: usernameOrEmailValidation.message,
+					password: passwordValidation.message,
 				});
 				return;
 			}
@@ -94,7 +97,7 @@ const LoginPage = ({ globalMessage }) => {
 			{globalMessage && globalMessage.body ?
 				<Alert message={globalMessage.body.message} messageType={globalMessage.body.messageType} /> : <></>}
 
-			{/* <AlertComponent message={message} messageType={messageType} /> */}
+			<Alert message={message} messageType={messageType} />
 
 			<form onSubmit={handleSubmit} className="form-custom" style={{ width: 'fit-content' }}>
 
@@ -110,7 +113,7 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{errros.usernameOrEmail && <p className="form-error">{errros.usernameOrEmail}</p>}
+					{validationMessage.usernameOrEmail && !validationMessage.isValid && <p className="form-error">{validationMessage.usernameOrEmail}</p>}
 				</div>
 
 				<div className="form-group mb-3" controlId="password">
@@ -122,14 +125,14 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{errros.password && <p className="form-error">{errros.password}</p>}
+					{validationMessage.password && !validationMessage.isValid && <p className="form-error">{validationMessage.password}</p>}
 				</div>
 
-				<button className="form-btn me-3" onClick={handleClear} variant="primary">
+				<button type='button' className="form-btn me-3" onClick={handleClear} variant="primary">
 					Clear
 				</button>
 
-				<button className="form-btn" disabled={isFormInvalid} variant="primary" type="submit">
+				<button className="form-btn" disabled={isFormInvalid} variant="primary">
 					Submit
 				</button>
 			</form>
