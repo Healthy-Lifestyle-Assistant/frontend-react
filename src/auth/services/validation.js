@@ -99,23 +99,14 @@ export const validatePassword = (title) => {
 };
 
 export const validateLoginForm = (usernameOrEmail, password) => {
-    const validation = {
-        isValid: true,
-        usernameOrEmail: '',
-        password: '',
+    const errors = {
+        usernameOrEmail: validateUsernameOrEmail(usernameOrEmail),
+        password: validatePassword(password),
     };
 
-    const usernameOrEmailError = validateUsernameOrEmail(usernameOrEmail);
-    const passwordError = validatePassword(password);
-
-    if (usernameOrEmailError) {
-        validation.isValid = false;
-        validation.usernameOrEmail = usernameOrEmailError;
-    }
-    if (passwordError) {
-        validation.isValid = false;
-        validation.password = passwordError;
-    }
-
-    return validation;
+    const isValid = Object.values(errors).every((error) => error === '');
+    return {
+        isValid,
+        ...errors,
+    };
 };
