@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Alert from '../../shared/components/Alert.js';
-
+import ValidationMessage from '../../shared/components/ValidationMessage.js';
 import { login, setToken } from '../services/auth.js';
-import { validatePassword, validateUsernameOrEmail } from '../../shared/services/validation.js';
+import { validateLoginForm } from '../services/validation.js';
 
 const LoginPage = ({ globalMessage }) => {
 	const navigate = useNavigate();
@@ -52,18 +52,6 @@ const LoginPage = ({ globalMessage }) => {
 		handleClear();
 
 		const fetchLogin = async () => {
-			const usernameOrEmailValidation = validateUsernameOrEmail(formData.usernameOrEmail);
-			const passwordValidation = validatePassword(formData.password);
-
-			if (!usernameOrEmailValidation.isValid || !passwordValidation.isValid) {
-				setValidationMessage({
-					isValid: false,
-					usernameOrEmail: usernameOrEmailValidation.message,
-					password: passwordValidation.message,
-				});
-				return;
-			}
-
 			try {
 				const response = await login(formData);
 				if (response.status === 200) {
@@ -80,7 +68,18 @@ const LoginPage = ({ globalMessage }) => {
 				setMessage(error.message);
 			}
 		};
-		fetchLogin();
+
+		const validation = validateLoginForm(formData.usernameOrEmail, formData.password);
+
+		if (validation.isValid) {
+			fetchLogin();
+		} else {
+			setValidationMessage({
+				isValid: false,
+				usernameOrEmail: validation.usernameOrEmail,
+				password: validation.password,
+			});
+		}
 	};
 
 	return (
@@ -113,7 +112,8 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{validationMessage.usernameOrEmail && !validationMessage.isValid && <p className="form-error">{validationMessage.usernameOrEmail}</p>}
+					{validationMessage.usernameOrEmail && !validationMessage.isValid && !validationMessage.usernameOrEmail !== ''
+						&& <ValidationMessage message={validationMessage.usernameOrEmail} />}
 				</div>
 
 				<div className="form-group mb-3" controlId="password">
@@ -125,7 +125,8 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{validationMessage.password && !validationMessage.isValid && <p className="form-error">{validationMessage.password}</p>}
+					{validationMessage.password && !validationMessage.isValid && !validationMessage.password !== ''
+						&& <ValidationMessage message={validationMessage.password} />}
 				</div>
 
 				<button type='button' className="form-btn me-3" onClick={handleClear} variant="primary">
