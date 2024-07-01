@@ -53,3 +53,10 @@
     background-color: var(--color-white);
     color: var(--color-black);
 }
+
+.form-btn:disabled {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    opacity: .7;
+    cursor: not-allowed;
+}
