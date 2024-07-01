@@ -20,7 +20,7 @@ const LoginPage = ({ globalMessage }) => {
 		usernameOrEmail: '',
 		password: '',
 	});
-	// const isFormInvalid = !formData.usernameOrEmail.length || !formData.password.length;
+
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
 	const dispatch = useDispatch();
@@ -133,7 +133,7 @@ const LoginPage = ({ globalMessage }) => {
 					Clear
 				</button>
 
-				<button className="form-btn" disabled={!validationMessage.isValid} variant="primary">
+				<button className="form-btn" variant="primary">
 					Submit
 				</button>
 			</form>
