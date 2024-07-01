@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
-import { Form, Button } from 'react-bootstrap';
 import Alert from '../../shared/components/Alert.js';
-
+import ValidationMessage from '../../shared/components/ValidationMessage.js';
 import { login, setToken } from '../services/auth.js';
+import { validateLoginForm } from '../services/validation.js';
 
 const LoginPage = ({ globalMessage }) => {
 	const navigate = useNavigate();
@@ -15,6 +14,13 @@ const LoginPage = ({ globalMessage }) => {
 		usernameOrEmail: '',
 		password: ''
 	});
+
+	const [validationMessage, setValidationMessage] = useState({
+		isValid: true,
+		usernameOrEmail: '',
+		password: '',
+	});
+
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
 	const dispatch = useDispatch();
@@ -32,6 +38,11 @@ const LoginPage = ({ globalMessage }) => {
 			usernameOrEmail: '',
 			password: ''
 		});
+		setValidationMessage({
+			isValid: true,
+			usernameOrEmail: '',
+			password: '',
+		});
 		setMessage('');
 		setMessageType('');
 	}
@@ -39,6 +50,7 @@ const LoginPage = ({ globalMessage }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handleClear();
+
 		const fetchLogin = async () => {
 			try {
 				const response = await login(formData);
@@ -56,7 +68,18 @@ const LoginPage = ({ globalMessage }) => {
 				setMessage(error.message);
 			}
 		};
-		fetchLogin();
+
+		const validation = validateLoginForm(formData.usernameOrEmail, formData.password);
+
+		if (validation.isValid) {
+			fetchLogin();
+		} else {
+			setValidationMessage({
+				isValid: false,
+				usernameOrEmail: validation.usernameOrEmail,
+				password: validation.password,
+			});
+		}
 	};
 
 	return (
@@ -73,30 +96,47 @@ const LoginPage = ({ globalMessage }) => {
 			{globalMessage && globalMessage.body ?
 				<Alert message={globalMessage.body.message} messageType={globalMessage.body.messageType} /> : <></>}
 
-			{/* <AlertComponent message={message} messageType={messageType} /> */}
+			<Alert message={message} messageType={messageType} />
 
-			<Form onSubmit={handleSubmit} style={{ width: 'fit-content' }}>
+			<form onSubmit={handleSubmit} className="form-custom" style={{ width: 'fit-content' }}>
 
-				<Form.Group className="mb-3" controlId="usernameOrEmail">
-					<Form.Label>Username or Email</Form.Label>
-					<Form.Control type="text" name="usernameOrEmail" placeholder="Enter username or email"
-						value={formData.usernameOrEmail} onChange={handleChange} required />
-				</Form.Group>
+				<div className="form-group mb-3" controlId="usernameOrEmail">
+					<label className="form-label" for="usernameOrEmail">Username or Email</label>
+					<input
+						type="text"
+						className="form-input"
+						name="usernameOrEmail"
+						id="usernameOrEmail"
+						placeholder="Enter username or email"
+						value={formData.usernameOrEmail}
+						onChange={handleChange}
+						required
+					/>
+					{validationMessage && !validationMessage.isValid && !validationMessage.usernameOrEmail !== ''
+						&& (<ValidationMessage message={validationMessage.usernameOrEmail} />)}
+				</div>
 
-				<Form.Group className="mb-3" controlId="password">
-					<Form.Label>Password</Form.Label>
-					<Form.Control type="password" name="password" placeholder="Password"
-						value={formData.password} onChange={handleChange} required />
-				</Form.Group>
+				<div className="form-group mb-3" controlId="password">
+					<label className="form-label" for="password">Password</label>
+					<input
+						type="password"
+						className="form-input" name="password" id="password" placeholder="Password"
+						value={formData.password}
+						onChange={handleChange}
+						required
+					/>
+					{validationMessage && !validationMessage.isValid && !validationMessage.password !== ''
+						&& (<ValidationMessage message={validationMessage.password} />)}
+				</div>
 
-				<Button onClick={handleClear} variant="primary" className='me-3'>
+				<button type='button' className="form-btn me-3" onClick={handleClear} variant="primary">
 					Clear
-				</Button>
+				</button>
 
-				<Button variant="primary" type="submit">
+				<button className="form-btn" variant="primary">
 					Submit
-				</Button>
-			</Form>
+				</button>
+			</form>
 		</div>
 	);
 }
