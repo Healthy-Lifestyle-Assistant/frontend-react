@@ -20,7 +20,7 @@ const LoginPage = ({ globalMessage }) => {
 		usernameOrEmail: '',
 		password: '',
 	});
-	const isFormInvalid = !formData.usernameOrEmail.length || !formData.password.length;
+	// const isFormInvalid = !formData.usernameOrEmail.length || !formData.password.length;
 	const [message, setMessage] = useState("");
 	const [messageType, setMessageType] = useState("");
 	const dispatch = useDispatch();
@@ -112,8 +112,8 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{validationMessage.usernameOrEmail && !validationMessage.isValid && !validationMessage.usernameOrEmail !== ''
-						&& <ValidationMessage message={validationMessage.usernameOrEmail} />}
+					{validationMessage && !validationMessage.isValid && !validationMessage.usernameOrEmail !== ''
+						&& (<ValidationMessage message={validationMessage.usernameOrEmail} />)}
 				</div>
 
 				<div className="form-group mb-3" controlId="password">
@@ -125,15 +125,15 @@ const LoginPage = ({ globalMessage }) => {
 						onChange={handleChange}
 						required
 					/>
-					{validationMessage.password && !validationMessage.isValid && !validationMessage.password !== ''
-						&& <ValidationMessage message={validationMessage.password} />}
+					{validationMessage && !validationMessage.isValid && !validationMessage.password !== ''
+						&& (<ValidationMessage message={validationMessage.password} />)}
 				</div>
 
 				<button type='button' className="form-btn me-3" onClick={handleClear} variant="primary">
 					Clear
 				</button>
 
-				<button className="form-btn" disabled={isFormInvalid} variant="primary">
+				<button className="form-btn" disabled={!validationMessage.isValid} variant="primary">
 					Submit
 				</button>
 			</form>
