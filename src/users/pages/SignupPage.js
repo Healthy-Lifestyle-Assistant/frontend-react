@@ -44,14 +44,6 @@ const SignupPage = () => {
     const [messages, setMessages] = useState([]);
     const dispatch = useDispatch();
 
-    const isFormInvalid = !formData.fullName.length
-        || !formData.username.length
-        || !formData.email.length
-        || !formData.password.length
-        || !formData.confirmPassword.length
-        || !formData.countryId.length
-        || !formData.timezoneId.length;
-
     useEffect(() => {
         const fetchData = async () => {
             const countriesResponse = await getCountries();
@@ -278,7 +270,7 @@ const SignupPage = () => {
                     Clear
                 </button>
 
-                <button className="form-btn" variant='primary' disabled={isFormInvalid}>
+                <button className="form-btn" variant='primary'>
                     Submit
                 </button>
             </form>
