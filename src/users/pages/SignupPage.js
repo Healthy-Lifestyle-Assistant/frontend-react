@@ -159,8 +159,8 @@ const SignupPage = () => {
                         onChange={handleChange}
                         required
                     />
-                    {validationMessage.fullName && !validationMessage.isValid && validationMessage.fullName
-                        && <ValidationMessage message={validationMessage.fullName} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.fullName !== ''
+                        && (<ValidationMessage message={validationMessage.fullName} />)}
                 </div>
 
                 <div className='form-group mb-3' controlId='username'>
@@ -174,8 +174,8 @@ const SignupPage = () => {
                         onChange={handleChange}
                         required
                     />
-                    {validationMessage.username && !validationMessage.isValid && validationMessage.username
-                        && <ValidationMessage message={validationMessage.username} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.username !== ''
+                        && (<ValidationMessage message={validationMessage.username} />)}
                 </div>
 
                 <div className='form-group mb-3' controlId='email'>
@@ -190,8 +190,8 @@ const SignupPage = () => {
                         onChange={handleChange}
                         required
                     />
-                    {validationMessage.email && !validationMessage.isValid && validationMessage.email
-                        && <ValidationMessage message={validationMessage.email} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.email !== ''
+                        && (<ValidationMessage message={validationMessage.email} />)}
                 </div>
 
                 <div className='form-group mb-3' controlId='password'>
@@ -206,8 +206,8 @@ const SignupPage = () => {
                         onChange={handleChange}
                         required
                     />
-                    {validationMessage.password && !validationMessage.isValid && validationMessage.password
-                        && <ValidationMessage message={validationMessage.password} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.password
+                        && (<ValidationMessage message={validationMessage.password} />)}
                 </div>
 
                 <div className='form-group mb-3' controlId='confirmPassword'>
@@ -222,8 +222,8 @@ const SignupPage = () => {
                         onChange={handleChange}
                         required
                     />
-                    {validationMessage.confirmPassword && !validationMessage.isValid && validationMessage.confirmPassword
-                        && <ValidationMessage message={validationMessage.confirmPassword} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.confirmPassword
+                        && (<ValidationMessage message={validationMessage.confirmPassword} />)}
                 </div>
 
                 {countries && (
@@ -238,8 +238,8 @@ const SignupPage = () => {
                                 </option>
                             ))}
                         </select>
-                        {validationMessage.countryId && !validationMessage.isValid && validationMessage.countryId
-                            && <ValidationMessage message={validationMessage.countryId} />}
+                        {validationMessage && !validationMessage.isValid && validationMessage.countryId
+                            && (<ValidationMessage message={validationMessage.countryId} />)}
                     </div>
                 )}
 
@@ -255,8 +255,8 @@ const SignupPage = () => {
                                 </option>
                             ))}
                         </select>
-                        {validationMessage.timezoneId && !validationMessage.isValid && validationMessage.timezoneId
-                        && <ValidationMessage message={validationMessage.timezoneId} />}
+                        {validationMessage && !validationMessage.isValid && validationMessage.timezoneId
+                        && (<ValidationMessage message={validationMessage.timezoneId} />)}
                     </div>
                 )}
 
@@ -270,8 +270,8 @@ const SignupPage = () => {
                         value={formData.age}
                         onChange={handleChange}
                     />
-                    {validationMessage.age && !validationMessage.isValid && validationMessage.age
-                        && <ValidationMessage message={validationMessage.age} />}
+                    {validationMessage && !validationMessage.isValid && validationMessage.age
+                        && (<ValidationMessage message={validationMessage.age} />)}
                 </div>
 
                 <button className="form-btn me-3" type="button" onClick={handleClear} variant='primary'>
